@@ -1,0 +1,579 @@
+<!DOCTYPE html><!--  Last Published: Thu May 28 2026 15:00:05 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="69e9104f50141d3b1fe5f319" data-wf-site="69dd6cc4b20808a2eb8c694b" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dazzle Canvas</title>
+  <meta content="Prismaclad Pattern Engine — generate large-scale exterior graphic treatments for data center facades." name="description">
+  <meta content="Dazzle Canvas" property="og:title">
+  <meta content="Prismaclad Pattern Engine — generate large-scale exterior graphic treatments for data center facades." property="og:description">
+  <meta content="Dazzle Canvas" name="twitter:title">
+  <meta content="Prismaclad Pattern Engine — generate large-scale exterior graphic treatments for data center facades." name="twitter:description">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/prismaclad.webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Inconsolata:400,700","JetBrains Mono:300,400,500,600,700","Poppins:300,400,500,600,700"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)">
+  <link href="images/favicon-dark.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)">
+  <link href="images/webclip-180.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="images/webclip-192.png" rel="icon" type="image/png" sizes="192x192">
+  <link href="images/webclip.png" rel="icon" type="image/png" sizes="512x512"><!--  Keep this css code to improve the font quality -->
+  <style>
+  * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing: antialiased;
+  -webkit-appearance:none;
+}
+</style>
+  <script src="https://cdn.prod.website-files.com/69dd6cc4b20808a2eb8c694b%2F689e5ba67671442434f3ca35%2F69e65731444b1d49596e05e6%2Fgoogle_analytics_gtag-1.0.0.js" type="text/javascript"></script>
+</head>
+<body>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=69dd6cc4b20808a2eb8c694b" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismaclad — Dazzle Canvas v3</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#f5f5f3;--bg0:#fff;--tx0:#1a1a1a;--tx1:#666662;--bd:#e0e0dc;--bd2:#c8c8c4;}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+.wrap{display:flex;height:100vh;overflow:hidden;}
+.panel{flex:0 0 262px;width:262px;background:var(--bg0);border-right:0.5px solid var(--bd);padding:12px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.canvas-area{flex:1 1 0;min-width:0;display:flex;flex-direction:column;}
+.hdr{background:#1a1a1a;padding:8px 14px;display:flex;align-items:baseline;gap:10px;flex-shrink:0;}
+.hdr-logo{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13px;color:#fff;letter-spacing:-0.02em;}
+.hdr-tool{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:10px;color:#888;}
+.hdr-ver{font-family:'JetBrains Mono',monospace;font-size:10px;color:#555;margin-left:auto;}
+.sl{font-size:10px;font-weight:600;color:var(--tx1);text-transform:uppercase;letter-spacing:.08em;}
+.grp{display:flex;flex-direction:column;gap:3px;}
+.row{display:flex;align-items:center;gap:6px;}
+.row label{font-size:12px;color:var(--tx1);flex:1;}
+.row .val{font-size:12px;font-weight:600;color:var(--tx0);min-width:34px;text-align:right;}
+input[type=range]{flex:1;height:4px;accent-color:var(--tx0);cursor:pointer;}
+.sg{display:flex;gap:3px;flex-wrap:wrap;}
+.s{font-size:11px;padding:3px 8px;border:0.5px solid var(--bd2);border-radius:6px;cursor:pointer;background:var(--bg0);color:var(--tx1);user-select:none;}
+.s:hover{background:var(--bg);}
+.s.on{background:var(--tx0);color:#fff;border-color:var(--tx0);}
+.btn{font-size:12px;padding:5px 10px;border:0.5px solid var(--bd2);border-radius:6px;background:var(--bg0);color:var(--tx0);cursor:pointer;white-space:nowrap;}
+.btn:hover{background:var(--bg);}
+.btn.pri{background:var(--tx0);color:#fff;border-color:var(--tx0);}
+.div{height:0.5px;background:var(--bd);flex-shrink:0;}
+.sw-row{display:flex;align-items:center;gap:6px;margin-top:2px;}
+.sw-label{font-size:11px;color:var(--tx1);}
+.cswatch{width:24px;height:24px;border-radius:4px;border:0.5px solid var(--bd);cursor:pointer;position:relative;flex-shrink:0;}
+.cswatch input[type=color]{opacity:0;position:absolute;inset:0;width:100%;height:100%;cursor:pointer;}
+.sys-block{background:var(--bg);border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:5px;border:0.5px solid var(--bd);}
+.sys-label{font-size:10px;font-weight:600;color:var(--tx1);text-transform:uppercase;letter-spacing:.06em;}
+.toolbar{display:flex;gap:6px;padding:8px 12px;background:var(--bg0);border-bottom:0.5px solid var(--bd);align-items:center;justify-content:space-between;flex-shrink:0;}
+.tbadge{font-size:11px;padding:2px 8px;border-radius:6px;background:#e6f1fb;color:#0c447c;}
+#canvas-wrap{flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#e8e8e6;}
+canvas#dc{display:block;}
+.preset-row{display:flex;gap:4px;flex-wrap:wrap;}
+.pbtn{font-size:11px;padding:3px 9px;border:0.5px solid var(--bd2);border-radius:6px;cursor:pointer;background:var(--bg0);color:var(--tx0);white-space:nowrap;}
+.pbtn:hover,.pbtn.active{background:var(--tx0);color:#fff;border-color:var(--tx0);}
+/* mode toggle — fixed: inline-flex, no extra width */
+.mt-wrap{display:inline-flex;border:0.5px solid var(--bd2);border-radius:7px;overflow:hidden;width:100%;}
+.mt{flex:1;font-size:11px;padding:5px 0;cursor:pointer;background:var(--bg0);color:var(--tx1);border:none;text-align:center;user-select:none;}
+.mt:first-child{border-right:0.5px solid var(--bd2);}
+.mt.on{background:var(--tx0);color:#fff;}
+</style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <div class="grp">
+          <div class="sl" style="margin-bottom:4px;">Mode</div>
+          <div class="mt-wrap">
+            <button class="mt on" id="mt-stripes" onclick="setMode('stripes')">Stripes</button>
+            <button class="mt" id="mt-voronoi" onclick="setMode('voronoi')">Shards</button>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="sl" style="margin-bottom:3px;">Presets</div>
+          <div class="preset-row" id="preset-row">
+            <button class="pbtn stripes-p" data-p="bw">B&W</button>
+            <button class="pbtn stripes-p" data-p="sparse">Sparse</button>
+            <button class="pbtn stripes-p" data-p="dense">Dense</button>
+            <button class="pbtn stripes-p" data-p="chaos">Chaos</button>
+            <button class="pbtn voronoi-p" data-p="vsparse" style="display:none">Sparse</button>
+            <button class="pbtn voronoi-p" data-p="vdense" style="display:none">Dense</button>
+            <button class="pbtn voronoi-p" data-p="vchaos" style="display:none">Chaos</button>
+          </div>
+        </div>
+        <div class="div"></div>
+        <div class="grp">
+          <div class="sl">Colors</div>
+          <div class="sw-row">
+            <div class="cswatch" id="sw-fg" style="background:#1a1a1a"><input type="color" id="c-fg" value="#1a1a1a"></div><span class="sw-label">Foreground</span>
+          </div>
+          <div class="sw-row">
+            <div class="cswatch" id="sw-bg" style="background:#ffffff"><input type="color" id="c-bg" value="#ffffff"></div><span class="sw-label">Background</span>
+          </div>
+        </div>
+        <div class="div"></div>
+        <div class="grp">
+          <div class="sl">Canvas</div>
+          <div class="grp">
+            <div class="row"><label>Seed</label><span class="val" id="v-seed">42</span></div><input type="range" id="s-seed" min="1" max="999" step="1" value="42">
+          </div>
+        </div>
+        <!--  STRIPES CONTROLS  -->
+        <div id="stripes-controls" style="display:flex;flex-direction:column;gap:8px;">
+          <div class="grp">
+            <div class="row"><label>Systems</label><span class="val" id="v-ns">3</span></div><input type="range" id="s-ns" min="2" max="4" step="1" value="3">
+          </div>
+          <div class="div"></div>
+          <div id="sys-panels"></div>
+          <div class="div"></div>
+          <div class="grp">
+            <div class="sl" style="margin-bottom:3px;">Global modifiers</div>
+            <div class="grp">
+              <div class="row"><label>Angle jitter</label><span class="val" id="v-jit">0°</span></div><input type="range" id="s-jit" min="0" max="25" step="1" value="0">
+            </div>
+            <div class="grp">
+              <div class="row"><label>Width variance</label><span class="val" id="v-wvar">0%</span></div><input type="range" id="s-wvar" min="0" max="60" step="5" value="0">
+            </div>
+            <div class="grp">
+              <div class="sl" style="margin-bottom:3px;">Focal point</div>
+              <div class="sg" id="fpg">
+                <div class="s on" data-val="none">None</div>
+                <div class="s" data-val="center">Center</div>
+                <div class="s" data-val="tl">TL</div>
+                <div class="s" data-val="tr">TR</div>
+                <div class="s" data-val="bl">BL</div>
+                <div class="s" data-val="br">BR</div>
+              </div>
+            </div>
+            <div class="grp">
+              <div class="row"><label>Focal strength</label><span class="val" id="v-fs">0%</span></div><input type="range" id="s-fs" min="0" max="100" step="5" value="0">
+            </div>
+          </div>
+          <div class="div"></div>
+          <!--  SHARD OVERLAY (stripes mode only)  -->
+          <div class="grp">
+            <div class="sl" style="margin-bottom:3px;">Shard overlay</div>
+            <div class="sg" id="ovg">
+              <div class="s on" data-val="none">Off</div>
+              <div class="s" data-val="offset">Offset</div>
+              <div class="s" data-val="rotate">Rotate</div>
+              <div class="s" data-val="invert">Invert</div>
+            </div>
+          </div>
+          <div class="grp">
+            <div class="row"><label>Shard count</label><span class="val" id="v-ovshards">30</span></div><input type="range" id="s-ovshards" min="5" max="120" step="5" value="30">
+          </div>
+          <div class="grp">
+            <div class="row"><label>Overlay strength</label><span class="val" id="v-ovstr">40%</span></div><input type="range" id="s-ovstr" min="5" max="100" step="5" value="40">
+          </div>
+        </div>
+        <!--  VORONOI CONTROLS  -->
+        <div id="voronoi-controls" style="display:none;flex-direction:column;gap:8px;">
+          <div class="grp">
+            <div class="row"><label>Shard count</label><span class="val" id="v-shards">40</span></div><input type="range" id="s-shards" min="5" max="200" step="5" value="40">
+          </div>
+          <div class="grp">
+            <div class="row"><label>Stripes per shard</label><span class="val" id="v-sps">3</span></div><input type="range" id="s-sps" min="2" max="8" step="1" value="3">
+          </div>
+          <div class="grp">
+            <div class="row"><label>Band width</label><span class="val" id="v-vw">16px</span></div><input type="range" id="s-vw" min="4" max="60" step="2" value="16">
+          </div>
+          <div class="grp">
+            <div class="row"><label>Width variance</label><span class="val" id="v-vwvar">20%</span></div><input type="range" id="s-vwvar" min="0" max="80" step="5" value="20">
+          </div>
+          <div class="grp">
+            <div class="row"><label>Angle jitter</label><span class="val" id="v-vjit">8°</span></div><input type="range" id="s-vjit" min="0" max="30" step="1" value="8">
+          </div>
+          <div class="grp">
+            <div class="sl" style="margin-bottom:3px;">Shard distribution</div>
+            <div class="sg" id="distg">
+              <div class="s on" data-val="uniform">Uniform</div>
+              <div class="s" data-val="center">Dense center</div>
+              <div class="s" data-val="edge">Dense edges</div>
+            </div>
+          </div>
+          <div class="grp">
+            <div class="sl" style="margin-bottom:3px;">Angle assignment</div>
+            <div class="sg" id="angleg">
+              <div class="s on" data-val="random">Random</div>
+              <div class="s" data-val="neighbor">Neighbor contrast</div>
+              <div class="s" data-val="radial">Radial</div>
+            </div>
+          </div>
+        </div>
+        <div class="div"></div>
+        <div style="display:flex;gap:6px;padding-bottom:4px;">
+          <button class="btn" onclick="randSeed()" style="flex:1;">Randomize</button>
+          <button class="btn pri" onclick="render()" style="flex:1;">Generate</button>
+        </div>
+        <button class="btn" onclick="exportPNG()" style="width:100%;">Export PNG</button>
+      </div>
+      <div class="canvas-area">
+        <div class="hdr">
+          <span class="hdr-logo">Prismaclad</span>
+          <span class="hdr-tool">Dazzle Canvas</span>
+          <span class="hdr-ver">v3</span>
+        </div>
+        <div class="toolbar">
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span class="tbadge" id="mode-badge">Stripes</span>
+            <span style="font-size:11px;color:var(--tx1);" id="seed-label">seed: 42</span>
+          </div>
+          <div style="display:flex;gap:5px;">
+            <div class="s on" id="asp-sq" onclick="setAspect('sq')" style="font-size:11px;padding:3px 8px;">1:1</div>
+            <div class="s" id="asp-wide" onclick="setAspect('wide')" style="font-size:11px;padding:3px 8px;">5:1</div>
+          </div>
+        </div>
+        <div id="canvas-wrap"><canvas id="dc"></canvas></div>
+      </div>
+    </div>
+    <script>
+let mode='stripes', aspect='sq';
+const ANGLES=[15,30,45,60,75,105,120,135,150,165];
+let st={
+  seed:42, fg:'#1a1a1a', bg:'#ffffff',
+  ns:3, jit:0, wvar:0, fp:'none', fs:0,
+  sys:[{angle:45,width:24},{angle:135,width:24},{angle:30,width:18},{angle:120,width:18}],
+  overlay:'none', ovshards:30, ovstr:40,
+  shards:40, sps:3, vw:16, vwvar:20, vjit:8,
+  dist:'uniform', angleAssign:'random'
+};
+const PRESETS={
+  bw:      {mode:'stripes',ns:2,jit:0,wvar:0,fp:'none',fs:0,overlay:'none',ovshards:30,ovstr:40,fg:'#1a1a1a',bg:'#ffffff',sys:[{angle:45,width:28},{angle:135,width:28},{angle:30,width:20},{angle:120,width:20}]},
+  sparse:  {mode:'stripes',ns:2,jit:6,wvar:25,fp:'none',fs:0,overlay:'none',ovshards:30,ovstr:40,fg:'#111',bg:'#f0f0f0',sys:[{angle:45,width:44},{angle:15,width:38},{angle:75,width:40},{angle:120,width:32}]},
+  dense:   {mode:'stripes',ns:3,jit:14,wvar:30,fp:'center',fs:55,overlay:'offset',ovshards:40,ovstr:35,fg:'#080808',bg:'#f5f5f5',sys:[{angle:45,width:18},{angle:135,width:16},{angle:30,width:14},{angle:120,width:14}]},
+  chaos:   {mode:'stripes',ns:4,jit:22,wvar:55,fp:'center',fs:72,overlay:'rotate',ovshards:60,ovstr:50,fg:'#000',bg:'#fff',sys:[{angle:45,width:12},{angle:135,width:14},{angle:30,width:10},{angle:105,width:16}]},
+  vsparse: {mode:'voronoi',shards:20,sps:2,vw:32,vwvar:30,vjit:5,dist:'uniform',angleAssign:'random',fg:'#111',bg:'#f0f0f0'},
+  vdense:  {mode:'voronoi',shards:60,sps:3,vw:16,vwvar:25,vjit:10,dist:'center',angleAssign:'neighbor',fg:'#080808',bg:'#f5f5f5'},
+  vchaos:  {mode:'voronoi',shards:120,sps:4,vw:10,vwvar:50,vjit:18,dist:'uniform',angleAssign:'radial',fg:'#000',bg:'#fff'}
+};
+function mr32(s){let x=s;return()=>{x|=0;x=x+0x6D2B79F5|0;let t=Math.imul(x^x>>>15,1|x);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let rng=mr32(42);
+function hexToRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function randSeed(){
+  const v=Math.floor(Math.random()*998)+1;
+  st.seed=v;
+  document.getElementById('s-seed').value=v;
+  document.getElementById('v-seed').textContent=v;
+  render();
+}
+function setMode(m){
+  mode=m;
+  document.getElementById('mt-stripes').classList.toggle('on',m==='stripes');
+  document.getElementById('mt-voronoi').classList.toggle('on',m==='voronoi');
+  document.getElementById('stripes-controls').style.display=m==='stripes'?'flex':'none';
+  document.getElementById('voronoi-controls').style.display=m==='voronoi'?'flex':'none';
+  document.querySelectorAll('.stripes-p').forEach(b=>b.style.display=m==='stripes'?'':'none');
+  document.querySelectorAll('.voronoi-p').forEach(b=>b.style.display=m==='voronoi'?'':'none');
+  document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('mode-badge').textContent=m==='stripes'?'Stripes':'Shards';
+  render();
+}
+function setAspect(a){
+  aspect=a;
+  document.getElementById('asp-sq').classList.toggle('on',a==='sq');
+  document.getElementById('asp-wide').classList.toggle('on',a==='wide');
+  resizeCanvas();render();
+}
+function resizeCanvas(){
+  const wrap=document.getElementById('canvas-wrap');
+  const c=document.getElementById('dc');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  if(aspect==='wide'){
+    const dw=W-40,dh=Math.round(dw/5);
+    c.style.width=dw+'px';c.style.height=dh+'px';
+    c.width=dw*dpr;c.height=dh*dpr;
+  } else {
+    const sz=Math.min(W,H)-40;
+    c.style.width=sz+'px';c.style.height=sz+'px';
+    c.width=sz*dpr;c.height=sz*dpr;
+  }
+}
+// ── VORONOI CELL MAP ─────────────────────────────────────────
+function buildCellMap(W,H,n,dist,seed){
+  const r=mr32(seed+9999);
+  const sites=[];
+  for(let i=0;i<n;i++){
+    let x,y;
+    if(dist==='center'){const rd=Math.pow(r(),0.5)*0.85,a=r()*Math.PI*2;x=W/2+Math.cos(a)*rd*W/2;y=H/2+Math.sin(a)*rd*H/2;}
+    else if(dist==='edge'){if(r()<0.6){const e=Math.floor(r()*4);if(e===0){x=r()*W;y=r()*H*0.15;}else if(e===1){x=r()*W;y=H-r()*H*0.15;}else if(e===2){x=r()*W*0.15;y=r()*H;}else{x=W-r()*W*0.15;y=r()*H;}}else{x=r()*W;y=r()*H;}}
+    else{x=r()*W;y=r()*H;}
+    sites.push([Math.max(1,Math.min(W-2,x)),Math.max(1,Math.min(H-2,y))]);
+  }
+  const scale=Math.max(1,Math.floor(Math.min(W,H)/280));
+  const mW=Math.ceil(W/scale),mH=Math.ceil(H/scale);
+  const map=new Int32Array(mW*mH);
+  for(let y=0;y<mH;y++)for(let x=0;x<mW;x++){
+    const px=x*scale+scale/2,py=y*scale+scale/2;
+    let best=0,bestD=Infinity;
+    for(let i=0;i<n;i++){const dx=px-sites[i][0],dy=py-sites[i][1],d=dx*dx+dy*dy;if(d<bestD){bestD=d;best=i;}}
+    map[y*mW+x]=best;
+  }
+  return{map,mW,mH,scale,sites,n};
+}
+function cellAt(cm,px,py){
+  const x=Math.min(Math.floor(px/cm.scale),cm.mW-1);
+  const y=Math.min(Math.floor(py/cm.scale),cm.mH-1);
+  return cm.map[y*cm.mW+x];
+}
+// ── STRIPES RENDERER ─────────────────────────────────────────
+function renderStripes(ctx,W,H){
+  const nsys=st.ns;
+  let fpx=W/2,fpy=H/2;
+  if(st.fp==='tl'){fpx=0;fpy=0;}else if(st.fp==='tr'){fpx=W;fpy=0;}
+  else if(st.fp==='bl'){fpx=0;fpy=H;}else if(st.fp==='br'){fpx=W;fpy=H;}
+  const layers=[];
+  for(let si=0;si<nsys;si++){
+    const oc=document.createElement('canvas');oc.width=W;oc.height=H;
+    const octx=oc.getContext('2d');
+    const sys=st.sys[si];
+    const bw=sys.width*(W/460);
+    const wvar=st.wvar/100,jitR=st.jit*Math.PI/180,fs=st.fs/100;
+    const aRad=sys.angle*Math.PI/180,cosA=Math.cos(aRad),sinA=Math.sin(aRad);
+    const perpX=-sinA,perpY=cosA;
+    const diag=Math.sqrt(W*W+H*H),nb=Math.ceil(diag/bw)+4;
+    for(let b=0;b<nb;b++){
+      if(b%2!==0)continue;
+      const bwi=bw*(1+(rng()-0.5)*wvar*1.5);
+      const ja=(rng()-0.5)*jitR*2;
+      let ar=aRad+ja;
+      if(st.fp!=='none'&&fs>0){
+        const t=(b-nb/2)/nb,bCX=W/2+perpX*t*diag,bCY=H/2+perpY*t*diag;
+        const dx=bCX-fpx,dy=bCY-fpy,fa=Math.atan2(dy,dx);
+        ar=ar*(1-fs)+(fa+Math.PI/2)*fs;
+      }
+      const cosB=Math.cos(ar),sinB=Math.sin(ar);
+      const off=(b-nb/2)*bw+bwi/2,cx=W/2+perpX*off,cy=H/2+perpY*off,ext=diag;
+      const pts=[[cx+cosB*ext-sinB*(-bwi/2),cy+sinB*ext+cosB*(-bwi/2)],[cx+cosB*ext-sinB*(bwi/2),cy+sinB*ext+cosB*(bwi/2)],[cx-cosB*ext-sinB*(bwi/2),cy-sinB*ext+cosB*(bwi/2)],[cx-cosB*ext-sinB*(-bwi/2),cy-sinB*ext+cosB*(-bwi/2)]];
+      octx.fillStyle='#000';octx.beginPath();octx.moveTo(pts[0][0],pts[0][1]);
+      for(let p=1;p<4;p++)octx.lineTo(pts[p][0],pts[p][1]);
+      octx.closePath();octx.fill();
+    }
+    layers.push(oc);
+  }
+  // XOR composite into pixel buffer
+  const fgRgb=hexToRgb(st.fg),bgRgb=hexToRgb(st.bg);
+  const imgData=ctx.createImageData(W,H);
+  const ld=layers.map(l=>l.getContext('2d').getImageData(0,0,W,H).data);
+  for(let i=0;i<W*H;i++){
+    let cov=0;for(let s=0;s<nsys;s++)if(ld[s][i*4+3]>128)cov++;
+    const col=cov%2===1?fgRgb:bgRgb;
+    imgData.data[i*4]=col[0];imgData.data[i*4+1]=col[1];imgData.data[i*4+2]=col[2];imgData.data[i*4+3]=255;
+  }
+  ctx.putImageData(imgData,0,0);
+  // Shard overlay pass
+  if(st.overlay!=='none'){
+    applyShardOverlay(ctx,W,H,fgRgb,bgRgb);
+  }
+}
+// ── SHARD OVERLAY ────────────────────────────────────────────
+function applyShardOverlay(ctx,W,H,fgRgb,bgRgb){
+  const cm=buildCellMap(W,H,st.ovshards,'uniform',st.seed+77777);
+  const str=st.ovstr/100;
+  const src=ctx.getImageData(0,0,W,H);
+  const dst=ctx.createImageData(W,H);
+  // Per-cell offset/rotation values (seeded per cell)
+  const cellOff=[];
+  for(let c=0;c<st.ovshards;c++){
+    const cr=mr32(c*3137+st.seed);
+    const maxOff=Math.round(str*18*(W/460));
+    const ox=Math.round((cr()-0.5)*2*maxOff);
+    const oy=Math.round((cr()-0.5)*2*maxOff);
+    const rotAmt=(cr()-0.5)*2*str*0.4; // radians
+    cellOff.push({ox,oy,rot:rotAmt});
+  }
+  for(let py=0;py<H;py++){
+    for(let px=0;px<W;px++){
+      const cell=cellAt(cm,px,py);
+      const off=cellOff[cell];
+      let sx=px,sy=py;
+      if(st.overlay==='offset'){
+        sx=px-off.ox;sy=py-off.oy;
+      } else if(st.overlay==='rotate'){
+        // rotate around cell centroid
+        const site=cm.sites[cell];
+        const dx=px-site[0],dy=py-site[1];
+        const cosR=Math.cos(off.rot),sinR=Math.sin(off.rot);
+        sx=Math.round(site[0]+dx*cosR-dy*sinR);
+        sy=Math.round(site[1]+dx*sinR+dy*cosR);
+      } else if(st.overlay==='invert'){
+        // invert pixel for this cell if near boundary
+        sx=px;sy=py;
+        // check if neighboring pixel is different cell
+        const neighbors=[[px-1,py],[px+1,py],[px,py-1],[px,py+1]];
+        let onBoundary=false;
+        for(const[nx,ny] of neighbors){
+          if(nx>=0&&nx<W&&ny>=0&&ny<H&&cellAt(cm,nx,ny)!==cell){onBoundary=true;break;}
+        }
+        if(onBoundary){
+          const di=(py*W+px)*4;
+          // invert: swap fg/bg
+          const isF=src.data[di]===fgRgb[0]&&src.data[di+1]===fgRgb[1];
+          const col=isF?bgRgb:fgRgb;
+          dst.data[di]=col[0];dst.data[di+1]=col[1];dst.data[di+2]=col[2];dst.data[di+3]=255;
+          continue;
+        }
+      }
+      // Clamp source coords
+      sx=Math.max(0,Math.min(W-1,sx));
+      sy=Math.max(0,Math.min(H-1,sy));
+      const si=(sy*W+sx)*4,di=(py*W+px)*4;
+      dst.data[di]=src.data[si];dst.data[di+1]=src.data[si+1];dst.data[di+2]=src.data[si+2];dst.data[di+3]=255;
+    }
+  }
+  ctx.putImageData(dst,0,0);
+}
+// ── VORONOI RENDERER ─────────────────────────────────────────
+function renderVoronoi(ctx,W,H){
+  const cm=buildCellMap(W,H,st.shards,st.dist,st.seed);
+  const n=st.shards;
+  const available=ANGLES.map(a=>a*Math.PI/180);
+  const angles=new Float32Array(n);
+  const ar=mr32(st.seed+1);
+  for(let i=0;i<n;i++){
+    if(st.angleAssign==='random'){angles[i]=available[Math.floor(ar()*available.length)];}
+    else if(st.angleAssign==='radial'){
+      const dx=cm.sites[i][0]-W/2,dy=cm.sites[i][1]-H/2;
+      const base=Math.atan2(dy,dx);
+      let best=available[0],bd=Infinity;
+      for(const a of available){const d=Math.abs(((a-base+Math.PI*2)%Math.PI)-Math.PI/2);if(d<bd){bd=d;best=a;}}
+      angles[i]=best;
+    } else {
+      if(i<3){angles[i]=available[i%available.length];}
+      else{
+        const ds=[];for(let j=0;j<i;j++){const dx=cm.sites[i][0]-cm.sites[j][0],dy=cm.sites[i][1]-cm.sites[j][1];ds.push([j,dx*dx+dy*dy]);}
+        ds.sort((a,b)=>a[1]-b[1]);
+        const ua=ds.slice(0,3).map(d=>angles[d[0]]);
+        let best=available[0],bmd=0;
+        for(const a of available){const md=Math.min(...ua.map(u=>Math.abs(a-u)));if(md>bmd){bmd=md;best=a;}}
+        angles[i]=best;
+      }
+    }
+  }
+  const fgRgb=hexToRgb(st.fg),bgRgb=hexToRgb(st.bg);
+  const imgData=ctx.createImageData(W,H);
+  const bw=st.vw*(W/460),vwv=st.vwvar/100,vjR=st.vjit*Math.PI/180,sps=st.sps;
+  for(let py=0;py<H;py++){
+    for(let px=0;px<W;px++){
+      const cell=cellAt(cm,px,py);
+      const ca=angles[cell];
+      let cov=0;
+      for(let s=0;s<sps;s++){
+        const ao=s/sps*Math.PI;
+        const fa=ca+ao;
+        const cosA=Math.cos(fa),sinA=Math.sin(fa);
+        const proj=px*(-sinA)+py*cosA;
+        const cr2=mr32(cell*1000+s*137+st.seed);
+        const bwi=bw*(1+(cr2()-0.5)*vwv*1.5);
+        const phase=cr2()*bwi*2;
+        if(Math.floor((proj+phase)/bwi)%2===0)cov++;
+      }
+      const col=cov%2===1?fgRgb:bgRgb;
+      const i=(py*W+px)*4;
+      imgData.data[i]=col[0];imgData.data[i+1]=col[1];imgData.data[i+2]=col[2];imgData.data[i+3]=255;
+    }
+  }
+  ctx.putImageData(imgData,0,0);
+}
+// ── RENDER ───────────────────────────────────────────────────
+function render(){
+  rng=mr32(st.seed);
+  const c=document.getElementById('dc');
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  ctx.fillStyle=st.bg;ctx.fillRect(0,0,W,H);
+  if(mode==='stripes')renderStripes(ctx,W,H);
+  else renderVoronoi(ctx,W,H);
+  document.getElementById('seed-label').textContent=`seed: ${st.seed}`;
+}
+// ── PANEL BUILDERS ───────────────────────────────────────────
+function buildSysPanels(){
+  const container=document.getElementById('sys-panels');
+  container.innerHTML='';
+  for(let i=0;i<4;i++){
+    const sys=st.sys[i];
+    const div=document.createElement('div');
+    div.className='sys-block';div.id=`sys-${i}`;
+    div.style.display=i<st.ns?'flex':'none';
+    div.style.flexDirection='column';div.style.gap='5px';
+    div.innerHTML=`<div class="sys-label">System ${i+1}</div>
+      <div class="grp"><div class="row"><label>Angle</label><span class="val" id="v-a${i}">${sys.angle}°</span></div>
+      <input type="range" id="s-a${i}" min="0" max="9" step="1" value="${Math.max(0,ANGLES.indexOf(sys.angle))}"></div>
+      <div class="grp"><div class="row"><label>Band width</label><span class="val" id="v-w${i}">${sys.width}px</span></div>
+      <input type="range" id="s-w${i}" min="4" max="80" step="2" value="${sys.width}"></div>`;
+    container.appendChild(div);
+    document.getElementById(`s-a${i}`).addEventListener('input',e=>{
+      const idx=parseInt(e.target.value);st.sys[i].angle=ANGLES[idx];
+      document.getElementById(`v-a${i}`).textContent=ANGLES[idx]+'°';render();
+    });
+    document.getElementById(`s-w${i}`).addEventListener('input',e=>{
+      const v=parseInt(e.target.value);st.sys[i].width=v;
+      document.getElementById(`v-w${i}`).textContent=v+'px';render();
+    });
+  }
+}
+function updateSysVisibility(){
+  for(let i=0;i<4;i++){const el=document.getElementById(`sys-${i}`);if(el)el.style.display=i<st.ns?'flex':'none';}
+}
+// ── PRESET ───────────────────────────────────────────────────
+function applyPreset(name){
+  const p=PRESETS[name];
+  if(p.mode)setMode(p.mode);
+  Object.assign(st,p);
+  const syncs=[['s-seed','v-seed','seed',''],['s-ns','v-ns','ns',''],['s-jit','v-jit','jit','°'],['s-wvar','v-wvar','wvar','%'],['s-fs','v-fs','fs','%'],['s-ovshards','v-ovshards','ovshards',''],['s-ovstr','v-ovstr','ovstr','%'],['s-shards','v-shards','shards',''],['s-sps','v-sps','sps',''],['s-vw','v-vw','vw','px'],['s-vwvar','v-vwvar','vwvar','%'],['s-vjit','v-vjit','vjit','°']];
+  syncs.forEach(([sid,vid,key,sfx])=>{const el=document.getElementById(sid),vel=document.getElementById(vid);if(el&&vel){el.value=st[key];vel.textContent=st[key]+sfx;}});
+  document.getElementById('c-fg').value=st.fg;document.getElementById('sw-fg').style.background=st.fg;
+  document.getElementById('c-bg').value=st.bg;document.getElementById('sw-bg').style.background=st.bg;
+  if(p.fp)document.querySelectorAll('#fpg .s').forEach(s=>s.classList.toggle('on',s.dataset.val===st.fp));
+  if(p.overlay)document.querySelectorAll('#ovg .s').forEach(s=>s.classList.toggle('on',s.dataset.val===st.overlay));
+  if(p.dist)document.querySelectorAll('#distg .s').forEach(s=>s.classList.toggle('on',s.dataset.val===st.dist));
+  if(p.angleAssign)document.querySelectorAll('#angleg .s').forEach(s=>s.classList.toggle('on',s.dataset.val===st.angleAssign));
+  document.querySelectorAll('.pbtn').forEach(b=>b.classList.toggle('active',b.dataset.p===name));
+  buildSysPanels();
+  if(p.sys){for(let i=0;i<4;i++){const ea=document.getElementById(`s-a${i}`),ew=document.getElementById(`s-w${i}`);if(ea){const idx=ANGLES.indexOf(st.sys[i].angle);ea.value=idx>=0?idx:2;document.getElementById(`v-a${i}`).textContent=st.sys[i].angle+'°';}if(ew){ew.value=st.sys[i].width;document.getElementById(`v-w${i}`).textContent=st.sys[i].width+'px';}}}
+  render();
+}
+function exportPNG(){
+  const c=document.getElementById('dc');
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');
+  a.download=`dazzle_${mode}_seed${st.seed}.png`;a.click();
+}
+// ── WIRE ─────────────────────────────────────────────────────
+document.getElementById('s-seed').addEventListener('input',e=>{st.seed=parseInt(e.target.value);document.getElementById('v-seed').textContent=st.seed;render();});
+document.getElementById('s-ns').addEventListener('input',e=>{st.ns=parseInt(e.target.value);document.getElementById('v-ns').textContent=st.ns;updateSysVisibility();render();});
+document.getElementById('s-jit').addEventListener('input',e=>{st.jit=parseInt(e.target.value);document.getElementById('v-jit').textContent=st.jit+'°';render();});
+document.getElementById('s-wvar').addEventListener('input',e=>{st.wvar=parseInt(e.target.value);document.getElementById('v-wvar').textContent=st.wvar+'%';render();});
+document.getElementById('s-fs').addEventListener('input',e=>{st.fs=parseInt(e.target.value);document.getElementById('v-fs').textContent=st.fs+'%';render();});
+document.getElementById('s-ovshards').addEventListener('input',e=>{st.ovshards=parseInt(e.target.value);document.getElementById('v-ovshards').textContent=st.ovshards;render();});
+document.getElementById('s-ovstr').addEventListener('input',e=>{st.ovstr=parseInt(e.target.value);document.getElementById('v-ovstr').textContent=st.ovstr+'%';render();});
+document.getElementById('s-shards').addEventListener('input',e=>{st.shards=parseInt(e.target.value);document.getElementById('v-shards').textContent=st.shards;render();});
+document.getElementById('s-sps').addEventListener('input',e=>{st.sps=parseInt(e.target.value);document.getElementById('v-sps').textContent=st.sps;render();});
+document.getElementById('s-vw').addEventListener('input',e=>{st.vw=parseInt(e.target.value);document.getElementById('v-vw').textContent=st.vw+'px';render();});
+document.getElementById('s-vwvar').addEventListener('input',e=>{st.vwvar=parseInt(e.target.value);document.getElementById('v-vwvar').textContent=st.vwvar+'%';render();});
+document.getElementById('s-vjit').addEventListener('input',e=>{st.vjit=parseInt(e.target.value);document.getElementById('v-vjit').textContent=st.vjit+'°';render();});
+document.getElementById('c-fg').addEventListener('input',e=>{st.fg=e.target.value;document.getElementById('sw-fg').style.background=st.fg;render();});
+document.getElementById('c-bg').addEventListener('input',e=>{st.bg=e.target.value;document.getElementById('sw-bg').style.background=st.bg;render();});
+document.querySelectorAll('#fpg .s').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#fpg .s').forEach(s=>s.classList.remove('on'));el.classList.add('on');st.fp=el.dataset.val;render();}));
+document.querySelectorAll('#ovg .s').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#ovg .s').forEach(s=>s.classList.remove('on'));el.classList.add('on');st.overlay=el.dataset.val;render();}));
+document.querySelectorAll('#distg .s').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#distg .s').forEach(s=>s.classList.remove('on'));el.classList.add('on');st.dist=el.dataset.val;render();}));
+document.querySelectorAll('#angleg .s').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#angleg .s').forEach(s=>s.classList.remove('on'));el.classList.add('on');st.angleAssign=el.dataset.val;render();}));
+document.querySelectorAll('.pbtn').forEach(btn=>btn.addEventListener('click',()=>applyPreset(btn.dataset.p)));
+window.addEventListener('resize',()=>{resizeCanvas();render();});
+buildSysPanels();
+resizeCanvas();
+render();
+</script>
+  </body>
+  </html>
+</body>
+</html>
