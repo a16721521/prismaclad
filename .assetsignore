@@ -1,0 +1,20 @@
+# Not part of the deployed site
+.git
+.gitignore
+.assetsignore
+.claude
+.wrangler
+.mcp.json
+node_modules
+wrangler.jsonc
+docs
+ROADMAP.md
+audit_report.md
+Clone1
+prismaclad-template
+.DS_Store
+
+# Raw video masters — exceed/approach the 25 MiB asset limit and are
+# not referenced by any page (site uses the -transcode/_mp4 versions)
+videos/Prismaclad-loop.mp4
+videos/6950328-uhd_2560_1440_30fps.mp4
