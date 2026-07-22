@@ -16,7 +16,7 @@
 - [Blog](https://prismaclad.com/blog/)
 
 ## Design & Patterns
-- [Pattern Studio](https://prismaclad.com/portfolio/)
+- [Pattern Studio](https://prismaclad.com/patterns/)
 
 ## Company
 - [About](https://prismaclad.com/about/)
