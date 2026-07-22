@@ -39,7 +39,7 @@ CFO/developer objections. Maps to blog pipeline #5 (lifespan), #6 (cost),
 ### Cluster C — Category definition (low volume now, the flag-plant)
 Queries like "data center facade treatment", "data center murals", "data center
 exterior graphics". Prismaclad's own content is what will create this volume. Maps to
-home, `/services/`, the murals post, the portfolio. When the category term spreads,
+home, `/process/`, the murals post, `/patterns/`. When the category term spreads,
 the entity it resolves to must be Prismaclad.
 
 ### Cluster D — Design, pattern & art (visual discovery + press-facing)
@@ -81,21 +81,21 @@ filenames do **not** come along — pre-launch is the only free rename window.
 | `prismaclad.html` | `/` |
 | `approach/the-problem.html` | `/approach/the-problem/` |
 | `approach/the-solution.html` | `/approach/the-solution/` |
-| `company-pages/services.html` | `/services/` |
-| `service/esg-strategy-integration.html` | `/services/site-survey/` |
-| `service/sustainability-reporting-disclosure.html` | `/services/design/` |
-| `service/carbon-footprint-net-zero.html` | `/services/production/` |
-| `service/regulatory-compliance-risk.html` | `/services/installation/` |
-| `service/stakeholder-engagement.html` | `/services/portfolio-scale/` |
+| `company-pages/services.html` | `/process/` |
+| `service/esg-strategy-integration.html` | `/process/site-survey/` |
+| `service/sustainability-reporting-disclosure.html` | `/process/design/` |
+| `service/carbon-footprint-net-zero.html` | `/process/production/` |
+| `service/regulatory-compliance-risk.html` | `/process/installation/` |
+| `service/stakeholder-engagement.html` | `/process/portfolio-scale/` |
 | `blog-pages/blog-v1.html` | `/blog/` |
 | `blog-post/<slug>.html` | `/blog/<slug>/` (keep existing slugs — they're already good) |
 | `company-pages/case-studies.html` | `/case-studies/` |
 | `case-study/<slug>.html` | `/case-studies/<slug>/` (new Prismaclad slugs when rewritten) |
-| `pricing-pages/pricing-ecommerce.html` | `/patterns/` — replaces "Portfolio": interactive pattern engine (nerfed public version) + rendered-pattern gallery |
+| `pricing-pages/pricing-ecommerce.html` | `/patterns/` — interactive pattern engine (nerfed public version) + rendered-pattern gallery |
 | `company-pages/about.html` | `/about/` |
 | `contact-pages/contact-v1.html` | `/contact/` |
-| `legal/privacy-policy.html` | `/privacy-policy/` |
-| `legal/terms-of-service.html` | `/terms-of-service/` |
+| `legal/privacy-policy.html` | `/legal/privacy-policy/` |
+| `legal/terms-of-service.html` | `/legal/terms-of-service/` |
 | (future) per-jurisdiction pages | `/regulations/<county-slug>/` |
 
 Not ported at all: ecommerce/parked Cedar pages (`checkout`, `product/*`, `search`,
@@ -155,11 +155,12 @@ category (same anti-drift rule as USIA — a stale llms.txt actively misleads):
 > requirements at a fraction of architectural cost.
 
 ## Services
-- [Our Process](https://prismaclad.com/services/)
-- [Site Survey & Assessment](https://prismaclad.com/services/site-survey/)
-- [Design Development](https://prismaclad.com/services/design/)
-- [Production](https://prismaclad.com/services/production/)
-- [Installation](https://prismaclad.com/services/installation/)
+- [Our Process](https://prismaclad.com/process/)
+- [Site Survey & Assessment](https://prismaclad.com/process/site-survey/)
+- [Design Development](https://prismaclad.com/process/design/)
+- [Production](https://prismaclad.com/process/production/)
+- [Installation](https://prismaclad.com/process/installation/)
+- [Portfolio Scale](https://prismaclad.com/process/portfolio-scale/)
 
 ## Regulation & Insights
 - [Data Center Facade Ordinance Tracker](https://prismaclad.com/blog/data-center-facade-ordinance-tracker/)
