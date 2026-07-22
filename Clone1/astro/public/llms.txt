@@ -1,0 +1,23 @@
+# Prismaclad
+> Prismaclad provides large-scale facade treatments for data centers and industrial
+> buildings — painted and vinyl-applied exterior graphics that satisfy aesthetic
+> zoning requirements at a fraction of architectural cost.
+
+## Services
+- [Our Process](https://prismaclad.com/process/)
+- [Site Survey & Assessment](https://prismaclad.com/process/site-survey/)
+- [Design Development](https://prismaclad.com/process/design/)
+- [Production](https://prismaclad.com/process/production/)
+- [Installation](https://prismaclad.com/process/installation/)
+- [Portfolio Scale](https://prismaclad.com/process/portfolio-scale/)
+
+## Regulation & Insights
+- [Data Center Facade Ordinance Tracker](https://prismaclad.com/blog/data-center-facade-ordinance-tracker/)
+- [Blog](https://prismaclad.com/blog/)
+
+## Design & Patterns
+- [Pattern Studio](https://prismaclad.com/portfolio/)
+
+## Company
+- [About](https://prismaclad.com/about/)
+- [Contact](https://prismaclad.com/contact/)
