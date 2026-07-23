@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
-  "name": "prismaclad",
+  "name": "prismaclad2",
   "compatibility_date": "2026-07-01",
   "assets": {
     "directory": ".",
