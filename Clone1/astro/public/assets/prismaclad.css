@@ -393,6 +393,9 @@
 .hero-process-btn .button-text{display:block;will-change:transform}
 @media screen and (max-width:767px){.hero-bar{grid-template-columns:1fr;row-gap:1.5rem;padding:1.5rem 1.25rem 2rem}}
 
+/* ── CTA section: 30% shorter than Webflow default (600px → 420px) ──────── */
+.cta_wrapper{min-height:420px!important}
+
 /* Figure margins tightened; caption in the site's label vocabulary. */
 .text-rich-text figure {
   margin: 2.6rem 0;
