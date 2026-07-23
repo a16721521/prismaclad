@@ -373,6 +373,26 @@
   border: none;
 }
 
+/* ══ Home-page hero video overlay ══════════════════════════════════════════
+   These rules live in prismaclad.html's <head> on the flat-file build.
+   Ported here so the Astro build gets them without an inline <style> tag. */
+.case-studies_item{grid-template-columns:1fr 1fr!important}
+.service_tabs-menu{grid-template-columns:1fr 1fr 1fr 1fr!important}
+.service_tab-link._4{border-right-style:none!important}
+.section.hero{padding-bottom:0}
+.grid.hero{position:relative!important;overflow:hidden!important;min-height:calc(100vh - var(--_spacing---navbar-height) - 1px)!important;grid-template-columns:1fr!important}
+.hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.4) 38%,rgba(0,0,0,0) 72%);z-index:1;pointer-events:none}
+.hero-bar{position:absolute;bottom:0;left:0;right:0;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:end;column-gap:2.5rem;padding:2rem 2rem 2.5rem}
+.hero-bar .display-lg{color:#fff!important;text-shadow:0 2px 12px rgba(0,0,0,0.5);margin:0;line-height:1.1}
+.hero-bar .text-highlight{color:var(--primary--orange)!important}
+.hero-bar .text-color-subtle{color:rgba(255,255,255,0.85)!important;margin:0}
+.hero-process-btn{display:inline-flex;align-items:center;gap:8px;margin-top:0.75rem;color:var(--primary--orange);text-decoration:none;font-size:16px;font-family:inherit;transition:color 0.3s}
+.hero-process-btn .button-icon{width:18px;height:18px;display:block;flex-shrink:0}
+.hero-process-btn .button-text-wrap{height:1.5em;overflow:hidden;display:flex!important;flex-direction:column!important}
+.hero-process-btn .button-text{display:block;will-change:transform}
+@media screen and (max-width:767px){.hero-bar{grid-template-columns:1fr;row-gap:1.5rem;padding:1.5rem 1.25rem 2rem}}
+
 /* Figure margins tightened; caption in the site's label vocabulary. */
 .text-rich-text figure {
   margin: 2.6rem 0;
