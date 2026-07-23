@@ -358,7 +358,7 @@ ChatGPT search — it matters more here than usual).
 - [ ] Organization schema sitewide; BlogPosting + BreadcrumbList on all posts;
       FAQPage on home
 - [ ] Visible "Last updated" on the ordinance tracker
-- [ ] Outbound-citation retro-audit done on the 4 published posts
+- [ ] Outbound-citation retro-audit done on the 4 published posts *(shelved — do after content rewrites, see roadmap)*
 - [ ] Heading-hierarchy pass on every page (one H1, ≥2 H2s, no skips)
 - [ ] Alt text pass on every image
 - [ ] Real phone number or no phone in schema
