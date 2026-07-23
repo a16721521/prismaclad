@@ -65,19 +65,71 @@ Ran across all 26 live pages:
 - [x] Footer single-sourced (© Prismaclad 2026, Portfolio/Clients labels)
 - [x] Per-directory `../` depth handled via `{{BASE}}`
 
+## Nav (canonical, Astro)
+
+```
+Approach ▾
+  The Problem           → /approach/the-problem/
+  The Solution          → /approach/the-solution/
+  Our Process           → /process/
+  — Site Survey         → /process/site-survey/
+  — Design              → /process/design/
+  — Production          → /process/production/
+  — Installation        → /process/installation/
+
+Resources ▾
+  Blog                  → /blog/
+  Case Studies          → /case-studies/
+  Pattern Engine        → /patterns/
+
+About ▾
+  Our Story             → /about/
+  Contact               → /contact/
+```
+
+Nav is 2-level only. Anything below a dropdown link is page content, not nav.
+
+---
+
+## Process page design direction
+
+**Process pages use the case study page template** — same layout (video hero, stats grid, phase breakdown), not the current Cedar service-page shell. Each step gets a video wired into the hero section.
+
+Content notes per step:
+- **Site Survey** — video: site walkthrough / measurement setup
+- **Design** — video: pattern generation / design iteration. Body includes **Pattern System Spec overview**: the four pattern intents (Recede, Belong, Comply, Express) with their use-case logic. This is the conceptual frame buyers need to understand what they're choosing.
+- **Production** — video: panel fabrication / material prep
+- **Installation** — video: **timelapse** of full installation. Body makes explicit the Production vs. Installation distinction (production = making the panels; installation = applying them to the building).
+
+---
+
+## Case study design direction
+
+Each case study highlights one **pattern intent** from the design system:
+
+| Intent | What it achieves | SEO / audience angle |
+|---|---|---|
+| **Recede** | Environmental camouflage — building visually dissolves into context (sky, terrain, vegetation palette) | Visual designers, landscape architects |
+| **Belong** | Community integration — building reads as considered, contextually appropriate, not infrastructure dropped from orbit | Planning boards, community groups, land-use attorneys |
+| **Comply** | Fenestration / facade articulation — surface treatment satisfies the specific ordinance language (faux windows, horizontal banding, material variation) | Developers, zoning consultants, entitlement teams |
+| **Express** | Dazzle / supergraphic — bold identity statement; Google mural model; turns the building into a landmark | Press, architects, corporate real estate, C-suite |
+
+Five case studies, five intents — one can double up or Portfolio Scale can be a fifth type once defined.
+
+---
+
 ## Phase 2 — Page content rebrand (per-page copy)
 
-- [ ] **Core pages:** `company-pages/about.html`, `services.html`, `case-studies.html` — rewrite Cedar ESG copy → facade-treatment
-- [ ] **Service sub-pages (5)** — retitle from ESG names → Prismaclad process. NOTE filename↔label mismatch (kept for stable links):
-  - `service/esg-strategy-integration.html` → **Site Survey & Assessment**
-  - `service/sustainability-reporting-disclosure.html` → **Design Development**
-  - `service/carbon-footprint-net-zero.html` → **Production**
-  - `service/regulatory-compliance-risk.html` → **Installation**
-  - `service/stakeholder-engagement.html` → **Portfolio Scale**
-- [ ] **Case-study sub-pages (5)** — rewrite ESG case studies → facade / data-center projects
-- [ ] **Contact pages** — rebrand `contact-v1/v2/v3` + wire form (see open decisions)
-- [ ] **Blog** — `blog-v2.html`, `blog-v3.html`, and 6 `blog-post/*` articles (Cedar ESG copy). First real Prismaclad article published: `blog-post/data-centers-ugly-zoning-problem.html` (from Medium), listed on `blog-v1.html` under a new **Regulation** category. Remaining blog listing categories + hero copy still Cedar ESG.
-- [ ] Decide fate of `home-v2.html`, `home-v3.html`, `index.html`
+- [ ] **Core pages:** `about.html`, `process/index.html`, `case-studies/index.html` — rewrite Cedar ESG copy → facade-treatment
+- [ ] **Process sub-pages (5)** — rewrite Cedar ESG copy → Prismaclad process steps using case study template + video heroes (see design direction above):
+  - `/process/site-survey/` — video hero; site walkthrough content
+  - `/process/design/` — video hero; Pattern System Spec overview (Recede/Belong/Comply/Express)
+  - `/process/production/` — video hero; panel fabrication content
+  - `/process/installation/` — timelapse hero; explicit production-vs-installation distinction
+  - `/process/portfolio-scale/` — video hero; multi-site / design system reuse content
+- [ ] **Case study sub-pages (5)** — rewrite Cedar ESG case studies → real Prismaclad projects, each anchored to one pattern intent (see design direction above)
+- [ ] **Contact page** — rebrand `/contact/` + wire form endpoint (see open decisions)
+- [ ] **Blog** — 6 `blog-post/*` legacy Cedar ESG articles still to replace with Prismaclad content
 
 ## Blog internal-linking / template roadmap
 
