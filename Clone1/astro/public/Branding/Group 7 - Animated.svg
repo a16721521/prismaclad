@@ -1,0 +1,74 @@
+<svg width="173" height="81" viewBox="0 0 173 81" fill="none"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    /* Solid mask rectangles wipe open left-to-right, one per grid column.
+       Each column starts ~half a wipe after the previous one, so the
+       colour inversion travels across the mark as a wave, holds, then
+       wipes back. Pure CSS so it animates even when used as &lt;img&gt;. */
+    .wipe {
+      transform: scaleX(0);
+      transform-box: fill-box;
+      transform-origin: left center;
+      animation: wipe 6s ease-in-out infinite;
+    }
+    @keyframes wipe {
+      0%, 5%    { transform: scaleX(0); }  /* original mark */
+      11%, 50%  { transform: scaleX(1); }  /* inverted, held */
+      56%, 100% { transform: scaleX(0); }  /* wiped back, held */
+    }
+    .c1 { animation-delay: 0.18s; }
+    .c2 { animation-delay: 0.36s; }
+    .c3 { animation-delay: 0.54s; }
+    .c4 { animation-delay: 0.72s; }
+    .c5 { animation-delay: 0.90s; }
+    .c6 { animation-delay: 1.08s; }
+    .c7 { animation-delay: 1.26s; }
+    .c8 { animation-delay: 1.44s; }
+    @media (prefers-reduced-motion: reduce) {
+      .wipe { animation: none; }
+    }
+  </style>
+
+  <!-- Base: the original mark, black rectangles on transparent -->
+  <g fill="#000">
+    <rect x="80.4334" width="40.2167" height="80.4334" transform="rotate(90 80.4334 0)"/>
+    <rect x="140.758" width="40.2167" height="20.1083" transform="rotate(90 140.758 0)"/>
+    <rect x="172.038" width="40.2167" height="11.1713" transform="rotate(90 172.038 0)"/>
+    <rect x="120.65" y="40.2167" width="40.2167" height="40.2167" transform="rotate(90 120.65 40.2167)"/>
+    <rect x="160.867" y="40.2167" width="40.2167" height="20.1083" transform="rotate(90 160.867 40.2167)"/>
+  </g>
+
+  <!-- Inverted artwork: black fills the whole mark bounding box,
+       the five rectangles are punched out in white -->
+  <g id="inverted">
+    <rect x="0" y="0" width="172.038" height="80.4334" fill="#000"/>
+    <g fill="#fff">
+      <rect x="80.4334" width="40.2167" height="80.4334" transform="rotate(90 80.4334 0)"/>
+      <rect x="140.758" width="40.2167" height="20.1083" transform="rotate(90 140.758 0)"/>
+      <rect x="172.038" width="40.2167" height="11.1713" transform="rotate(90 172.038 0)"/>
+      <rect x="120.65" y="40.2167" width="40.2167" height="40.2167" transform="rotate(90 120.65 40.2167)"/>
+      <rect x="160.867" y="40.2167" width="40.2167" height="20.1083" transform="rotate(90 160.867 40.2167)"/>
+    </g>
+  </g>
+
+  <!-- One mask per grid column; each reveals the inverted artwork in its slice -->
+  <mask id="m0" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe"     x="0"       y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c1"  x="20.1083"  y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c2"  x="40.2166"  y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m3" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c3"  x="60.3249"  y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m4" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c4"  x="80.4332"  y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m5" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c5"  x="100.5415" y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m6" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c6"  x="120.6498" y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m7" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c7"  x="140.7581" y="0" width="20.1083" height="80.4334" fill="#fff"/></mask>
+  <mask id="m8" maskUnits="userSpaceOnUse" x="-20" y="-20" width="220" height="120"><rect class="wipe c8"  x="160.8664" y="0" width="11.1716" height="80.4334" fill="#fff"/></mask>
+
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m0)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m1)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m2)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m3)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m4)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m5)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m6)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m7)"/>
+  <use xlink:href="#inverted" href="#inverted" mask="url(#m8)"/>
+</svg>

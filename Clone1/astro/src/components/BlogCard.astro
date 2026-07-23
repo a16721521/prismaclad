@@ -1,0 +1,12 @@
+---
+// Standard blog grid card ("full-border" Webflow variant), markup lifted
+// verbatim from blog-v1.html with fields templated.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+const d = post.data;
+const url = `/blog/${post.id}/`;
+const dateStr = d.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<div role="listitem" class="w-dyn-item" data-category={d.category}><a animate="item" aria-label="Link to Blog Post" data-wf--blog-card--variant="full-border" href={url} class="blog_card w-variant-7ac37ec0-d04c-3fb3-34aa-a647fe6d912f w-inline-block"><div class="blog_img-wrapper"><img loading="lazy" src={d.image} alt={d.imageAlt} class="blog_card-img" /><div class="blog_image-overlay"></div></div><div class="blog_card-content w-variant-7ac37ec0-d04c-3fb3-34aa-a647fe6d912f"><div class="blog_card-meta-details"><div class="blog_meta-detail">{d.category}</div><div class="blog_meta-divider"></div><div class="blog_meta-detail">{dateStr}</div><div class="blog_meta-divider"></div><div class="blog_read-time"><div class="blog_meta-detail">{d.readTime}</div><div class="blog_meta-detail">min read</div></div></div><h2 class="headline-sm">{d.title}</h2><p class="blog-card_excerpt">{d.description}</p><div class="spacer-md"></div><div aria-label="" class="button blog-link"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon blog-link"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3 link-3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa link-4"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div class="button-text blog-link">Read Article</div></div></div></a></div>

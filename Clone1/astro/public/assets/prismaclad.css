@@ -1,0 +1,418 @@
+/* Prismaclad — custom site styles (nav dropdowns, brand accent, Webflow badge).
+   Single source for shared styling. Edit this file directly; style-only changes
+   need NO rebuild — just refresh. Structure/markup lives in partials/ + build.py. */
+
+/* --- Brand accent: consistent orange across the whole site --- */
+:root, body {
+  --primary--orange: #de3719;
+  --button-orange--orange-background: #de3719;
+  --button-orange--orange-text: white;
+}
+
+/* --- Nav dropdowns (Services / Resources / About) --- */
+.pc-dd{position:relative;display:flex;align-items:center;height:var(--_spacing---navbar-height,80px)}
+.pc-dd-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.pc-dd-chev{width:10px;height:10px;transition:transform .25s ease}
+.pc-dd:hover .pc-dd-chev{transform:rotate(180deg)}
+.pc-dd-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);min-width:236px;background:#fff;border:1px solid #ededed;box-shadow:0 14px 34px rgba(17,18,16,.08);padding:8px 0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:200}
+.pc-dd:hover .pc-dd-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.pc-dd-panel::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px}
+.pc-dd-label{padding:12px 20px 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a3a3a1}
+.pc-dd-link{display:block;padding:9px 20px;font-size:14.5px;line-height:1.3;color:#111210;text-decoration:none;border-left:2px solid transparent;transition:color .18s ease,border-color .18s ease,background .18s ease}
+.pc-dd-link:hover{color:#de3719;border-left-color:#de3719;background:#fafafa}
+.pc-dd-all{display:block;padding:11px 20px 13px;margin-top:4px;border-top:1px solid #f0f0f0;font-size:13.5px;color:#8a8a88;text-decoration:none;transition:color .18s ease}
+.pc-dd-all:hover{color:#de3719}
+@media screen and (max-width:991px){.pc-dd{display:block;width:100%;height:auto}.pc-dd-panel{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;box-shadow:none;border:none;min-width:0;padding:2px 0 6px}.pc-dd:hover .pc-dd-panel{transform:none}.pc-dd-chev{display:none}.pc-dd-label{padding-top:6px}}
+
+/* --- Hide the runtime "Made in Webflow" badge --- */
+.w-webflow-badge{display:none!important}
+
+/* --- Footer links: 2-column grid --- */
+.footer-links-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5rem}
+
+/* --- Client strip: uniform logo footprint ──────────────────────────────────
+   Logos default to height:100% (24px) with natural width, so long wordmarks
+   (Tesla, Porsche, Meta…) render far wider than a compact one like Gensler.
+   Constrain every logo to a uniform box ~= Gensler's footprint and contain it,
+   centred — keeps the 24px cell height intact so the two-image cycle animation
+   still works. */
+.logos01_component .logo01_logo-item{align-items:center}
+.logos01_component .logo01_logo-image{width:101px;height:100%;object-fit:contain}
+
+/* ── Blog listing cards: uniform image height ────────────────────────────────
+   The default rule only caps the image wrapper (max-height:300px) with no fixed
+   height, so each card's image height follows its own image aspect ratio —
+   wide/short images (e.g. the data-center hero) come out shorter, shrinking the
+   whole card. Pin a fixed height so every standard card matches; object-fit:cover
+   on .blog_card-img crops consistently. Scoped with :not() to leave the featured
+   card variant (which intentionally uses height:100%) alone. */
+.blog_img-wrapper:not([class*="w-variant"]) {
+  height: 300px;
+  max-height: 300px;
+}
+
+/* ── Blog post: inline figures ──────────────────────────────────────────────
+   Webflow richtext caps all figures at max-width:60% by default; reset that
+   so they fill the 650px text column. Figcaptions centred and subtle.   */
+.text-rich-text figure {
+  max-width: 100%;
+  width: 100%;
+  margin: 2.5rem 0;
+}
+.text-rich-text figcaption {
+  text-align: center;
+  font-size: .8rem;
+  color: #a3a3a1;
+  margin-top: .5rem;
+  letter-spacing: .02em;
+}
+
+/* ── Blog post: floating table of contents ──────────────────────────────────
+   Hidden below 1100px (not enough gutter). Above that, fixed in the left
+   gutter with a 20px gap to the column edge (50% − 325px).
+   Visibility is JS-controlled (class pc-toc--visible toggled by scroll):
+   TOC fades in when the article body first line passes the navbar, fades
+   out when the last line scrolls past — so it never bleeds into the CTA.
+   Design mirrors the site's nav-dropdown aesthetic.                     */
+.pc-toc {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .pc-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: fixed;
+    /* top set by JS: divider aligns with the first body line, follows on
+       scroll, sticks, then stops at the article's last line */
+    right: calc(50% - 325px - 32px - 160px);
+    width: 160px;
+  }
+  .pc-toc-label {
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #a3a3a1;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 6px;
+  }
+  .pc-toc-link {
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #c4c4c2;
+    text-decoration: none;
+    padding: 5px 0 5px 12px;
+    border-left: 2px solid transparent;
+    transition: color .18s ease, border-color .18s ease;
+  }
+  .pc-toc-link:hover,
+  .pc-toc-link.is-active {
+    color: #111210;
+    border-left-color: #de3719;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EDITORIAL BODY — blog post richtext typography.
+
+   Design brief: the article body should read as if it belongs to the same
+   design system as the nav dropdowns and TOC — Doto accents, orange left-
+   rules, 11px .14em labels, thin ededed dividers. NOT a magazine, not a
+   generic Medium blog. A technical trade journal that respects the reader.
+
+   All rules scoped to .text-rich-text so they only touch blog article bodies,
+   never the wider site. Everything auto-applies except three opt-in classes:
+   .pc-lede, .pc-stat, .pc-quote.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Article measure + rhythm.
+   Body sits at 16px to match the site's --_typography---body--body-md.
+   Line-height 1.7 gives editorial leading without oversizing; gap between
+   paragraphs is the eye's landing pad. */
+.text-rich-text {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a1b18;
+  letter-spacing: -0.003em;
+  gap: 1.15rem;
+}
+.text-rich-text > p {
+  margin: 0;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+/* Lede — the opening paragraph earns its weight.
+   Slight step up from body, tighter leading, hairline rule beneath. Applies
+   automatically to first paragraph; .pc-lede also available for opt-in. */
+.text-rich-text > p:first-child,
+.text-rich-text > p.pc-lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #111210;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 0.4rem;
+  max-width: 62ch;
+}
+
+/* Section headings — auto-numbered with a Doto counter above.
+   CSS counter-reset on the container, counter-increment on each h2.
+   Uses ::before to inject "01 · SECTION LABEL" in dot-matrix, orange,
+   the same 11px .14em uppercase treatment used across the site nav. */
+.text-rich-text {
+  counter-reset: pc-section;
+}
+.text-rich-text h2 {
+  counter-increment: pc-section;
+  font-family: 'Geist', sans-serif;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  color: #111210;
+  margin: 2.6rem 0 0.4rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid #ededed;
+  position: relative;
+  text-wrap: balance;
+}
+.text-rich-text h2::before {
+  content: counter(pc-section, decimal-leading-zero);
+  display: block;
+  font-family: 'Doto', 'Geist', monospace;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #de3719;
+  margin-bottom: 0.6rem;
+}
+
+/* First h2 in the article — no top border, we already have the lede rule. */
+.text-rich-text > p:first-child + h2,
+.text-rich-text > h2:first-child {
+  border-top: none;
+  padding-top: 1.4rem;
+}
+
+/* H3 for sub-sections inside a jurisdiction (used sparingly). */
+.text-rich-text h3 {
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b6c68;
+  margin: 1.6rem 0 0.2rem;
+}
+
+/* Blockquote — orange left rule, mild size step up.
+   Restrained (not italic, not centered) to match the technical tone. */
+.text-rich-text blockquote {
+  border-left: 2px solid #de3719;
+  padding: 0.3rem 0 0.3rem 1.4rem;
+  margin: 1.6rem 0;
+  font-family: 'Geist', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111210;
+  letter-spacing: -0.01em;
+  max-width: 60ch;
+  quotes: none;
+}
+.text-rich-text blockquote p { margin: 0; }
+
+/* Inline ordinance-quote pill — for code phrases like "principal facade
+   building treatments". Uses the site's orange accent as a wash. */
+.text-rich-text .pc-quote,
+.text-rich-text code {
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  background: linear-gradient(to bottom, transparent 55%, rgba(222, 55, 25, 0.14) 55%);
+  padding: 0 0.15em;
+  color: #111210;
+  white-space: normal;
+  border-radius: 0;
+}
+
+/* Key-figure stat block — opt-in, sits between paragraphs.
+   Giant Doto number, tiny caption below. Left-aligned to the text column,
+   with a 2px orange left rule that mirrors the blockquote. */
+.text-rich-text .pc-stat {
+  margin: 1.8rem 0;
+  padding: 0.1rem 0 0.3rem 1.4rem;
+  border-left: 2px solid #de3719;
+  max-width: 60ch;
+}
+.text-rich-text .pc-stat-num {
+  font-family: 'Doto', 'Geist', monospace;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #111210;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.text-rich-text .pc-stat-cap {
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #6b6c68;
+  letter-spacing: 0.005em;
+  max-width: 48ch;
+  display: block;
+}
+.text-rich-text .pc-stat-label {
+  font-family: 'Geist', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #de3719;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Comparison table — clean data grid.
+   Removes Webflow richtext default styling; adds thin rules and a Doto-style
+   uppercase header row so it reads as tabular data, not a decorated block. */
+.text-rich-text table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  font-size: 14px;
+  border-top: 1px solid #111210;
+  border-bottom: 1px solid #111210;
+}
+.text-rich-text thead th {
+  font-family: 'Geist', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6c68;
+  text-align: left;
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid #111210;
+  vertical-align: bottom;
+}
+.text-rich-text tbody td {
+  padding: 14px 16px 14px 0;
+  border-bottom: 1px solid #ededed;
+  vertical-align: top;
+  line-height: 1.5;
+}
+.text-rich-text tbody tr:last-child td { border-bottom: none; }
+.text-rich-text tbody td:first-child {
+  font-weight: 500;
+  color: #111210;
+  white-space: nowrap;
+}
+.text-rich-text tbody td .pc-quote {
+  font-size: 14px;
+}
+
+/* Lists — proper indent, orange marker, comfortable leading. */
+.text-rich-text ul,
+.text-rich-text ol {
+  margin: 0.4rem 0;
+  padding-left: 1.4rem;
+  max-width: 66ch;
+}
+.text-rich-text li {
+  margin: 0.4rem 0;
+  line-height: 1.6;
+}
+.text-rich-text ul li::marker { color: #de3719; }
+.text-rich-text ol li::marker {
+  color: #de3719;
+  font-family: 'Doto', monospace;
+  font-weight: 600;
+}
+
+/* Anchor styling — restrained underline, orange on hover.
+   Overrides the Cedar template default so links inside the body feel like
+   editorial links, not template links. */
+.text-rich-text a {
+  color: #111210;
+  text-decoration: underline;
+  text-decoration-color: rgba(17, 18, 16, 0.28);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+.text-rich-text a:hover {
+  color: #de3719;
+  text-decoration-color: #de3719;
+}
+
+/* Article-end mark — small Doto square at the last paragraph.
+   Only fires when we're actually at the end of the richtext, so it doesn't
+   trail every paragraph. */
+.text-rich-text > p:last-child::after {
+  content: " ▪";
+  color: #de3719;
+  font-family: 'Doto', monospace;
+  margin-left: 0.35em;
+  font-size: 0.9em;
+  letter-spacing: 0;
+}
+
+/* Hero image wrapper: remove the Webflow 1px border around blog post images. */
+.blog_image-wrapper {
+  border: none;
+}
+
+/* Figure margins tightened; caption in the site's label vocabulary. */
+.text-rich-text figure {
+  margin: 2.6rem 0;
+}
+.text-rich-text figcaption {
+  font-family: 'Geist', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a3a3a1;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* Post header refinements — the byline row and title deserve more air.
+   These target the blog post header specifically (not the listing cards). */
+.blog-post_author-text {
+  font-family: 'Geist', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #6b6c68;
+}
+.blog-post_author-text .body-sm { font-size: 12px; }
+.blog-post_author-text .blog_meta-divider {
+  background: #de3719;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  margin: 0 0.7rem;
+}
+
+/* Mobile refinements — dial down the giant type on small screens. */
+@media (max-width: 767px) {
+  .text-rich-text { font-size: 15.5px; line-height: 1.65; }
+  .text-rich-text > p:first-child,
+  .text-rich-text > p.pc-lede { font-size: 17px; padding-bottom: 1.2rem; }
+  .text-rich-text h2 { font-size: 20px; margin-top: 2.2rem; padding-top: 1.5rem; }
+  .text-rich-text blockquote { font-size: 17px; padding-left: 1.2rem; }
+  .text-rich-text .pc-stat-num { font-size: 42px; }
+  .text-rich-text .pc-stat { padding-left: 1.2rem; }
+}
+
