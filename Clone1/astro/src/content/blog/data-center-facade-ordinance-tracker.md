@@ -6,7 +6,7 @@ date: 2026-07-21
 category: "Regulation"
 readTime: 8
 featured: true
-image: "/assets/pc-geometric-facade-treatment.png"
+image: "/assets/Gemini_Generated_Image_cfadtkcfadtkcfad.png"
 imageAlt: "Large-scale geometric pattern applied to an industrial building facade."
 ---
 

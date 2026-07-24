@@ -2,10 +2,10 @@
 title: "Why $64 Billion in Data Center Projects Stalled — and What the Killed Ones Had in Common"
 description: "Community opposition has blocked or delayed $64 billion in U.S. data center projects. A pattern read on the ones that died: it wasn't cost, and it usually wasn't the benefit package."
 subtitle: "Community opposition has blocked or delayed $64 billion in U.S. data center projects. The ones that died weren't killed by cost, and usually not by the benefit package either. They had something else in common."
-date: 2026-07-22
-category: "Regulation"
+date: 2026-06-24
+category: "Industry"
 readTime: 8
-image: "/assets/pc-problem-installation.jpg"
+image: "/assets/AI-data-center-construction-worker-jobs.jpg"
 imageAlt: "A large blank tilt-up concrete panel wall of the kind that fronts most data centers."
 ---
 

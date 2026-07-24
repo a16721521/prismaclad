@@ -5,7 +5,7 @@ subtitle: "Counties from Loudoun to New Albany now require data centers to be 'a
 date: 2026-04-27
 category: "Regulation"
 readTime: 5
-image: "/assets/pc-datacenter-exterior-hero.avif"
+image: "/assets/8bc901c3aded4e1e91c6e8ba5db05b3a.png"
 imageAlt: "Aerial view of a large-format data center campus. Photo: Nathan Howard / Getty Images."
 ---
 
