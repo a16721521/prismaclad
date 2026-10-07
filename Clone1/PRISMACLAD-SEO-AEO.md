@@ -244,7 +244,7 @@ The canonical `Organization` block:
   "url": "https://prismaclad.com",
   "logo": "https://prismaclad.com/Branding/logo_long.png",
   "description": "Large-scale facade treatments for data centers and industrial buildings.",
-  "email": "hello@prismaclad.com",
+  "email": "contact@prismaclad.com",
   "sameAs": [
     "https://x.com/prismaclad",
     "https://www.linkedin.com/company/prismaclad/",

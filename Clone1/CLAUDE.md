@@ -307,5 +307,5 @@ All other `assets/6a*` images are Cedar template stock — use only if they fit;
 
 ## Contact / Company Info
 
-- Email: hello@prismaclad.com
+- Email: contact@prismaclad.com
 - Phone: +1 (555) 900-2400 ← placeholder, update before launch
