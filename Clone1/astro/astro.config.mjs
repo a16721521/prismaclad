@@ -18,7 +18,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       serialize(item) {
-        const slug = item.url.match(/\/blog\/([^/]+)\/$/)?.[1];
+        const slug = item.url.match(/\/research\/([^/]+)\/$/)?.[1];
         const lastmod = slug && lastmodBySlug.get(slug);
         if (lastmod) item.lastmod = new Date(lastmod).toISOString();
         return item;

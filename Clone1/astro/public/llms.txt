@@ -7,18 +7,18 @@
 - [How it works](https://prismaclad.com/process/): site survey, design development, production, and installation under one contract
 
 ## Regulation
-- [The Data Center Facade Ordinance Tracker: What Counties Actually Require](https://prismaclad.com/blog/data-center-facade-ordinance-tracker/)
-- [Data Centers Are Ugly. That's Now a Zoning Problem](https://prismaclad.com/blog/data-centers-ugly-zoning-problem/)
+- [The Data Center Facade Ordinance Tracker: What Counties Actually Require](https://prismaclad.com/research/data-center-facade-ordinance-tracker/)
+- [Data Centers Are Ugly. That's Now a Zoning Problem](https://prismaclad.com/research/data-centers-ugly-zoning-problem/)
 
 ## Cost and evaluation
-- [What Facade Treatment Actually Costs on a $500M Build](https://prismaclad.com/blog/data-center-facade-treatment-cost/)
-- [Landscaping, Redesign, or Treatment: A Decision Framework for Data Center Exteriors](https://prismaclad.com/blog/data-center-exterior-decision-framework/)
-- [Why $64 Billion in Data Center Projects Stalled — and What the Killed Ones Had in Common](https://prismaclad.com/blog/why-64-billion-data-center-projects-stalled/)
+- [What Facade Treatment Actually Costs on a $500M Build](https://prismaclad.com/research/data-center-facade-treatment-cost/)
+- [Landscaping, Redesign, or Treatment: A Decision Framework for Data Center Exteriors](https://prismaclad.com/research/data-center-exterior-decision-framework/)
+- [Why $64 Billion in Data Center Projects Stalled — and What the Killed Ones Had in Common](https://prismaclad.com/research/why-64-billion-data-center-projects-stalled/)
 
 ## Design and precedent
-- [What Camouflage Science Actually Says About Data Center Facades](https://prismaclad.com/blog/camouflage-science-data-center-facades/)
-- [Google's Data Center Murals: What the Program Proved and Why It Ended](https://prismaclad.com/blog/google-data-center-murals-what-it-proved/)
+- [What Camouflage Science Actually Says About Data Center Facades](https://prismaclad.com/research/camouflage-science-data-center-facades/)
+- [Google's Data Center Murals: What the Program Proved and Why It Ended](https://prismaclad.com/research/google-data-center-murals-what-it-proved/)
 
 ## Company
-- [Blog](https://prismaclad.com/blog/)
+- [Research](https://prismaclad.com/research/)
 - [Contact](https://prismaclad.com/contact/)

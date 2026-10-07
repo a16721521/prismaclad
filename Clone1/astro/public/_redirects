@@ -8,3 +8,8 @@
 /legal/privacy-policy.html      /legal/privacy-policy/    301
 /legal/terms-conditions.html    /legal/terms-of-service/  301
 /documentation/*                /                         301
+
+# The blog section was renamed Research (Oct 2026). Old /blog/ URLs, already
+# in search results and llms.txt caches, move permanently to /research/.
+/blog                           /research/                301
+/blog/*                         /research/:splat          301

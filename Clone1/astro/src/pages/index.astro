@@ -20,7 +20,8 @@ const toV2 = (html: string) =>
   html
     .replaceAll('src="assets/', 'src="/assets/')
     .replace(/href="\/process\/[^"]+\/"/g, 'href="/contact/"')
-    .replaceAll('href="/blog"', 'href="/blog/"');
+    .replaceAll('href="/blog"', 'href="/research/"')
+    .replaceAll('href="/blog/', 'href="/research/');
 
 const arrow =
   '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
@@ -51,9 +52,9 @@ const audienceStats: [string, string][] = [
   ['Occupied', 'Sites stay operational'],
 ];
 const audienceLinks: [string, string][] = [
-  ['/blog/data-center-facade-treatment-cost/', 'See the cost math'],
-  ['/blog/why-64-billion-data-center-projects-stalled/', 'Why projects stall'],
-  ['/blog/data-center-exterior-decision-framework/', 'Compare the options'],
+  ['/research/data-center-facade-treatment-cost/', 'See the cost math'],
+  ['/research/why-64-billion-data-center-projects-stalled/', 'Why projects stall'],
+  ['/research/data-center-exterior-decision-framework/', 'Compare the options'],
   ['/contact/', 'Talk about a retrofit'],
 ];
 const audienceAlts: Record<string, string> = {
@@ -83,7 +84,9 @@ let audience = toV2(home[4])
 for (const [from, to] of Object.entries(audienceAlts)) audience = audience.replace(`alt="${from}"`, `alt="${to}"`);
 
 // ── 6. Blog + 7. CTA: unchanged, re-routed.
-const blog = toV2(home[6]);
+const blog = toV2(home[6])
+  .replace('<div>Blog</div>', '<div>Research</div>')
+  .replace('aria-label="Link to Blog Page"', 'aria-label="Link to Research Page"');
 const cta = toV2(home[7]).replace(
   'alt="Completed Prismaclad installation on data center exterior"',
   'alt="Industrial facade treatment detail"',
@@ -91,10 +94,10 @@ const cta = toV2(home[7]).replace(
 
 // ── 3. The case in four numbers (replaces placeholder track-record stats).
 const stats = [
-  ['$64B', 'In U.S. data center projects blocked or delayed by local opposition', '/blog/why-64-billion-data-center-projects-stalled/'],
-  ['6', 'Jurisdictions we track with facade rules written into their codes', '/blog/data-center-facade-ordinance-tracker/'],
-  ['~4%', 'Of a $633M average build, even at the highest treatment tier', '/blog/data-center-facade-treatment-cost/'],
-  ['66%', 'Two-year survival for new trees planted in stressed urban sites', '/blog/data-center-facade-treatment-cost/'],
+  ['$64B', 'In U.S. data center projects blocked or delayed by local opposition', '/research/why-64-billion-data-center-projects-stalled/'],
+  ['6', 'Jurisdictions we track with facade rules written into their codes', '/research/data-center-facade-ordinance-tracker/'],
+  ['~4%', 'Of a $633M average build, even at the highest treatment tier', '/research/data-center-facade-treatment-cost/'],
+  ['66%', 'Two-year survival for new trees planted in stressed urban sites', '/research/data-center-facade-treatment-cost/'],
 ];
 
 // ── 5. FAQ — the questions buyers ask first.
@@ -105,15 +108,15 @@ const faqs = [
   },
   {
     q: 'Will a painted or applied treatment satisfy a facade ordinance?',
-    a: 'Often, and several codes now say so directly. Fairfax County&#x27;s September 2024 amendment counts faux windows as fenestration, DeKalb County lets murals count toward its fenestration requirement, and Phoenix lists patterns and art as acceptable screening. Where the language is vague, as in Loudoun, the design is drawn against the exact wording. <a href="/blog/data-center-facade-ordinance-tracker/">See the ordinance tracker</a>.',
+    a: 'Often, and several codes now say so directly. Fairfax County&#x27;s September 2024 amendment counts faux windows as fenestration, DeKalb County lets murals count toward its fenestration requirement, and Phoenix lists patterns and art as acceptable screening. Where the language is vague, as in Loudoun, the design is drawn against the exact wording. <a href="/research/data-center-facade-ordinance-tracker/">See the ordinance tracker</a>.',
   },
   {
     q: 'What does it cost?',
-    a: 'Base rates run $8&ndash;$15 per square foot depending on treatment type. Even a ceiling case, about $26M across 250,000 square feet of campus wall, comes to roughly 4% of the $633M average U.S. data center build. <a href="/blog/data-center-facade-treatment-cost/">See the full cost breakdown</a>.',
+    a: 'Base rates run $8&ndash;$15 per square foot depending on treatment type. Even a ceiling case, about $26M across 250,000 square feet of campus wall, comes to roughly 4% of the $633M average U.S. data center build. <a href="/research/data-center-facade-treatment-cost/">See the full cost breakdown</a>.',
   },
   {
     q: 'Why not just plant screening trees?',
-    a: 'Trees take years to reach screening height, and many don&#x27;t make it: research cited in our cost analysis puts two-year survival for newly planted trees in stressed urban conditions at 66%. Treatment works on the wall itself, on the schedule you already have. <a href="/blog/data-center-exterior-decision-framework/">Compare landscaping, redesign, and treatment</a>.',
+    a: 'Trees take years to reach screening height, and many don&#x27;t make it: research cited in our cost analysis puts two-year survival for newly planted trees in stressed urban conditions at 66%. Treatment works on the wall itself, on the schedule you already have. <a href="/research/data-center-exterior-decision-framework/">Compare landscaping, redesign, and treatment</a>.',
   },
   {
     q: 'Do you work on new construction and existing buildings?',
@@ -174,7 +177,7 @@ const schema = JSON.stringify([
         </div>
         <div class="content_group">
           <p animate="item" class="text-color-subtle">Opposition is stopping projects, counties are codifying appearance, and the usual fix takes years to grow in. Each figure links to the research behind it.</p>
-          <div animate="item"><Fragment set:html={linkButton('/blog/', 'Read the research')} /></div>
+          <div animate="item"><Fragment set:html={linkButton('/research/', 'Read the research')} /></div>
         </div>
       </div>
       <div class="w-layout-grid grid _4-col impact">

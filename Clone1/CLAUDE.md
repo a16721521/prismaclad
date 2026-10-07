@@ -1,7 +1,7 @@
 # Prismaclad Site — Build Reference
 
 > **⚠️ THE SITE IS NOW `astro/` (v2, reduced site — Oct 2026)**
-> Live routes: `/` (home), `/process/` (How it works), `/blog/` + posts, `/contact/`,
+> Live routes: `/` (home), `/process/` (How it works), `/research/` + posts (renamed from `/blog/`, Oct 2026; 301s in `public/_redirects`), `/contact/`,
 > `/legal/*`. Layout = `astro/src/layouts/V2Base.astro` with `components/v2/V2Header|V2Footer`
 > (nav: Home · How it works · Blog · Contact). The earlier v1 Astro pages (about, approach,
 > case studies, patterns, the five process sub-pages) are archived, unrouted, in

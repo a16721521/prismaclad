@@ -7,21 +7,21 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf()
 const featured = posts.find((post) => post.data.featured) ?? posts[0];
 const grid = posts.filter((post) => post !== featured);
 const f = featured.data;
-const fUrl = `/blog/${featured.id}/`;
+const fUrl = `/research/${featured.id}/`;
 const fDate = f.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <V2Base
-  title="Data Center Design and Zoning Blog | Prismaclad"
+  title="Data Center Design and Zoning Research | Prismaclad"
   description="Analysis of data center facade ordinances, community opposition, and the design approaches that decide how large-scale industrial buildings look."
-  breadcrumbs={[{ name: 'Blog', path: '/blog/' }]}
+  breadcrumbs={[{ name: 'Research', path: '/research/' }]}
   wfPage="6a0b27140bec975ae4398f75"
 >
   <section animate="section" class="section">
     <div class="w-layout-blockcontainer container is-subhero w-container">
       <div class="header-group">
         <div class="content_group">
-          <div animate="item" class="badge"><div>Blog</div></div>
+          <div animate="item" class="badge"><div>Research</div></div>
           <h1 animate="item" class="display-md">Thinking on <span class="text-highlight"><strong>data center design and exterior regulation.</strong></span></h1>
         </div>
         <div class="content_group"><p animate="item" class="text-color-subtle">Analysis of zoning requirements, community dynamics, and the design approaches shaping how large-scale industrial facilities look.</p></div>
@@ -34,5 +34,5 @@ const fDate = f.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric
       </div></div></div>
     </div>
   </section>
-  <section animate="section" class="section"><div class="w-layout-blockcontainer container w-container"><div class="w-dyn-list"><div role="list" class="grid _3cols w-dyn-items">{grid.map((post) => <BlogCard post={post} basePath="/blog" />)}</div></div></div></section>
+  <section animate="section" class="section"><div class="w-layout-blockcontainer container w-container"><div class="w-dyn-list"><div role="list" class="grid _3cols w-dyn-items">{grid.map((post) => <BlogCard post={post} basePath="/research" />)}</div></div></div></section>
 </V2Base>

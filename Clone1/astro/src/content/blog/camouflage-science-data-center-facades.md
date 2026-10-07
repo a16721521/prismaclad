@@ -60,7 +60,7 @@ metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle
 <li>Carry pattern edges across the outline. The corners and the roofline are where the building's shape gets read, so false edges placed there do the most work.</li>
 <li>Build in real contrast between patches. False edges come from adjacent colors that differ sharply, and a low-contrast wash in one family of tones leaves the outline intact.</li>
 <li>Let patches read as different things. A band that reads as sky next to a band that reads as tree line does more than two shades of the same beige, which is the Espinosa and Cuthill result applied at building scale.</li>
-<li>Decide the goal first. If the brief is a landmark, as it was for <a href="/blog/google-data-center-murals-what-it-proved/">Google's data center murals</a>, blending isn't the point and none of the rules above apply.</li>
+<li>Decide the goal first. If the brief is a landmark, as it was for <a href="/research/google-data-center-murals-what-it-proved/">Google's data center murals</a>, blending isn't the point and none of the rules above apply.</li>
 </ul>
 
 <figure><img loading="lazy" src="/assets/data-center-landscape-pattern-facade-concept.jpg" alt="Concept rendering of a large data center campus with an earth-toned wave pattern and lighter blue bands across its long facade." style="width:100%;height:auto;display:block;"/><figcaption>Concept rendering of a pattern built from earth and vegetation tones, with lighter blues worked through it.</figcaption></figure>
@@ -73,9 +73,9 @@ metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle
 
 <h2>Why does this matter for a planning board?</h2>
 
-<p>It matters because several codes already ask for outline disruption in their own words. The Prince William County Data Center Opportunity Zone Overlay District (DCOZOD) requires principal building facades to avoid undifferentiated surfaces, and Fairfax County requires a variation in the facade surface every 150 feet. An undifferentiated surface is a wall with no internal edges, and a required change every 150 feet is a limit on how long one continuous run can be. The <a href="/blog/data-center-facade-ordinance-tracker/">ordinance tracker</a> has the exact language for each jurisdiction.</p>
+<p>It matters because several codes already ask for outline disruption in their own words. The Prince William County Data Center Opportunity Zone Overlay District (DCOZOD) requires principal building facades to avoid undifferentiated surfaces, and Fairfax County requires a variation in the facade surface every 150 feet. An undifferentiated surface is a wall with no internal edges, and a required change every 150 feet is a limit on how long one continuous run can be. The <a href="/research/data-center-facade-ordinance-tracker/">ordinance tracker</a> has the exact language for each jurisdiction.</p>
 
-<p>That gives an applicant something better than taste to argue from. A treatment designed around edge disruption can be explained to a board in terms of how people see large objects, with published research behind it. If you are still deciding between treatment, landscaping and redesign, <a href="/blog/data-center-exterior-decision-framework/">the decision framework</a> compares all three on cost, schedule, and which ordinances each one satisfies.</p>
+<p>That gives an applicant something better than taste to argue from. A treatment designed around edge disruption can be explained to a board in terms of how people see large objects, with published research behind it. If you are still deciding between treatment, landscaping and redesign, <a href="/research/data-center-exterior-decision-framework/">the decision framework</a> compares all three on cost, schedule, and which ordinances each one satisfies.</p>
 
 <h2>Sources</h2>
 

@@ -8,7 +8,7 @@ queries that already have volume, and (b) be the source AI engines cite by defau
 when this category's queries start arriving.
 
 **Status (Oct 2026): the v2 reduced site is live at prismaclad.com.** Routes: `/`,
-`/process/`, `/blog/` + 7 posts, `/contact/`, `/legal/*`. The v1 pages this plan was
+`/process/`, `/research/` + 7 posts, `/contact/`, `/legal/*`. The v1 pages this plan was
 first written against (`/about/`, `/approach/*`, `/case-studies/`, `/patterns/`, the five
 `/process/*` sub-pages) are archived in `astro/src/archive-v1/` and **unrouted — they return
 404**. Sections below are updated to describe what ships; anything still written for v1
@@ -30,7 +30,7 @@ Queries like "Loudoun data center facade requirements", "principal facade treatm
 ordinance", "Fairfax fenestration data center", "data center design standards
 [county]". Searched by developers, land-use attorneys, zoning consultants, planners.
 
-- **Flagship:** the ordinance tracker (`/blog/data-center-facade-ordinance-tracker/`)
+- **Flagship:** the ordinance tracker (`/research/data-center-facade-ordinance-tracker/`)
   — a living document, updated quarterly, visible "Last updated" date.
 - **Growth path:** per-jurisdiction pages as an Astro content collection
   (`/regulations/loudoun-county-va/`, etc.) once the tracker sections outgrow one
@@ -61,7 +61,7 @@ for "data center mural" is winnable traffic the other clusters never see).
 - **Flagship:** `/patterns/` — the interactive pattern engine page (see §2) plus a
   gallery of rendered pattern work. *(v1, archived — not in the v2 site. Until it
   returns, the flagship for this cluster is the murals post and
-  `/blog/camouflage-science-data-center-facades/`.)*
+  `/research/camouflage-science-data-center-facades/`.)*
 - Also maps to: the Google murals post, pipeline #8 (PSE&G substation murals),
   #9 (Meta/Microsoft/Corgan), #12 (community opposition think-piece), and future
   project/case-study pages.
@@ -92,8 +92,8 @@ filenames do **not** come along — pre-launch is the only free rename window.
 |---|---|
 | `/` | Home (positioning, FAQ) |
 | `/process/` | How it works — survey, design, production, installation (the service page) |
-| `/blog/` | Listing |
-| `/blog/<slug>/` | 7 posts, slugs permanent |
+| `/research/` | Listing (was `/blog/` until Oct 2026; 301 in place) |
+| `/research/<slug>/` | 7 posts, slugs permanent; `/blog/*` 301s here |
 | `/contact/` | Contact form |
 | `/legal/privacy-policy/`, `/legal/terms-of-service/` | Legal |
 | (future) `/regulations/<county-slug>/` | Per-jurisdiction pages |
