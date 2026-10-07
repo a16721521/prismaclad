@@ -14,7 +14,7 @@ import homeSource from '../html/home.html?raw';
 const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
 const cta = (home[7] ?? '')
   .replaceAll('href="/contact/"', 'href="/contact/"')
-  .replace('alt="Completed Prismaclad installation on data center exterior"', 'alt="Industrial facade treatment detail"');
+  .replace('alt="Completed Prismaclad installation on data center exterior"', 'alt="Corner of a building clad in rectangular panels in muted green and tan tones against a blue sky."');
 
 const check =
   '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
@@ -37,7 +37,7 @@ const steps = [
       'The ordinance language, quoted rather than paraphrased',
       'Early notice of anything that will complicate access',
     ],
-    img: '/images/ccda8b5457944392adfbf3448f9d8b2c.jpg',
+    img: '/images/concrete-and-corrugated-metal-wall-surfaces.jpg',
     alt: 'Concrete and corrugated metal wall surfaces on an industrial building under construction.',
   },
   {
@@ -55,7 +55,7 @@ const steps = [
       'Approval-ready documentation for review',
       'Revisions until the design is signed off',
     ],
-    img: '/images/9bb3d3dccebe46cd955c3f4dc5867ba7.jpg',
+    img: '/images/data-center-campus-vertical-stripe-facade-rendering.jpg',
     alt: 'Rendering of a data center campus with a vertical multicolor stripe facade treatment.',
   },
   {
@@ -73,7 +73,7 @@ const steps = [
       'Materials staged and ready before crews arrive',
       'A sequenced plan for the installation window',
     ],
-    img: '/images/Site-Survey.jpg',
+    img: '/images/aerial-steel-frame-industrial-building-under-construction.jpg',
     alt: 'Aerial view of a large industrial building under construction, with materials staged across the site.',
   },
   {
@@ -91,7 +91,7 @@ const steps = [
       'No changes to the building envelope',
       'A finished wall that matches the approved design',
     ],
-    img: '/images/Production.jpg',
+    img: '/images/installer-boom-lift-coating-metal-panel-facade.jpg',
     alt: 'Installer on a boom lift applying coating to a metal-panel facade.',
   },
 ];
@@ -159,7 +159,7 @@ const schema = JSON.stringify([
 <V2Base
   title="How Facade Treatment Works: Survey to Install | Prismaclad"
   description="How a Prismaclad facade treatment project runs: site survey, design development, production, and installation, handled by one team under one contract."
-  image="/assets/pc-geometric-facade-treatment.png"
+  image="/assets/data-center-green-mosaic-facade-treatment.jpg"
   schema={schema}
   breadcrumbs={[{ name: 'How it works', path: '/process/' }]}
 >
@@ -167,7 +167,7 @@ const schema = JSON.stringify([
   <section animate="section" class="section hero">
     <div class="w-layout-blockcontainer container is-hero w-container">
       <div class="w-layout-grid grid hero">
-        <img class="hero-video-bg" loading="eager" src="/assets/pc-geometric-facade-treatment.png" alt="Desert data center with a geometric facade pattern drawn from the surrounding terrain palette." />
+        <img class="hero-video-bg" loading="eager" src="/assets/data-center-green-mosaic-facade-treatment.jpg" alt="Rendering of a data center with a green pixel-mosaic facade pattern, seen from the road at sunset." />
         <div class="hero-video-overlay"></div>
         <div class="hero-bar">
           <div class="hero-col hero-col--title">
