@@ -2,10 +2,12 @@
    Single source for shared styling. Edit this file directly; style-only changes
    need NO rebuild — just refresh. Structure/markup lives in partials/ + build.py. */
 
-/* --- Brand accent: consistent orange across the whole site --- */
+/* --- Brand accent: patina teal (#0f7a68) across the whole site. The variable
+   names say "orange" because they come from the Webflow template; only the
+   values changed. --- */
 :root, body {
-  --primary--orange: #de3719;
-  --button-orange--orange-background: #de3719;
+  --primary--orange: #0f7a68;
+  --button-orange--orange-background: #0f7a68;
   --button-orange--orange-text: white;
 }
 
@@ -19,9 +21,9 @@
 .pc-dd-panel::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px}
 .pc-dd-label{padding:12px 20px 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a3a3a1}
 .pc-dd-link{display:block;padding:9px 20px;font-size:14.5px;line-height:1.3;color:#111210;text-decoration:none;border-left:2px solid transparent;transition:color .18s ease,border-color .18s ease,background .18s ease}
-.pc-dd-link:hover{color:#de3719;border-left-color:#de3719;background:#fafafa}
+.pc-dd-link:hover{color:#0f7a68;border-left-color:#0f7a68;background:#fafafa}
 .pc-dd-all{display:block;padding:11px 20px 13px;margin-top:4px;border-top:1px solid #f0f0f0;font-size:13.5px;color:#8a8a88;text-decoration:none;transition:color .18s ease}
-.pc-dd-all:hover{color:#de3719}
+.pc-dd-all:hover{color:#0f7a68}
 @media screen and (max-width:991px){.pc-dd{display:block;width:100%;height:auto}.pc-dd-panel{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;box-shadow:none;border:none;min-width:0;padding:2px 0 6px}.pc-dd:hover .pc-dd-panel{transform:none}.pc-dd-chev{display:none}.pc-dd-label{padding-top:6px}}
 
 /* --- Hide the runtime "Made in Webflow" badge --- */
@@ -111,7 +113,7 @@
   .pc-toc-link:hover,
   .pc-toc-link.is-active {
     color: #111210;
-    border-left-color: #de3719;
+    border-left-color: #0f7a68;
   }
 }
 
@@ -192,7 +194,7 @@
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.05em;
-  color: #de3719;
+  color: #0f7a68;
   margin-bottom: 0.6rem;
 }
 
@@ -217,7 +219,7 @@
 /* Blockquote — orange left rule, mild size step up.
    Restrained (not italic, not centered) to match the technical tone. */
 .text-rich-text blockquote {
-  border-left: 2px solid #de3719;
+  border-left: 2px solid #0f7a68;
   padding: 0.3rem 0 0.3rem 1.4rem;
   margin: 1.6rem 0;
   font-family: 'Geist', sans-serif;
@@ -237,7 +239,7 @@
 .text-rich-text code {
   font-family: 'Geist', sans-serif;
   font-weight: 500;
-  background: linear-gradient(to bottom, transparent 55%, rgba(222, 55, 25, 0.14) 55%);
+  background: linear-gradient(to bottom, transparent 55%, rgba(15, 122, 104, 0.14) 55%);
   padding: 0 0.15em;
   color: #111210;
   white-space: normal;
@@ -250,7 +252,7 @@
 .text-rich-text .pc-stat {
   margin: 1.8rem 0;
   padding: 0.1rem 0 0.3rem 1.4rem;
-  border-left: 2px solid #de3719;
+  border-left: 2px solid #0f7a68;
   max-width: 60ch;
 }
 .text-rich-text .pc-stat-num {
@@ -278,7 +280,7 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #de3719;
+  color: #0f7a68;
   display: block;
   margin-bottom: 0.4rem;
 }
@@ -333,9 +335,9 @@
   margin: 0.4rem 0;
   line-height: 1.6;
 }
-.text-rich-text ul li::marker { color: #de3719; }
+.text-rich-text ul li::marker { color: #0f7a68; }
 .text-rich-text ol li::marker {
-  color: #de3719;
+  color: #0f7a68;
   font-family: 'Doto', monospace;
   font-weight: 600;
 }
@@ -352,8 +354,8 @@
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 .text-rich-text a:hover {
-  color: #de3719;
-  text-decoration-color: #de3719;
+  color: #0f7a68;
+  text-decoration-color: #0f7a68;
 }
 
 /* Article-end mark — small Doto square at the last paragraph.
@@ -361,7 +363,7 @@
    trail every paragraph. */
 .text-rich-text > p:last-child::after {
   content: " ▪";
-  color: #de3719;
+  color: #0f7a68;
   font-family: 'Doto', monospace;
   margin-left: 0.35em;
   font-size: 0.9em;
@@ -421,7 +423,7 @@
 }
 .blog-post_author-text .body-sm { font-size: 12px; }
 .blog-post_author-text .blog_meta-divider {
-  background: #de3719;
+  background: #0f7a68;
   width: 3px;
   height: 3px;
   border-radius: 50%;

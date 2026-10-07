@@ -32,7 +32,7 @@
 |---|---|
 | Primary typeface | **Geist** (sans) |
 | Accent typeface | **Doto** (dot-matrix LED, weight 700) — numbered process steps / accent motif |
-| Accent orange | `#de3719` |
+| Accent (patina teal) | `#0f7a68` — replaced orange `#de3719` in Oct 2026; CSS vars keep the template's `--primary--orange` names |
 | Near-black text | `#111210` |
 | Logo (navbar + footer) | `Branding/logo_long.png` — `height:17px; width:auto` |
 | Corner style | Sharp / minimal |
