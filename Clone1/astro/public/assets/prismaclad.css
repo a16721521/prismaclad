@@ -441,3 +441,28 @@
   .text-rich-text .pc-stat { padding-left: 1.2rem; }
 }
 
+
+/* ── Header (v2): logo on the left; nav links and "Get in touch" grouped on
+   the right. Desktop only — at 991px and below Webflow collapses the links
+   into the hamburger menu, which keeps its template layout. */
+@media screen and (min-width: 992px) {
+  .nav_component .nav_inner { display: flex; justify-content: flex-end; column-gap: 0; }
+  .nav_component .nav_logo-link { margin-right: auto; }
+  .nav_component .nav_menu { column-gap: 40px; }
+  /* Same 40px between the last link and the button as between links. The
+     template's gap would add space around the empty .nav_right placeholder. */
+  .nav_component .nav_content { margin-left: 40px; column-gap: 0; }
+  /* The button covers this on desktop. */
+  .nav_component .pc-nav-mobile-cta { display: none; }
+}
+
+/* Mobile menu: the template hides the "Get in touch" button below 992px, so
+   the menu carries its own contact link in the accent color. */
+.nav_component .pc-nav-mobile-cta { color: var(--primary--orange); }
+
+/* ── Footer contact column: the template pads the title block but not the
+   email link that follows it, so the link sat flush left of the text above.
+   Give it the same inset. */
+.footer-newsletter-col > .footer-link {
+  padding: 0 var(--_spacing---spacing--xl) var(--_spacing---spacing--xl);
+}
