@@ -1,0 +1,10 @@
+# URLs from the previous site (static clone of the Offset template at the repo
+# root) mapped to their v2 equivalents, so existing links and search results
+# don't land on a 404.
+/index.html                     /                         301
+/index2.html                    /                         301
+/contact.html                   /contact/                 301
+/portfolio.html                 /                         301
+/legal/privacy-policy.html      /legal/privacy-policy/    301
+/legal/terms-conditions.html    /legal/terms-of-service/  301
+/documentation/*                /                         301

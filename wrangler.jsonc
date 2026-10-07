@@ -1,9 +1,23 @@
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  // prismaclad.com — serves the Astro site in Clone1/astro.
+  // Previously this published the repo root (the static template clone).
   "name": "prismaclad",
   "compatibility_date": "2026-07-01",
+  // Handles /api/contact; every other request is served from assets.
+  "main": "./Clone1/astro/worker/index.js",
+  // `wrangler deploy` rebuilds the site first, so a stale dist can't ship.
+  // `npm ci` because Cloudflare's GitHub build starts with no node_modules.
+  "build": {
+    "command": "npm ci && npm run build",
+    "cwd": "./Clone1/astro"
+  },
   "assets": {
-    "directory": ".",
+    "directory": "./Clone1/astro/dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+  // Contact form email. The from-domain (prismaclad.com) must be onboarded
+  // to Cloudflare Email Sending.
+  "send_email": [{ "name": "EMAIL" }]
 }
