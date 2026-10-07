@@ -73,9 +73,9 @@ metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle
 
 <h2>Why does this matter for a planning board?</h2>
 
-<p>It matters because several codes already ask for outline disruption in their own words. The Prince William County Data Center Opportunity Zone Overlay District (DCOZOD) requires principal building facades to avoid undifferentiated surfaces, and Fairfax County requires a variation in the facade surface every 150 feet. An undifferentiated surface is a wall with no internal edges, and a required change every 150 feet is a limit on how long one continuous run can be. The <a href="/research/data-center-facade-ordinance-tracker/">ordinance tracker</a> has the exact language for each jurisdiction.</p>
+<p>It matters because several codes already ask for outline disruption in their own words. The Prince William County <a href="https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO_ARTVOVDI_PT509DACEOPZOOVDI" target="_blank" rel="noopener">Data Center Opportunity Zone Overlay District (DCOZOD)</a> requires principal building facades to avoid undifferentiated surfaces, and Fairfax County <a href="https://www.mcguirewoods.com/client-resources/alerts/2024/9/fairfax-county-board-adopts-data-center-zoning-changes/" target="_blank" rel="noopener">requires a change in the facade surface</a> at least every 150 feet. An undifferentiated surface is a wall with no internal edges, and a required change every 150 feet is a limit on how long one continuous run can be.</p>
 
-<p>That gives an applicant something better than taste to argue from. A treatment designed around edge disruption can be explained to a board in terms of how people see large objects, with published research behind it. If you are still deciding between treatment, landscaping and redesign, <a href="/research/data-center-exterior-decision-framework/">the decision framework</a> compares all three on cost, schedule, and which ordinances each one satisfies.</p>
+<p>That gives an applicant something better than taste to argue from. A treatment designed around edge disruption can be explained to a board in terms of how people see large objects, with published research behind it.</p>
 
 <h2>Sources</h2>
 
