@@ -1,0 +1,50 @@
+---
+// Blog listing — header + featured card + 3-col grid, generated from the
+// content collection (sorted newest-first). Featured slot = frontmatter
+// `featured: true`, falling back to the newest post.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const grid = posts.filter((p) => p !== featured);
+const f = featured.data;
+const fUrl = `/blog/${featured.id}/`;
+const fDate = f.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<Base
+  title="Blog | Prismaclad"
+  description="Analysis of zoning requirements, community dynamics, and the design approaches shaping how large-scale industrial facilities look."
+  wfPage="6a0b27140bec975ae4398f75"
+>
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-subhero w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Blog</div></div>
+          <h1 animate="item" class="display-md">Thinking on <span class="text-highlight"><strong>data center design and exterior regulation.</strong></span></h1>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">Analysis of zoning requirements, community dynamics, and the design approaches shaping how large-scale industrial facilities look.</p>
+        </div>
+      </div>
+      <div class="w-dyn-list">
+        <div role="list" class="w-dyn-items">
+          <div role="listitem" class="w-dyn-item"><a animate="item" aria-label="Link to Blog Post" data-wf--blog-card--variant="featured" href={fUrl} class="blog_card w-variant-eac90c3c-0ecb-0fe8-6303-e86eca226dcd w-inline-block"><div class="blog_img-wrapper w-variant-eac90c3c-0ecb-0fe8-6303-e86eca226dcd"><img loading="lazy" src={f.image} alt={f.imageAlt} class="blog_card-img" /><div class="blog_image-overlay"></div></div><div class="blog_card-content w-variant-eac90c3c-0ecb-0fe8-6303-e86eca226dcd"><div class="blog_card-meta-details"><div class="blog_meta-detail">{f.category}</div><div class="blog_meta-divider"></div><div class="blog_meta-detail">{fDate}</div><div class="blog_meta-divider"></div><div class="blog_read-time"><div class="blog_meta-detail">{f.readTime}</div><div class="blog_meta-detail">min read</div></div></div><h2 class="headline-sm w-variant-eac90c3c-0ecb-0fe8-6303-e86eca226dcd">{f.title}</h2><p class="blog-card_excerpt">{f.description}</p><div class="spacer-md"></div><div aria-label="" class="button blog-link"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon blog-link"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3 link-3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa link-4"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div class="button-text blog-link">Read Article</div></div></div></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="w-dyn-list">
+        <div role="list" class="grid _3cols w-dyn-items">
+          {grid.map((p) => <BlogCard post={p} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

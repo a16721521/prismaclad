@@ -1,0 +1,179 @@
+---
+// Pattern Engine — overview page. Authored content (not extracted from the
+// Webflow export), composed from the Cedar section catalog: sub-hero (#5),
+// 3-col cards (#20), image + checklist (#31), CTA component.
+//
+// IP NOTE: no patent filings exist as of Jul 2026. This page deliberately
+// describes capability and benefit only. Do not add: complexity scoring
+// formulas or axes, normalization anchors, the multiplier curve, seed-code
+// field schema, surface/access multiplier tables, or dollar figures.
+// Those stay for the white paper, after filing.
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+
+const schema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: 'Prismaclad Pattern Engine',
+    description:
+      'A browser-based generator for large-scale exterior facade patterns, constrained by substrate, wall height, coating performance and viewing distance.',
+    creator: { '@type': 'Organization', name: 'Prismaclad', url: 'https://prismaclad.com' },
+    url: 'https://prismaclad.com/patterns/',
+    image: 'https://prismaclad.com/assets/pc-geometric-facade-treatment.png',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://prismaclad.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Pattern Engine', item: 'https://prismaclad.com/patterns/' },
+    ],
+  },
+]);
+---
+<Base
+  title="Pattern Engine | Prismaclad"
+  description="A pattern generator built for building exteriors — constrained by substrate, wall height, coating performance and viewing distance, and it outputs a fabrication spec rather than a mood board."
+  ogImage="/assets/pc-geometric-facade-treatment.png"
+  schema={schema}
+  wfPage="6a12f2029108cc68c1be96f1"
+>
+
+  <!-- ── Sub-hero ─────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-subhero w-container">
+      <div class="max-width-medium is-center">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Pattern Engine</div></div>
+          <h1 animate="item" class="display-md">Pattern generation, built for <span class="text-highlight"><strong>the side of a building.</strong></span></h1>
+          <p animate="item" class="text-color-subtle">Most pattern tools are made for screens. This one is made for half a million square feet of concrete that has to clear a planning board, then hold its color for fifteen years.</p>
+        </div>
+        <div class="spacer-md"></div>
+        <!-- TODO: wire to the live engine when ready. Deliberately inert. -->
+        <a aria-label="Open the Pattern Engine" data-wf--button--variant="orange" data-wf-component-id="1c6a4e27-54f5-1b0e-bfd8-068ace1ed623" data-wf-variant-state="bda75b55-0b71-91ee-e4ba-3757db1392c0" href="#" class="button w-variant-bda75b55-0b71-91ee-e4ba-3757db1392c0 w-inline-block"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div class="button-text-wrap"><div class="button-text">Open the Pattern Engine</div><div class="button-text">Open the Pattern Engine</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hero image ───────────────────────────────────────── -->
+  <section animate="section" class="section is-none">
+    <div class="w-layout-blockcontainer container w-container">
+      <div animate="item" class="image-wrapper">
+        <img loading="lazy" src="/assets/pc-geometric-facade-treatment.png" alt="Desert data center with a quarter-arc geometric facade pattern drawn from the surrounding terrain palette." class="_w-h-100 fit-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Design intent ────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Design intent</div></div>
+          <h2 animate="item" class="display-sm">Three things a facade treatment gets asked to do</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">Before a tile is drawn, the brief has to settle one question: what is this building supposed to do where it stands? The answer decides the geometry, the palette, and how the drawing gets argued in front of a review board.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        <div class="card">
+          <img src="/assets/6a1020bef2e05f8d422ba164_map_8a14183e.svg" loading="lazy" alt="Site context icon" class="icon-32px" />
+          <h3 class="headline-sm">Belong</h3>
+          <p class="text-color-subtle">The building reads as considered rather than dropped in. Pattern and palette come out of the site&#x27;s own material context, so the structure sits in its surroundings instead of landing on them.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020bea5866121e0477f06_shield_check_ed349c88.svg" loading="lazy" alt="Compliance icon" class="icon-32px" />
+          <h3 class="headline-sm">Comply</h3>
+          <p class="text-color-subtle">The ordinance asks for facade articulation, surface differentiation, or fenestration. The pattern is drawn against that specific language, using faux openings, reveals, coursework and banding to do work that would otherwise need structural change.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020beffff509dad0e19aa_compass_bb1b76ed.svg" loading="lazy" alt="Identity icon" class="icon-32px" />
+          <h3 class="headline-sm">Express</h3>
+          <p class="text-color-subtle">The building carries identity. Corporate, civic or regional visual language, abstracted to architectural scale and developed with the client rather than applied to them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Generation ───────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Generation</div></div>
+          <h2 animate="item" class="display-sm">How the patterns are made</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">The engine runs three generation families. Which one a project uses follows from the intent above rather than from taste.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        <div class="card">
+          <h3 class="headline-sm">Geometric</h3>
+          <p class="text-color-subtle">Tile systems built on adjacency rules. Wang tiling and wave function collapse decide what is allowed to sit next to what, so a pattern holds together across a 200-foot run instead of degrading into noise. Subdivisions introduce diagonals and quarter arcs. Vector output throughout, which matters when the drawing has to scale to a wall.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <h3 class="headline-sm">Fluid</h3>
+          <p class="text-color-subtle">Organic forms built on spline curves, with gradient and noise fields underneath. Reads softer at distance, and it does most of the work when a building needs to lose its edges against terrain or sky rather than announce itself.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <h3 class="headline-sm">Dazzle</h3>
+          <p class="text-color-subtle">High-contrast angular interference, descended from First World War ship camouflage. Rather than hiding the building, it disrupts how the eye reads mass and scale, which is a different and occasionally more useful outcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Constraints ──────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0">
+        <div animate="item" class="content-column left">
+          <img loading="lazy" src="/assets/pc-problem-installation.jpg" alt="Installers applying a large-scale painted treatment to an industrial exterior wall." class="_w-h-100 fit-cover" />
+        </div>
+        <div class="content_group is-column">
+          <div animate="item" class="badge"><div>Constraints</div></div>
+          <h2 animate="item" class="display-sm">The limits come from the wall, not the canvas</h2>
+          <p animate="item" class="text-color-subtle">A pattern that looks right on screen can be unbuildable, unaffordable, or outside warranty. The generator carries the constraints that decide which of those it is.</p>
+          <div class="spacer-sm"></div>
+          <ul role="list" class="checklist-wrapper w-list-unstyled">
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Substrate sets the preparation and the coating system. Tilt-up concrete, sandblasted precast, filled and unfilled CMU, EIFS and metal panel all behave differently under paint.</div></li>
+            <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Wall height sets the access method, and access accounts for more of the cost than most people expect going in.</div></li>
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Light reflectance is checked per color. Metal panel finishes carry warranty floors, and cool-wall thresholds under ASHRAE 90.1 apply once an elevation gets large enough.</div></li>
+            <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Pattern scale is drawn against viewing distance from the nearest road, not against the monitor it was designed on.</div></li>
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Panel joints and module dimensions are treated as part of the geometry rather than something the pattern has to fight.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Output ───────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0">
+        <div class="content_group is-column">
+          <div animate="item" class="badge"><div>Output</div></div>
+          <h2 animate="item" class="display-sm">What comes out the other end</h2>
+          <p animate="item" class="text-color-subtle">The engine produces a fabrication document rather than a mood board, which is what separates a picture an architect likes from a drawing a contractor can price.</p>
+          <div class="spacer-sm"></div>
+          <ul role="list" class="checklist-wrapper w-list-unstyled">
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>The pattern drawn at real facade dimensions.</div></li>
+            <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>A coating system matched to the substrate, with primer, topcoat and dry film thickness.</div></li>
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Performance references: ASTM G154 and G155 for UV, D7234 for adhesion, E96 where vapor permeability governs.</div></li>
+            <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Light reflectance per color, flagged where a value drops under a metal panel warranty floor.</div></li>
+            <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>An installation sequence with a working-day estimate.</div></li>
+            <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>A reference that reproduces the exact pattern, so what gets approved in review is what gets installed.</div></li>
+          </ul>
+        </div>
+        <div animate="item" class="content-column">
+          <img loading="lazy" src="/assets/Gemini_Generated_Image_cfadtkcfadtkcfad.png" alt="Facade elevation drawing with color-coded pattern zones and a materials legend." class="_w-h-100 fit-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

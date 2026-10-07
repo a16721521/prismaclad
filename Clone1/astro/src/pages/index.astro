@@ -1,7 +1,212 @@
 ---
-import Base from '../layouts/Base.astro';
-import body from '../html/home.html?raw';
+// v2 homepage — reduced site (Home / Blog / Contact).
+// Same section order and look as the v1 home (html/home.html). Sections that
+// carry over unchanged are pulled from home.html and re-routed; sections that
+// carried placeholder proof (track-record stats, case-study stats) are replaced
+// with sourced material from the published posts. The client logo strip is
+// real (confirmed by client) and stays.
+//
+// Every number on this page traces to a blog post in content/blog/. Do not add
+// track-record figures (buildings treated, approvals won, etc.) until they are
+// real and documented.
+import V2Base from '../layouts/V2Base.astro';
+import homeSource from '../html/home.html?raw';
+
+const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
+
+// v1 links → current routes. The v1 process sub-pages are archived, so their
+// links (the "Get in touch" buttons in the process tabs) go to contact.
+const toV2 = (html: string) =>
+  html
+    .replaceAll('src="assets/', 'src="/assets/')
+    .replace(/href="\/process\/[^"]+\/"/g, 'href="/contact/"')
+    .replaceAll('href="/blog"', 'href="/blog/"');
+
+const arrow =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
+const linkButton = (href: string, label: string) =>
+  `<a aria-label="${label}" data-wf--button--variant="link" data-wf-component-id="1c6a4e27-54f5-1b0e-bfd8-068ace1ed623" data-wf-variant-state="ad10447e-412a-1552-1122-a3094c77bde8" href="${href}" class="button w-variant-ad10447e-412a-1552-1122-a3094c77bde8 w-inline-block">${arrow}<div class="button-text-wrap"><div class="button-text">${label}</div><div class="button-text">${label}</div></div></a>`;
+
+// ── 0. Hero: unchanged, except "Our Process" now reads "How it works" and
+//       links to the /process/ page.
+const hero = toV2(home[0]).replaceAll('Our Process', 'How it works');
+
+// ── 1. Client logos: unchanged.
+const logos = toV2(home[1]);
+
+// ── 2. Process tabs: unchanged content, anchored for the hero button.
+const process = toV2(home[2]).replace('<section ', '<section id="process" ');
+
+// ── 4. Who it's for: kept, but the unverified stats become statements of what
+//       each buyer gets, dead "Read Case Study" spans become real links, and
+//       image alt text stops claiming stock photos are Prismaclad projects.
+const audienceStats: [string, string][] = [
+  ['One', 'Design system, deployed site by site'],
+  ['Per site', 'Adapted to each jurisdiction&#x27;s code'],
+  ['Single-site', 'Scoped to one building&#x27;s budget'],
+  ['Pre-hearing', 'In front of the board before opposition forms'],
+  ['Early', 'Spec-ready documentation'],
+  ['Approval-ready', 'Renderings and material specs'],
+  ['No rebuild', 'Required'],
+  ['Occupied', 'Sites stay operational'],
+];
+const audienceLinks: [string, string][] = [
+  ['/blog/data-center-facade-treatment-cost/', 'See the cost math'],
+  ['/blog/why-64-billion-data-center-projects-stalled/', 'Why projects stall'],
+  ['/blog/data-center-exterior-decision-framework/', 'Compare the options'],
+  ['/contact/', 'Talk about a retrofit'],
+];
+const audienceAlts: Record<string, string> = {
+  'Completed graphic installation on hyperscale data center':
+    'Aerial view of a data center campus with rooftop cooling equipment and blank white walls',
+  'Exterior treatment on large industrial facility':
+    'Precast concrete wall panel being craned into a steel frame',
+  'Data center exterior graphic panel installation':
+    'Blank white wall of a large industrial building under a clear sky',
+  'Regional data center with completed Prismaclad treatment':
+    'Data center wrapped in a black-and-white geometric facade pattern',
+};
+let statIdx = 0;
+let linkIdx = 0;
+let audience = toV2(home[4])
+  .replace(
+    /<div class="case-studies_number">[\s\S]*?<\/div>\s*<div class="body-sm text-color-subtle">[\s\S]*?<\/div>/g,
+    () => {
+      const [num, label] = audienceStats[statIdx++];
+      return `<div class="case-studies_number">${num}</div><div class="body-sm text-color-subtle">${label}</div>`;
+    },
+  )
+  .replace(/<span aria-label=""[^>]*>[\s\S]*?Read Case Study[\s\S]*?<\/span>/g, () => {
+    const [href, label] = audienceLinks[linkIdx++];
+    return linkButton(href, label);
+  });
+for (const [from, to] of Object.entries(audienceAlts)) audience = audience.replace(`alt="${from}"`, `alt="${to}"`);
+
+// ── 6. Blog + 7. CTA: unchanged, re-routed.
+const blog = toV2(home[6]);
+const cta = toV2(home[7]).replace(
+  'alt="Completed Prismaclad installation on data center exterior"',
+  'alt="Industrial facade treatment detail"',
+);
+
+// ── 3. The case in four numbers (replaces placeholder track-record stats).
+const stats = [
+  ['$64B', 'In U.S. data center projects blocked or delayed by local opposition', '/blog/why-64-billion-data-center-projects-stalled/'],
+  ['6', 'Jurisdictions we track with facade rules written into their codes', '/blog/data-center-facade-ordinance-tracker/'],
+  ['~4%', 'Of a $633M average build, even at the highest treatment tier', '/blog/data-center-facade-treatment-cost/'],
+  ['66%', 'Two-year survival for new trees planted in stressed urban sites', '/blog/data-center-facade-treatment-cost/'],
+];
+
+// ── 5. FAQ — the questions buyers ask first.
+const faqs = [
+  {
+    q: 'What does Prismaclad do?',
+    a: 'Prismaclad designs and installs large-scale exterior graphic treatments for data centers and industrial buildings, handling site survey, design development, production, and installation under one roof.',
+  },
+  {
+    q: 'Will a painted or applied treatment satisfy a facade ordinance?',
+    a: 'Often, and several codes now say so directly. Fairfax County&#x27;s September 2024 amendment counts faux windows as fenestration, DeKalb County lets murals count toward its fenestration requirement, and Phoenix lists patterns and art as acceptable screening. Where the language is vague, as in Loudoun, the design is drawn against the exact wording. <a href="/blog/data-center-facade-ordinance-tracker/">See the ordinance tracker</a>.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Base rates run $8&ndash;$15 per square foot depending on treatment type. Even a ceiling case, about $26M across 250,000 square feet of campus wall, comes to roughly 4% of the $633M average U.S. data center build. <a href="/blog/data-center-facade-treatment-cost/">See the full cost breakdown</a>.',
+  },
+  {
+    q: 'Why not just plant screening trees?',
+    a: 'Trees take years to reach screening height, and many don&#x27;t make it: research cited in our cost analysis puts two-year survival for newly planted trees in stressed urban conditions at 66%. Treatment works on the wall itself, on the schedule you already have. <a href="/blog/data-center-exterior-decision-framework/">Compare landscaping, redesign, and treatment</a>.',
+  },
+  {
+    q: 'Do you work on new construction and existing buildings?',
+    a: 'Both. For new construction we integrate at the design stage. For existing buildings we assess the structure and develop a treatment that can be installed without disrupting operations.',
+  },
+  {
+    q: 'How long does a project typically take?',
+    a: 'A typical single-building project from site survey through installation runs 8&ndash;20 weeks. Portfolio programs are scoped and phased to match development timelines.',
+  },
+  {
+    q: 'Can you work on occupied or active sites?',
+    a: 'Yes. Our crews are experienced working around active facilities and live construction schedules. We plan access, sequencing, and staging to minimise disruption throughout.',
+  },
+];
+
+const stripTags = (s: string) =>
+  s.replace(/<[^>]+>/g, '').replace(/&ndash;/g, '–').replace(/&#x27;/g, "'").replace(/&ldquo;|&rdquo;/g, '"');
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: stripTags(f.q),
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+  })),
+});
 ---
-<Base title="Prismaclad \u2014 Industrial Facade Treatments" description="Prismaclad designs and installs large-scale painted exterior treatments for data centers and industrial buildings. New construction and existing structures." ogImage="/Branding/OpenGraph.png" wfPage="6a0b1e9642d93a89def9ef67">
-<Fragment set:html={body} />
-</Base>
+
+<V2Base
+  title="Prismaclad — Industrial Facade Treatments"
+  description="Prismaclad designs and installs large-scale exterior treatments for data centers and industrial buildings that satisfy county facade requirements, at a cost closer to landscaping than architecture."
+  image="/Branding/OpenGraph.png"
+  schema={schema}
+>
+  <Fragment set:html={hero} />
+  <Fragment set:html={logos} />
+
+  <Fragment set:html={process} />
+
+  <!-- ── 3. The case in four numbers ──────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Why now</div></div>
+          <h2 animate="item" class="display-md">The case, <span class="text-highlight">in four numbers.</span></h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">Opposition is stopping projects, counties are codifying appearance, and the usual fix takes years to grow in. Each figure links to the research behind it.</p>
+          <div animate="item"><Fragment set:html={linkButton('/blog/', 'Read the research')} /></div>
+        </div>
+      </div>
+      <div class="w-layout-grid grid _4-col impact">
+        {stats.map(([num, label, href], i) => (
+          <div animate="item" class={`impact_item _${i + 1}`}>
+            <div class="impact_number">{num}</div>
+            <div class="body-lg">{label}</div>
+            <a href={href} class="body-sm text-color-subtle">Source</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={audience} />
+
+  <!-- ── 5. FAQ ───────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="content_group">
+        <div animate="item" class="badge"><div>Frequently Asked Questions</div></div>
+        <h2 animate="item" class="display-md">Common <span class="text-highlight">Questions &amp; Answers</span></h2>
+        <p animate="item" class="text-color-subtle">What developers, architects, and land-use teams ask before a first call.</p>
+      </div>
+      <div class="spacer-4xl"></div>
+      <div class="faq_list">
+        {faqs.map((f) => (
+          <div animate="item" data-wf-component-id="9b3f7388-eadf-4c37-27a6-d6d025fdc293" data-wf-variant-state="base" class="faq_item">
+            <button class="faq_question">
+              <div set:html={f.q} />
+              <img src="/assets/6a1089f608b4691bbf7e1b7e_Down_Icon_6f6888b0.svg" loading="lazy" alt="Down arrow icon for accordion or dropdown navigation" class="faq_icon" />
+            </button>
+            <div class="faq_answer">
+              <div class="faq_paragraph-container">
+                <p class="text-color-subtle" set:html={f.a} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={blog} />
+  <Fragment set:html={cta} />
+</V2Base>

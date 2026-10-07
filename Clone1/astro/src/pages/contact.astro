@@ -1,7 +1,46 @@
 ---
-import Base from '../layouts/Base.astro';
-import body from '../html/contact.html?raw';
+import V2Base from '../layouts/V2Base.astro';
 ---
-<Base title="Contact V1 | Prismaclad" description="Capture qualified leads with a complete contact experience. Combine inquiry forms, location details, and multiple communication channels in one page." ogImage="/assets/6a11b1e7719c90f36a13d133_4235a0b4500648ede3a3bf9cc5a3b9f6_Cedar_OG_Image_3e5dab9b.jpg" wfPage="6a0f4bc5f28d13cfa5c5d085">
-<Fragment set:html={body} />
-</Base>
+
+<V2Base title="Contact | Prismaclad" description="Discuss a data center or industrial facade project with Prismaclad." wfPage="6a0f4bc5f28d13cfa5c5d085">
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-subhero w-container">
+      <div class="z-index-2">
+        <div class="max-width-medium is-center"><div class="content_group is-center"><div animate="item" class="badge"><div>Contact</div></div><h1 animate="item" class="display-lg">Let’s start with <span class="text-highlight">the site.</span></h1><p animate="item" class="text-color-subtle">Send us the jurisdiction, project phase, and what the reviewing body has asked for. A site plan, review comment, or elevation is enough to begin.</p></div></div>
+        <div class="spacer-6xl"></div>
+        <div class="max-width-medium is-center"><div class="form_form-block w-form">
+          <form id="v2-contact-form" method="post" action="/api/contact" animate="item" class="form_form is-contact01">
+            <div class="form_row"><div class="form_field-wrapper"><label for="v2-name" class="form_field-label">Name*</label><input class="form_input w-input" maxlength="256" name="name" placeholder="Your name" type="text" id="v2-name" autocomplete="name" required /></div><div class="form_field-wrapper"><label for="v2-phone" class="form_field-label">Phone number</label><input class="form_input w-input" maxlength="256" name="Phone-Number" placeholder="+1 555 000 0000" type="tel" id="v2-phone" autocomplete="tel" /></div></div>
+            <div class="form_row"><div class="form_field-wrapper"><label for="v2-email" class="form_field-label">Email*</label><input class="form_input w-input" maxlength="256" name="Email" placeholder="you@company.com" type="email" id="v2-email" autocomplete="email" required /></div><div class="form_field-wrapper"><label for="v2-company" class="form_field-label">Company</label><input class="form_input w-input" maxlength="256" name="Company-Name" placeholder="Company name" type="text" id="v2-company" autocomplete="organization" /></div></div>
+            <div class="form_field-wrapper"><label for="v2-message" class="form_field-label">What are you working through?*</label><textarea required placeholder="Site, project phase, review comments, or facade condition…" maxlength="5000" id="v2-message" name="Message" class="form_input is-text-area w-input"></textarea></div>
+            <input type="submit" data-wait="Please wait..." class="button is-form w-button" value="Send enquiry" />
+            <p id="v2-form-status" class="body-sm" role="status" aria-live="polite"></p>
+          </form>
+        </div></div>
+      </div>
+      <div class="section-bg_wrapper"><img src="/images/Footer.jpg" loading="eager" alt="Completed geometric treatment on an industrial facade" class="section-bg_image" /><div class="section-bg_overlay"></div><div class="image-overlay"></div></div>
+    </div>
+  </section>
+  <section animate="section" class="section"><div class="w-layout-blockcontainer container is-none w-container"><div class="w-layout-grid _3-col-grid is-contact01"><a animate="item" href="mailto:hello@prismaclad.com" class="contact01_contact-link _1 w-inline-block"><div class="contact01_link-wrap"><div class="contact01_link-content"><div class="contact01_link">hello@prismaclad.com</div></div><div class="contact01_link-content is-accent"><div class="contact01_link">hello@prismaclad.com</div></div></div></a></div></div></section>
+</V2Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#v2-contact-form');
+  const status = document.querySelector<HTMLElement>('#v2-form-status');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submit = form.querySelector<HTMLInputElement>('input[type="submit"]');
+    if (submit) { submit.disabled = true; submit.value = 'Sending…'; }
+    if (status) status.textContent = '';
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      if (!response.ok) throw new Error('Request failed');
+      form.reset();
+      if (status) status.textContent = 'Thank you. Your enquiry has been sent.';
+    } catch {
+      if (status) status.textContent = 'The form could not be sent. Please email hello@prismaclad.com.';
+    } finally {
+      if (submit) { submit.disabled = false; submit.value = 'Send enquiry'; }
+    }
+  });
+</script>

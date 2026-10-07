@@ -1,0 +1,291 @@
+---
+// v2 "How it works" — single process page for the reduced site.
+// Replaces the five v1 process sub-pages with one page. Becomes /process/ at
+// cutover (PRISMACLAD-SEO-AEO.md §2).
+//
+// Built only from Cedar template sections (sub-hero, full-bleed image, impact
+// grid, image + checklist rows, 3-col cards, FAQ, CTA). No bespoke CSS.
+// Copy is drawn from already-published site copy (home process tabs, about
+// page, /process/ hub). No new figures. The "8–20 weeks" timeline is carried
+// over from the homepage FAQ and still needs client confirmation.
+import V2Base from '../layouts/V2Base.astro';
+import homeSource from '../html/home.html?raw';
+
+const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
+const cta = (home[7] ?? '')
+  .replaceAll('href="/contact/"', 'href="/contact/"')
+  .replace('alt="Completed Prismaclad installation on data center exterior"', 'alt="Industrial facade treatment detail"');
+
+const check =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
+const arrow =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
+
+const steps = [
+  {
+    id: 'survey',
+    num: '01',
+    name: 'Site Survey',
+    title: 'We start with the building, not the design.',
+    body: [
+      'Every project begins with a visit. We measure the building as it actually stands, look at what its walls are made of and what condition they&#x27;re in, and take in the site around it: the neighbors, the sightlines, the roads people see it from.',
+      'In parallel we pull the approval conditions for the parcel and read the actual wording. Appearance requirements are often written loosely, and knowing exactly what yours says is what keeps the design from being argued over later.',
+    ],
+    gets: [
+      'Measured elevations of the building',
+      'A read on each wall surface and what it will take',
+      'The ordinance language, quoted rather than paraphrased',
+      'Early notice of anything that will complicate access',
+    ],
+    img: '/images/ccda8b5457944392adfbf3448f9d8b2c.jpg',
+    alt: 'Concrete and corrugated metal wall surfaces on an industrial building under construction.',
+  },
+  {
+    id: 'design',
+    num: '02',
+    name: 'Design Development',
+    title: 'A design drawn from the site, against the code.',
+    body: [
+      'We develop a site-specific graphic system from what the survey found: the landscape, the local palette, the community around the building. It&#x27;s not a generic pattern applied from a distance.',
+      'The design is drawn against the ordinance language, so it answers the requirement directly. You get full renderings and material specifications, packaged so they can go in front of a planning board.',
+    ],
+    gets: [
+      'Full renderings of the treated building',
+      'Material specifications for every surface',
+      'Approval-ready documentation for review',
+      'Revisions until the design is signed off',
+    ],
+    img: '/images/9bb3d3dccebe46cd955c3f4dc5867ba7.jpg',
+    alt: 'Rendering of a data center campus with a vertical multicolor stripe facade treatment.',
+  },
+  {
+    id: 'production',
+    num: '03',
+    name: 'Production & Mobilization',
+    title: 'Made in-house, staged before crews arrive.',
+    body: [
+      'We manage fabrication in-house, with quality control at every step. Materials are produced to the approved specification and tested before anything leaves for site.',
+      'Everything is staged for installation before crews mobilize, so time on site goes to the work itself rather than waiting on deliveries.',
+    ],
+    gets: [
+      'Materials produced to the approved spec',
+      'Quality checks before anything ships',
+      'Materials staged and ready before crews arrive',
+      'A sequenced plan for the installation window',
+    ],
+    img: '/images/Site-Survey.jpg',
+    alt: 'Aerial view of a large industrial building under construction, with materials staged across the site.',
+  },
+  {
+    id: 'installation',
+    num: '04',
+    name: 'Installation',
+    title: 'On the wall, around your schedule.',
+    body: [
+      'Our installation crews bring a decade of experience on complex, high-visibility industrial structures. We plan access, sequencing, and staging around the site&#x27;s schedule, whether it&#x27;s live construction or an operating facility.',
+      'The result is a clean finish at building scale, on a treatment that was approved before a single panel was touched.',
+    ],
+    gets: [
+      'Installation by our own crews',
+      'Work sequenced around active operations',
+      'No changes to the building envelope',
+      'A finished wall that matches the approved design',
+    ],
+    img: '/images/Production.jpg',
+    alt: 'Installer on a boom lift applying coating to a metal-panel facade.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'When should we bring Prismaclad in?',
+    a: 'As early as the permit stage. Starting design development then puts a treatment in front of the review board before groundbreaking, rather than after a condition has already been imposed. For buildings that are already standing, any time works.',
+  },
+  {
+    q: 'How long does a project take?',
+    a: 'A typical single-building project from site survey through installation runs 8&ndash;20 weeks. Portfolio programs are scoped and phased to match development timelines.',
+  },
+  {
+    q: 'What do you need from us to get started?',
+    a: 'The site address, any drawings or elevations you have, and the approval conditions for the parcel if you have them. If you don&#x27;t have the conditions yet, we&#x27;ll find them. After that it&#x27;s mostly arranging access for the survey visit.',
+  },
+  {
+    q: 'Do you work with our architect or general contractor?',
+    a: 'Yes. We work directly with architecture and engineering firms, and getting in at the spec stage is the cleanest way to do it. The design and documentation are built to hold through design, approval, and construction.',
+  },
+  {
+    q: 'Can the facility keep operating during installation?',
+    a: 'Yes. Treatments are applied to standing structures without construction disruption. We plan access, sequencing, and staging to minimise disruption throughout.',
+  },
+];
+
+const stripTags = (s: string) => s.replace(/<[^>]+>/g, '').replace(/&ndash;/g, '–').replace(/&#x27;/g, "'");
+const schema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How a Prismaclad facade treatment project works',
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: stripTags(s.body[0]),
+      url: `https://prismaclad.com/process/#${s.id}`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: stripTags(f.q),
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+    })),
+  },
+]);
+---
+
+<V2Base
+  title="How It Works | Prismaclad"
+  description="How a Prismaclad project runs, from site survey and design through production and installation, all under one contract."
+  image="/assets/pc-geometric-facade-treatment.png"
+  schema={schema}
+>
+  <!-- ── Hero: same component as the homepage, still image instead of video ── -->
+  <section animate="section" class="section hero">
+    <div class="w-layout-blockcontainer container is-hero w-container">
+      <div class="w-layout-grid grid hero">
+        <img class="hero-video-bg" loading="eager" src="/assets/pc-geometric-facade-treatment.png" alt="Desert data center with a geometric facade pattern drawn from the surrounding terrain palette." />
+        <div class="hero-video-overlay"></div>
+        <div class="hero-bar">
+          <div class="hero-col hero-col--title">
+            <h1 class="display-lg">From ordinance to <span class="text-highlight">installed wall.</span></h1>
+          </div>
+          <div class="hero-col hero-col--desc">
+            <p class="text-color-subtle">Survey, design, production, and installation, handled by one team under one contract. Here&#x27;s what happens at each stage, and what you have in hand when it&#x27;s done.</p>
+            <a href="#stages" class="w-inline-block hero-process-btn"><Fragment set:html={arrow} /><div class="button-text-wrap"><div class="button-text">See the four stages</div><div class="button-text">See the four stages</div></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── At a glance ──────────────────────────────────────── -->
+  <section animate="section" class="section" id="stages">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>The process</div></div>
+          <h2 animate="item" class="display-md">Four stages, <span class="text-highlight">one team.</span></h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">No separate coordinator between design, production, and field crews. The team that surveys your building is accountable for the wall at the end.</p>
+        </div>
+      </div>
+      <div class="w-layout-grid grid _4-col impact">
+        {steps.map((s, i) => (
+          <a animate="item" href={`#${s.id}`} class={`impact_item _${i + 1}`} style="text-decoration:none;color:inherit">
+            <div class="impact_number">{s.num}</div>
+            <div class="body-lg">{s.name}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The four stages ──────────────────────────────────── -->
+  {steps.map((s, i) => {
+    const text = (
+      <div animate="item" class={`content-column ${i % 2 === 0 ? 'left' : 'right'}`}>
+        <div class="content_group is-column">
+          <div class="badge"><div>Step {s.num} · {s.name}</div></div>
+          <h2 class="display-sm">{s.title}</h2>
+          {s.body.map((p) => <p class="text-color-subtle" set:html={p} />)}
+          <div class="spacer-sm"></div>
+          <ul role="list" class="checklist-wrapper w-list-unstyled">
+            {s.gets.map((g, j) => (
+              <li animate="item" class={j % 2 ? 'checklist-item is-offset' : 'checklist-item'}>
+                <Fragment set:html={check} /><div>{g}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+    const image = (
+      <div animate="item" class="content-column">
+        <img loading="lazy" src={s.img} alt={s.alt} class="_w-h-100 fit-cover" />
+      </div>
+    );
+    return (
+      <section animate="section" class="section" id={s.id}>
+        <div class="w-layout-blockcontainer container is-none w-container">
+          <div class="w-layout-grid grid gap-0">
+            {i % 2 === 0 ? [text, image] : [image, text]}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- ── Why one contract ─────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Why one contract</div></div>
+          <h2 animate="item" class="display-sm">Built around how infrastructure actually gets developed</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">One site or a full portfolio, new construction or already standing, the process is the same.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        <div class="card">
+          <img src="/assets/6a1020bef2e05f8d422ba164_map_8a14183e.svg" loading="lazy" alt="" class="icon-32px" />
+          <h3 class="headline-sm">New or standing buildings</h3>
+          <p class="text-color-subtle">For new construction, design development can start at the permit stage, early enough to satisfy the review board before groundbreaking. For existing buildings, we work on the structure as it stands, with no redesign required.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020bea5866121e0477f06_shield_check_ed349c88.svg" loading="lazy" alt="" class="icon-32px" />
+          <h3 class="headline-sm">Operating sites stay operating</h3>
+          <p class="text-color-subtle">Treatments go onto standing structures without construction disruption. Access, sequencing, and staging are planned around your site&#x27;s schedule, not the other way round.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020beffff509dad0e19aa_compass_bb1b76ed.svg" loading="lazy" alt="" class="icon-32px" />
+          <h3 class="headline-sm">Designed once, used across a portfolio</h3>
+          <p class="text-color-subtle">For hyperscalers and multi-site operators, we develop a design system once and adapt it to each site: consistent visual logic, site-specific execution, and no starting from scratch every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="content_group">
+        <div animate="item" class="badge"><div>Questions</div></div>
+        <h2 animate="item" class="display-md">About <span class="text-highlight">the process</span></h2>
+        <p animate="item" class="text-color-subtle">What teams usually ask before the first site visit.</p>
+      </div>
+      <div class="spacer-4xl"></div>
+      <div class="faq_list">
+        {faqs.map((f) => (
+          <div animate="item" data-wf-component-id="9b3f7388-eadf-4c37-27a6-d6d025fdc293" data-wf-variant-state="base" class="faq_item">
+            <button class="faq_question">
+              <div set:html={f.q} />
+              <img src="/assets/6a1089f608b4691bbf7e1b7e_Down_Icon_6f6888b0.svg" loading="lazy" alt="Down arrow icon for accordion or dropdown navigation" class="faq_icon" />
+            </button>
+            <div class="faq_answer">
+              <div class="faq_paragraph-container">
+                <p class="text-color-subtle" set:html={f.a} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={cta} />
+</V2Base>

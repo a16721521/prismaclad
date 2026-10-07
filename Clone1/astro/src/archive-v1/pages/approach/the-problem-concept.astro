@@ -1,0 +1,313 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+
+const schema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can landscaping satisfy data center facade requirements?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Landscaping can satisfy screening and buffer requirements, but it does not automatically satisfy separate rules for facade articulation, material variation, or fenestration. The controlling ordinance language must be reviewed jurisdiction by jurisdiction.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'When should exterior treatment enter the entitlement process?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Exterior treatment should be considered before architectural renderings and sight-line studies are submitted. At that stage it remains a design decision rather than a late revision made during public review.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does facade treatment require changes to the building envelope?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A surface-applied painted or vinyl treatment can change how a large blank elevation reads without adding windows, projections, or structural modifications to the envelope.',
+        },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://prismaclad.com/' },
+      { '@type': 'ListItem', position: 2, name: 'The Problem', item: 'https://prismaclad.com/approach/the-problem/' },
+    ],
+  },
+]);
+---
+
+<Base
+  title="Why Blank Data Center Facades Create Approval Risk | Prismaclad"
+  description="Large blank data center facades create community and entitlement risk. See what jurisdictions require, where standard responses fall short, and when the issue becomes expensive."
+  ogImage="/assets/8bc901c3aded4e1e91c6e8ba5db05b3a.png"
+  schema={schema}
+  wfPage="6a0b1e9642d93a89def9ef67"
+>
+  <section class="pcp-hero section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-hero-inner">
+        <div animate="item" class="badge"><div>The Problem</div></div>
+        <h1 animate="item" class="display-lg">Industrial scale.<br /><span class="text-highlight">No local context.</span></h1>
+        <p animate="item" class="pcp-lede text-color-subtle">Data centers are getting larger, closer to communities, and harder to approve. The blank wall is no longer just a design issue—it is a permitting risk.</p>
+        <a animate="item" class="pcp-jump" href="#what-reviewers-see">See what reviewers see <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pcp-stats" aria-label="Key data points">
+    <article class="pcp-stat">
+      <strong>$64B</strong>
+      <p>in U.S. data center projects stalled or delayed by community opposition.</p>
+      <a href="https://www.datacenterwatch.org/report" target="_blank" rel="noopener">Source: Data Center Watch ↗</a>
+    </article>
+    <article class="pcp-stat">
+      <strong>40%</strong>
+      <p>of recently proposed U.S. capacity has faced delay or cancellation.</p>
+      <a href="/blog/why-64-billion-data-center-projects-stalled/">Read the analysis →</a>
+    </article>
+    <article class="pcp-stat">
+      <strong>17+</strong>
+      <p>counties now have active facade or aesthetic requirements.</p>
+      <a href="/blog/data-center-facade-ordinance-tracker/">View the ordinance tracker →</a>
+    </article>
+  </section>
+
+  <section class="pcp-core section" id="what-reviewers-see">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-core-grid">
+        <div class="pcp-core-copy">
+          <div animate="item" class="pcp-eyebrow">What creates the objection</div>
+          <h2 animate="item" class="display-sm">People do not oppose progress. They oppose being ignored by it.</h2>
+          <p animate="item" class="text-color-subtle">The friction starts when a building’s scale, blankness, and placement tell a community that its context was never part of the brief.</p>
+        </div>
+        <div class="pcp-risks">
+          <article animate="item"><span>01</span><div><h3 class="headline-sm">Scale gap</h3><p class="text-color-subtle">A three-to-six-story wall is too large for a conventional landscape buffer to soften on its own.</p></div></article>
+          <article animate="item"><span>02</span><div><h3 class="headline-sm">Context gap</h3><p class="text-color-subtle">The building could be anywhere, so it reads as if it belongs nowhere.</p></div></article>
+          <article animate="item"><span>03</span><div><h3 class="headline-sm">Review gap</h3><p class="text-color-subtle">Aesthetic expectations often surface during public review, after the envelope is already fixed.</p></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-none pcp-visual-section" aria-labelledby="pcp-visual-title">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-visual-heading">
+        <div animate="item" class="pcp-eyebrow">The view from the road</div>
+        <h2 animate="item" id="pcp-visual-title" class="display-sm">The wall is the public face of the project.</h2>
+      </div>
+      <figure animate="item" class="pcp-image">
+        <img src="/assets/8bc901c3aded4e1e91c6e8ba5db05b3a.png" alt="Large blank industrial facade viewed from a nearby public road and landscape buffer." />
+        <div class="pcp-callout pcp-callout-one"><span>01</span> Long, undifferentiated elevation</div>
+        <div class="pcp-callout pcp-callout-two"><span>02</span> Upper wall remains fully exposed</div>
+        <div class="pcp-callout pcp-callout-three"><span>03</span> Landscape buffer works only at ground level</div>
+        <figcaption>A landscape plan can screen equipment and the lowest visual band. It cannot articulate hundreds of feet of blank wall above it.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pcp-code section" aria-labelledby="pcp-code-title">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="pcp-eyebrow">The requirement is becoming explicit</div>
+          <h2 animate="item" id="pcp-code-title" class="display-sm">What jurisdictions now write into code</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">The wording varies, but the intended outcome is consistent: principal elevations should not read as uninterrupted blank surfaces.</p>
+        </div>
+      </div>
+      <div class="pcp-code-grid">
+        <article animate="item">
+          <div class="pcp-code-meta"><span>Loudoun County, VA</span><span>2023</span></div>
+          <blockquote>“Principal facade building treatments”</blockquote>
+          <p>Required on sides adjacent to residential uses, alongside setbacks, berms, buffers, and equipment screening.</p>
+        </article>
+        <article animate="item">
+          <div class="pcp-code-meta"><span>Fairfax County, VA</span><span>2024</span></div>
+          <blockquote>Fenestration “can include faux windows”</blockquote>
+          <p>Facade variation is required at intervals, and surface-applied visual elements can contribute to the fenestration requirement.</p>
+        </article>
+        <article animate="item">
+          <div class="pcp-code-meta"><span>Phoenix, AZ</span><span>2025</span></div>
+          <blockquote>“Patterns, textures, or art”</blockquote>
+          <p>Long facades require embellishment, while materials, colors, patterns, textures, height, or art must vary by elevation.</p>
+        </article>
+      </div>
+      <a class="pcp-text-link" href="/blog/data-center-facade-ordinance-tracker/">Compare the full ordinance language <span aria-hidden="true">↳</span></a>
+    </div>
+  </section>
+
+  <section class="pcp-defaults section" aria-labelledby="pcp-defaults-title">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-eyebrow">Why the default responses fall short</div>
+      <h2 id="pcp-defaults-title" class="display-sm">Three common answers solve three different problems.</h2>
+      <div class="pcp-comparison">
+        <article>
+          <div class="pcp-comparison-top"><span>01</span><h3 class="headline-sm">Landscaping</h3></div>
+          <p class="text-color-subtle">Useful for setbacks, buffers, and screening at the property edge.</p>
+          <div class="pcp-limit">Limit</div>
+          <p>It takes years to mature and does not change how upper elevations read.</p>
+        </article>
+        <article>
+          <div class="pcp-comparison-top"><span>02</span><h3 class="headline-sm">Architectural redesign</h3></div>
+          <p class="text-color-subtle">Can add true depth, material changes, glazing, and projections.</p>
+          <div class="pcp-limit">Limit</div>
+          <p>Late changes affect envelope design, engineering, approvals, cost, and schedule.</p>
+        </article>
+        <article class="pcp-comparison-emphasis">
+          <div class="pcp-comparison-top"><span>03</span><h3 class="headline-sm">Surface treatment</h3></div>
+          <p class="text-color-subtle">Works directly on the visible surface that is creating the objection.</p>
+          <div class="pcp-limit">Opportunity</div>
+          <p>It can introduce scale, rhythm, and site context without reconstructing the wall.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pcp-flow section" aria-labelledby="pcp-flow-title">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-eyebrow">When it becomes expensive</div>
+      <h2 id="pcp-flow-title" class="display-sm">The same issue changes category as the project advances.</h2>
+      <div class="pcp-flow-grid">
+        <div><strong>Before filing</strong><span>A manageable design decision.</span><small>Lowest friction</small></div>
+        <div><strong>During review</strong><span>A rendering, revision, and scheduling problem.</span><small>Rising friction</small></div>
+        <div><strong>After opposition forms</strong><span>An entitlement and public-record problem.</span><small>High friction</small></div>
+        <div><strong>Across later phases</strong><span>A portfolio reputation that follows the developer.</span><small>Compounding friction</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pcp-faq section" aria-labelledby="pcp-faq-title">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="pcp-faq-intro">
+        <div class="pcp-eyebrow">The practical questions</div>
+        <h2 id="pcp-faq-title" class="display-sm">What developers usually need to know next</h2>
+      </div>
+      <div class="pcp-faq-list">
+        <details open>
+          <summary>Can landscaping satisfy facade requirements?<span>+</span></summary>
+          <p>It can satisfy screening and buffer rules, but not automatically a separate requirement for articulation, material variation, or fenestration. The exact ordinance language controls.</p>
+        </details>
+        <details>
+          <summary>When should exterior treatment enter the entitlement process?<span>+</span></summary>
+          <p>Before architectural renderings and sight-line studies are submitted. At that point it remains a design decision rather than a late revision made during public review.</p>
+        </details>
+        <details>
+          <summary>Does facade treatment require changes to the building envelope?<span>+</span></summary>
+          <p>A surface-applied painted or vinyl treatment can change how a blank elevation reads without adding windows, projections, or structural modifications.</p>
+        </details>
+      </div>
+      <a class="pcp-text-link" href="/approach/the-solution/">See how Prismaclad addresses the surface <span aria-hidden="true">↳</span></a>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  .pcp-hero { border-bottom: 1px solid #deded9; }
+  .pcp-hero-inner { max-width: 920px; margin: 0 auto; text-align: center; padding: 3.5rem 0 1.5rem; }
+  .pcp-hero-inner .badge { margin: 0 auto 2rem; }
+  .pcp-hero-inner h1 { letter-spacing: -.055em; }
+  .pcp-lede { max-width: 670px; margin: 1.5rem auto 0; font-size: 1.15rem; line-height: 1.6; }
+  .pcp-jump { display: inline-flex; gap: .75rem; align-items: center; margin-top: 2.25rem; color: #de3719; font-size: .9rem; font-weight: 500; }
+  .pcp-jump span { font-size: 1.15rem; }
+  .pcp-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #deded9; }
+  .pcp-stat { min-height: 190px; padding: 2.25rem 3rem; border-right: 1px solid #deded9; display: flex; flex-direction: column; justify-content: center; }
+  .pcp-stat:last-child { border-right: 0; }
+  .pcp-stat strong { color: #de3719; font-family: Doto, sans-serif; font-size: 2.35rem; line-height: 1; margin-bottom: .8rem; }
+  .pcp-stat p { color: #6d6d68; font-size: .95rem; line-height: 1.45; max-width: 290px; margin: 0; }
+  .pcp-stat a { margin-top: 1rem; color: #111210; font-size: .72rem; text-decoration: underline; text-underline-offset: 3px; }
+  .pcp-core { border-bottom: 1px solid #deded9; }
+  .pcp-core-grid { display: grid; grid-template-columns: 1.08fr .92fr; }
+  .pcp-core-copy { padding-right: 8%; display: flex; flex-direction: column; justify-content: center; }
+  .pcp-core-copy p { max-width: 560px; font-size: 1.05rem; line-height: 1.6; }
+  .pcp-eyebrow { color: #de3719; font-family: Doto, sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; margin-bottom: 1.25rem; }
+  .pcp-risks { border-left: 1px solid #deded9; }
+  .pcp-risks article { display: grid; grid-template-columns: 52px 1fr; gap: 1rem; padding: 2rem 2.5rem; border-bottom: 1px solid #deded9; }
+  .pcp-risks article:last-child { border-bottom: 0; }
+  .pcp-risks article > span { color: #de3719; font-family: Doto, sans-serif; font-weight: 700; }
+  .pcp-risks h3, .pcp-risks p { margin: 0; }
+  .pcp-risks p { margin-top: .4rem; font-size: .92rem; line-height: 1.45; }
+  .pcp-visual-section { padding-top: 0; }
+  .pcp-visual-heading { max-width: 680px; padding: 4.5rem 0 2.5rem; }
+  .pcp-image { position: relative; margin: 0; min-height: 540px; overflow: hidden; background: #d8d8d2; }
+  .pcp-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,18,16,.38), transparent 42%); pointer-events: none; }
+  .pcp-image img { width: 100%; height: 100%; min-height: 540px; display: block; object-fit: cover; }
+  .pcp-image figcaption { position: absolute; z-index: 3; left: 2rem; bottom: 2rem; max-width: 370px; padding: 1rem 1.1rem; background: rgba(255,255,255,.95); font-size: .82rem; line-height: 1.45; }
+  .pcp-callout { position: absolute; z-index: 2; display: flex; gap: .6rem; align-items: center; max-width: 230px; padding: .7rem .8rem; background: rgba(17,18,16,.9); color: #fff; font-size: .75rem; line-height: 1.3; }
+  .pcp-callout span { color: #de3719; font-family: Doto, sans-serif; font-weight: 700; }
+  .pcp-callout-one { top: 19%; left: 46%; }
+  .pcp-callout-two { top: 47%; right: 6%; }
+  .pcp-callout-three { bottom: 22%; left: 25%; }
+  .pcp-code { background: #111210; color: #fff; }
+  .pcp-code .text-color-subtle { color: rgba(255,255,255,.65); }
+  .pcp-code-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; border-top: 1px solid rgba(255,255,255,.25); border-bottom: 1px solid rgba(255,255,255,.25); }
+  .pcp-code-grid article { padding: 2rem 2rem 2.5rem 0; border-right: 1px solid rgba(255,255,255,.25); }
+  .pcp-code-grid article + article { padding-left: 2rem; }
+  .pcp-code-grid article:last-child { border-right: 0; }
+  .pcp-code-meta { display: flex; justify-content: space-between; gap: 1rem; color: rgba(255,255,255,.5); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
+  .pcp-code-grid blockquote { color: #de3719; font-size: 1.45rem; line-height: 1.25; margin: 2.2rem 0 1.4rem; padding: 0; border: 0; }
+  .pcp-code-grid p { color: rgba(255,255,255,.68); font-size: .9rem; line-height: 1.55; margin: 0; }
+  .pcp-text-link { display: inline-flex; align-items: center; gap: .75rem; margin-top: 2.5rem; color: #de3719; font-weight: 500; }
+  .pcp-text-link span { font-size: 1.4rem; }
+  .pcp-defaults { border-bottom: 1px solid #deded9; }
+  .pcp-defaults > .container > h2 { max-width: 720px; }
+  .pcp-comparison { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; border: 1px solid #deded9; }
+  .pcp-comparison article { padding: 2rem; border-right: 1px solid #deded9; }
+  .pcp-comparison article:last-child { border-right: 0; }
+  .pcp-comparison-emphasis { background: #f2f0eb; }
+  .pcp-comparison-top { display: flex; gap: 1rem; align-items: baseline; }
+  .pcp-comparison-top span { color: #de3719; font-family: Doto, sans-serif; font-weight: 700; }
+  .pcp-comparison-top h3 { margin: 0; }
+  .pcp-comparison article > p { font-size: .92rem; line-height: 1.5; }
+  .pcp-limit { display: inline-block; margin-top: 1.5rem; color: #de3719; font-family: Doto, sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+  .pcp-flow { border-bottom: 1px solid #deded9; }
+  .pcp-flow h2 { max-width: 720px; }
+  .pcp-flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #aaa; margin-top: 3rem; }
+  .pcp-flow-grid > div { position: relative; padding: 1.75rem 1.5rem 1rem 0; display: flex; flex-direction: column; gap: .55rem; }
+  .pcp-flow-grid > div::before { content: ''; position: absolute; width: 9px; height: 9px; top: -5px; left: 0; background: #de3719; }
+  .pcp-flow-grid span { color: #6d6d68; font-size: .85rem; line-height: 1.4; }
+  .pcp-flow-grid small { color: #de3719; font-family: Doto, sans-serif; font-size: .65rem; text-transform: uppercase; letter-spacing: .06em; margin-top: .4rem; }
+  .pcp-faq { border-bottom: 1px solid #deded9; }
+  .pcp-faq > .container { display: grid; grid-template-columns: .85fr 1.15fr; column-gap: 7%; }
+  .pcp-faq-list details { border-top: 1px solid #c8c8c2; }
+  .pcp-faq-list details:last-child { border-bottom: 1px solid #c8c8c2; }
+  .pcp-faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 0; cursor: pointer; font-weight: 500; list-style: none; }
+  .pcp-faq-list summary::-webkit-details-marker { display: none; }
+  .pcp-faq-list summary span { color: #de3719; font-size: 1.4rem; font-weight: 400; }
+  .pcp-faq-list details[open] summary span { transform: rotate(45deg); }
+  .pcp-faq-list p { max-width: 680px; color: #6d6d68; font-size: .92rem; line-height: 1.6; margin: -.2rem 2rem 1.5rem 0; }
+  .pcp-faq > .container > .pcp-text-link { grid-column: 2; }
+  @media screen and (max-width: 991px) {
+    .pcp-code-grid, .pcp-comparison { grid-template-columns: 1fr; }
+    .pcp-code-grid article, .pcp-code-grid article + article, .pcp-comparison article { padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.25); }
+    .pcp-comparison article { padding: 2rem; border-bottom-color: #deded9; }
+    .pcp-code-grid article:last-child, .pcp-comparison article:last-child { border-bottom: 0; }
+    .pcp-faq > .container { grid-template-columns: 1fr; row-gap: 2.5rem; }
+    .pcp-faq > .container > .pcp-text-link { grid-column: auto; }
+  }
+  @media screen and (max-width: 767px) {
+    .pcp-hero-inner { padding-top: 1rem; }
+    .pcp-stats { grid-template-columns: 1fr; }
+    .pcp-stat { min-height: 0; border-right: 0; border-bottom: 1px solid #deded9; padding: 1.75rem 1.5rem; }
+    .pcp-stat:last-child { border-bottom: 0; }
+    .pcp-core-grid { grid-template-columns: 1fr; }
+    .pcp-core-copy { padding: 0 0 3rem; }
+    .pcp-risks { border-left: 0; border-top: 1px solid #deded9; }
+    .pcp-risks article { padding: 1.75rem 0; }
+    .pcp-visual-heading { padding-top: 3rem; }
+    .pcp-image, .pcp-image img { min-height: 420px; }
+    .pcp-image figcaption { left: 1rem; right: 1rem; bottom: 1rem; }
+    .pcp-callout { display: none; }
+    .pcp-flow-grid { grid-template-columns: 1fr 1fr; row-gap: 1.5rem; }
+  }
+</style>

@@ -1,9 +1,6 @@
 ---
-// Individual blog post — structure lifted verbatim from the Cedar blog-post
-// template (breadcrumb → byline → title/subtitle → hero → rich text → CTA).
 import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import Cta from '../../components/Cta.astro';
+import V2Base from '../../layouts/V2Base.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -13,76 +10,30 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const d = post.data;
-
-const publishedISO = d.date.toISOString().slice(0, 10);
-const modifiedISO = (d.dateModified ?? d.date).toISOString().slice(0, 10);
+const published = d.date.toISOString().slice(0, 10);
+const modified = (d.dateModified ?? d.date).toISOString().slice(0, 10);
 const postURL = `https://prismaclad.com/blog/${post.id}/`;
-
-const postSchema = JSON.stringify([
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: d.title,
-    description: d.description,
-    image: new URL(d.image, 'https://prismaclad.com').href,
-    datePublished: publishedISO,
-    dateModified: modifiedISO,
-    url: postURL,
-    author: { '@type': 'Organization', name: 'Prismaclad', url: 'https://prismaclad.com' },
-    publisher: { '@type': 'Organization', name: 'Prismaclad', url: 'https://prismaclad.com' },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Blog', item: 'https://prismaclad.com/blog/' },
-      { '@type': 'ListItem', position: 2, name: d.title, item: postURL },
-    ],
-  },
-]);
+const schema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description, image: new URL(d.image, 'https://prismaclad.com').href, datePublished: published, dateModified: modified, url: postURL, author: { '@type': 'Organization', name: 'Prismaclad' }, publisher: { '@type': 'Organization', name: 'Prismaclad' } });
 ---
-<Base
-  title={`${d.title} | Prismaclad`}
-  description={d.description}
-  ogImage={d.image}
-  ogType="article"
-  articlePublishedTime={publishedISO}
-  articleModifiedTime={modifiedISO}
-  schema={postSchema}
-  wfPage="6a0efa92672ea8b3cf5dd4d5"
->
+
+<V2Base title={`${d.title} | Prismaclad`} description={d.description} image={d.image} type="article" published={published} modified={modified} schema={schema} wfPage="6a0efa92672ea8b3cf5dd4d5">
   <section animate="section" class="section">
     <div class="w-layout-blockcontainer container is-blog w-container">
       <div class="grid is-blog">
         <div class="content_group is-center">
           <div class="content_group is-small">
-            <div animate="item" class="breadcrumb_component">
-              <a href="/blog/" class="breadcrumb-link w-inline-block"><div>Blog</div></a>
-              <div class="breadcrumb-divider w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 3L11 8L6 13" stroke="CurrentColor" stroke-width="1.5"></path>
-</svg></div>
-              <a href="/blog/" aria-label="Link to Category" class="breadcrumb-link w-inline-block"><div>{d.category}</div></a>
-            </div>
-            <div class="blog-post_author-wrapper">
-              <div animate="item" class="blog-post_author-text">
-                <a href="#" class="body-sm">Prismaclad</a>
-                <div class="blog_meta-divider"></div>
-                <div class="blog_read-time"><div class="body-sm">{d.readTime}</div><div class="body-sm">min read</div></div>
-              </div>
-            </div>
+            <div animate="item" class="breadcrumb_component"><a href="/blog/" class="breadcrumb-link w-inline-block"><div>Blog</div></a><div class="breadcrumb-divider w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5"></path></svg></div><a href="/blog/" class="breadcrumb-link w-inline-block"><div>{d.category}</div></a></div>
+            <div class="blog-post_author-wrapper"><div animate="item" class="blog-post_author-text"><span class="body-sm">Prismaclad</span><div class="blog_meta-divider"></div><div class="blog_read-time"><div class="body-sm">{d.readTime}</div><div class="body-sm">min read</div></div></div></div>
           </div>
           <div class="spacer-md"></div>
-          <div class="content_group">
-            <h1 animate="item" class="display-md">{d.title}</h1>
-            <p animate="item" class="text-color-subtle">{d.subtitle}</p>
-          </div>
+          <div class="content_group"><h1 animate="item" class="display-md">{d.title}</h1><p animate="item" class="text-color-subtle">{d.subtitle}</p></div>
         </div>
         <div class="spacer-3xl"></div>
-        <div class="blog_image-wrapper"><img animate="item" loading="lazy" alt={d.imageAlt} src={d.image} class="_w-h-100 fit-cover" /></div>
+        <div class="blog_image-wrapper"><img animate="item" loading="eager" alt={d.imageAlt} src={d.image} class="_w-h-100 fit-cover" /></div>
         <div class="spacer-3xl"></div>
         <div animate="item" class="text-rich-text w-richtext"><Content /></div>
       </div>
     </div>
   </section>
-  <Cta />
-</Base>
+  <section animate="section" class="section"><div class="w-layout-blockcontainer container is-cta w-container"><div class="cta_wrapper"><div animate="item" class="cta_content"><h2 class="headline-md">Working through a difficult exterior?</h2><p class="text-color-subtle">Send us the site, project phase, and what the reviewing body has asked for.</p><a aria-label="Contact Prismaclad" data-wf--button--variant="orange" href="/contact/" class="button w-variant-bda75b55-0b71-91ee-e4ba-3757db1392c0 w-inline-block"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><rect width="256" height="256" fill="none"></rect></svg><div class="button-text-wrap"><div class="button-text">Get in touch</div><div class="button-text">Get in touch</div></div></a></div><img loading="lazy" src="/images/Footer.jpg" alt="Completed Prismaclad installation on a data center exterior" class="cta_image" /><div class="image-overlay"></div></div></div></section>
+</V2Base>

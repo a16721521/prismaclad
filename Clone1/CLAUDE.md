@@ -1,13 +1,17 @@
 # Prismaclad Site — Build Reference
 
-> **⚠️ MIGRATION IN PROGRESS → `astro/`**
-> The site is being migrated to Astro (in `Clone1/astro/`). All 20 live pages + the blog
-> (4 real posts as a content collection) are ported and verified. New work should target
-> `astro/src/` — the flat HTML pages below are the legacy source, kept until cutover.
+> **⚠️ THE SITE IS NOW `astro/` (v2, reduced site — Oct 2026)**
+> Live routes: `/` (home), `/process/` (How it works), `/blog/` + posts, `/contact/`,
+> `/legal/*`. Layout = `astro/src/layouts/V2Base.astro` with `components/v2/V2Header|V2Footer`
+> (nav: Home · How it works · Blog · Contact). The earlier v1 Astro pages (about, approach,
+> case studies, patterns, the five process sub-pages) are archived, unrouted, in
+> `astro/src/archive-v1/pages/`. Everything below this banner describes the legacy flat-HTML
+> Webflow export, kept for reference only.
 > Build: `cd astro && npm run build` (telemetry disabled in scripts). Preview: launch config
-> "Astro" serves `astro/dist` on :4322 (the pane can't spawn node — rebuild before previewing).
-> Routes are clean URLs (`/process/site-survey/` etc.) — see `astro/src/pages/`. Blog posts =
-> `astro/src/content/blog/*.md`. Contact form posts to `/api/contact` (Cloudflare Worker, TBD).
+> "Astro 4330" serves `astro/dist` on :4330 (4322/4323 are often taken by another project;
+> the pane can't spawn node — rebuild before previewing). Blog posts =
+> `astro/src/content/blog/*.md`. Contact form posts to `/api/contact` (`astro/functions/api/contact.js`).
+> prismaclad.com does NOT serve this build yet — it still serves an older Webflow site.
 >
 > **SEO/AEO:** all Astro buildout work follows **`PRISMACLAD-SEO-AEO.md`** — URL map,
 > query clusters, schema spec, content rules, llms.txt/robots.txt, launch checklist.

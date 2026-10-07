@@ -1,0 +1,227 @@
+---
+// Process 01 — Site Survey & Assessment.
+// Composed from the Cedar section catalog: sub-hero (#5), full-bleed image,
+// 3-col cards (#20), image + checklist (#31), FAQ V1 (#34), CTA component.
+// No bespoke components — every class here exists in the Webflow stylesheet.
+//
+// Register: buyer-facing, not a spec sheet. Standards work sits behind the
+// copy, it is not the copy. Do not add crew sizes, day counts or turnaround
+// figures without a real source from the client.
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+
+const questions = [
+  {
+    q: 'Do you need the building finished before you can survey it?',
+    a: 'No. We can work from a standing building or from construction drawings while it is still going up. Earlier is usually better — it means a treatment can be put in front of a review board before groundbreaking, rather than bolted on after a condition has already been imposed.',
+  },
+  {
+    q: 'What do we get at the end of it?',
+    a: 'Measured drawings of the building and a clear read on what the walls can take. Together those set the boundaries every design decision afterwards has to work inside. Nothing is designed at this stage — the survey is what makes the design stage honest.',
+  },
+  {
+    q: 'Will it interrupt the site?',
+    a: 'No. The work happens outside the building envelope and the facility keeps running. The two things worth sorting early are drone clearance and whether your security posture needs an escort on site, because both take longer to arrange than the survey itself.',
+  },
+];
+
+const schema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Site Survey & Assessment',
+    serviceType: 'Building facade survey and assessment',
+    description:
+      'On-site measurement, surface assessment and ordinance review for large-scale facade treatment on data centers and industrial buildings.',
+    provider: { '@type': 'Organization', name: 'Prismaclad', url: 'https://prismaclad.com' },
+    areaServed: { '@type': 'Country', name: 'United States' },
+    url: 'https://prismaclad.com/process/site-survey/',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://prismaclad.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Process', item: 'https://prismaclad.com/process/' },
+      { '@type': 'ListItem', position: 3, name: 'Site Survey', item: 'https://prismaclad.com/process/site-survey/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: questions.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+]);
+---
+<Base
+  title="Site Survey & Assessment | Prismaclad"
+  description="The first step of every Prismaclad project: we measure the building, check what the walls can take, and read the ordinance language the treatment has to satisfy."
+  ogImage="/assets/pc-datacenter-exterior-hero.avif"
+  schema={schema}
+  wfPage="6a0efa9a2ff304b9a16489ba"
+>
+
+  <!-- ── Sub-hero ─────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-subhero w-container">
+      <div class="max-width-medium is-center">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Process 01</div></div>
+          <h1 animate="item" class="display-md">Every design decision follows from <span class="text-highlight"><strong>what the building actually is.</strong></span></h1>
+          <p animate="item" class="text-color-subtle">Before anything gets drawn, we spend a day at the building. We measure it properly, find out what the walls can take, and read the language the county actually wrote into the approval.</p>
+        </div>
+        <div class="spacer-md"></div>
+        <a aria-label="Talk to us about your site" data-wf--button--variant="orange" data-wf-component-id="1c6a4e27-54f5-1b0e-bfd8-068ace1ed623" data-wf-variant-state="bda75b55-0b71-91ee-e4ba-3757db1392c0" href="/contact/" class="button w-variant-bda75b55-0b71-91ee-e4ba-3757db1392c0 w-inline-block"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div class="button-text-wrap"><div class="button-text">Book a survey</div><div class="button-text">Book a survey</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hero image ───────────────────────────────────────── -->
+  <section animate="section" class="section is-none">
+    <div class="w-layout-blockcontainer container w-container">
+      <div animate="item" class="image-wrapper">
+        <img loading="lazy" src="/assets/pc-datacenter-exterior-hero.avif" alt="Aerial view of a data center campus with long blank concrete elevations facing open ground." class="_w-h-100 fit-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What happens on site ─────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>On site</div></div>
+          <h2 animate="item" class="display-sm">Three things we come to find out</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">A survey is not a site visit with a camera. It answers the three questions that decide whether a treatment is straightforward or expensive, and it answers them before anyone has fallen in love with a design.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        <div class="card">
+          <img src="/assets/6a1020bef2e05f8d422ba164_map_8a14183e.svg" loading="lazy" alt="Measurement icon" class="icon-32px" />
+          <h3 class="headline-sm">How big it really is</h3>
+          <p class="text-color-subtle">We scan the building rather than working off the drawings, because the drawings and the finished structure are rarely the same thing. Every elevation, opening and joint line comes back as a measured model — the surface every later design is drawn onto.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020bea5866121e0477f06_shield_check_ed349c88.svg" loading="lazy" alt="Surface condition icon" class="icon-32px" />
+          <h3 class="headline-sm">What the walls can take</h3>
+          <p class="text-color-subtle">Tilt-up concrete, precast, metal panel and block all behave differently, and a wall that looks sound can still be too damp or too fresh to hold a coating. We test for that on site, to the standard methods, so the specification later is a finding rather than a guess.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <img src="/assets/6a1020be834d92b8c4f22b56_file_list_203a8b44.svg" loading="lazy" alt="Ordinance document icon" class="icon-32px" />
+          <h3 class="headline-sm">What the county actually asked for</h3>
+          <p class="text-color-subtle">We pull the approval conditions for the parcel and read the wording itself. Aesthetic requirements are usually written loosely on purpose, and the difference between satisfying one and arguing about it is knowing exactly what it says.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What you get ─────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0">
+        <div animate="item" class="content-column left">
+          <div class="content_group is-column">
+            <div class="badge"><div>What you get</div></div>
+            <h2 class="display-sm">A survey you can hand to someone else</h2>
+            <p class="text-color-subtle">The output is not a proposal. It is a record of the building and its constraints that your own architect, contractor or land-use counsel can pick up and check.</p>
+            <div class="spacer-sm"></div>
+            <ul role="list" class="checklist-wrapper w-list-unstyled">
+              <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Measured elevations of the building as it stands.</div></li>
+              <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>A plain read on each wall type and what it will hold.</div></li>
+              <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>The ordinance language quoted, not paraphrased.</div></li>
+              <li animate="item" class="checklist-item is-offset"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>The surface preparation the building needs, flagged early.</div></li>
+              <li animate="item" class="checklist-item"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div>Anything on site that will complicate access or scheduling.</div></li>
+            </ul>
+          </div>
+        </div>
+        <div animate="item" class="content-column">
+          <img loading="lazy" src="/images/Site-Survey.jpg" alt="Steel frame of a large industrial building under construction, seen from above." class="_w-h-100 fit-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What slows a survey down ─────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Worth knowing</div></div>
+          <h2 animate="item" class="display-sm">What actually slows this down</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">Rarely the survey itself. It is almost always one of these three, and all three are easier to solve three weeks out than three days out.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        <div class="card">
+          <h3 class="headline-sm">Getting a drone in the air</h3>
+          <p class="text-color-subtle">Flying a camera over a large facade is a licensed commercial operation, and most data center campuses run their own drone policy on top of that. Security usually wants a flight plan in advance. Straightforward, but not same-day.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <h3 class="headline-sm">Weather, and not the obvious way</h3>
+          <p class="text-color-subtle">Coatings care less about rain than about the gap between the wall temperature and the dew point. We record it during the survey so the installation window is something we can plan around later instead of discovering on the day.</p>
+        </div>
+        <div class="card appear-0-2s">
+          <h3 class="headline-sm">Seeing the whole wall</h3>
+          <p class="text-color-subtle">Screening trees, transformer yards, fencing and parked plant all hide sections of a building. Anything we cannot see is a gap in the model, so blocked elevations get picked up from another angle or from the air.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Questions</div></div>
+          <h2 animate="item" class="display-sm">Before you book one</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">The three we get asked most often.</p>
+        </div>
+      </div>
+      <div class="grid faq">
+        <div class="faq_list">
+          {questions.map((item) => (
+            <div animate="item" data-wf-component-id="9b3f7388-eadf-4c37-27a6-d6d025fdc293" data-wf-variant-state="base" class="faq_item">
+              <button class="faq_question">
+                <div>{item.q}</div>
+                <img src="/assets/6a1089f608b4691bbf7e1b7e_Down_Icon_6f6888b0.svg" loading="lazy" alt="Down arrow icon for accordion or dropdown navigation" class="faq_icon" />
+              </button>
+              <div class="faq_answer">
+                <div class="faq_paragraph-container">
+                  <p class="text-color-subtle">{item.a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Next step ────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="max-width-medium is-center">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Process 02</div></div>
+          <h2 animate="item" class="display-sm">Then the drawing starts</h2>
+          <p animate="item" class="text-color-subtle">With the building measured and its limits known, design development turns the ordinance language into something the review board can actually look at.</p>
+        </div>
+        <div class="spacer-md"></div>
+        <a aria-label="Design Development" data-wf--button--variant="link" data-wf-component-id="1c6a4e27-54f5-1b0e-bfd8-068ace1ed623" data-wf-variant-state="ad10447e-412a-1552-1122-a3094c77bde8" href="/process/design/" class="button w-variant-ad10447e-412a-1552-1122-a3094c77bde8 w-inline-block"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg><div class="button-text-wrap"><div class="button-text">Design Development</div><div class="button-text">Design Development</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
