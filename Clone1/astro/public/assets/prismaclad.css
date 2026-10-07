@@ -474,3 +474,10 @@
 .case-studies_bg-wrap .image-overlay.is-grey {
   background-image: linear-gradient(to right, var(--neutral--light) 0%, transparent 65%);
 }
+
+/* ── How it works step rows: text always comes first in the source so the
+   rows stack text, image, text, image on mobile. From 768px (where the grid
+   becomes two columns) alternate rows put the image on the left. */
+@media screen and (min-width: 768px) {
+  .pc-row-flip > .content-column:last-child { order: -1; }
+}

@@ -232,8 +232,8 @@ const schema = JSON.stringify([
     return (
       <section animate="section" class="section" id={s.id}>
         <div class="w-layout-blockcontainer container is-none w-container">
-          <div class="w-layout-grid grid gap-0">
-            {i % 2 === 0 ? [text, image] : [image, text]}
+          <div class={`w-layout-grid grid gap-0${i % 2 ? ' pc-row-flip' : ''}`}>
+            {[text, image]}
           </div>
         </div>
       </section>
