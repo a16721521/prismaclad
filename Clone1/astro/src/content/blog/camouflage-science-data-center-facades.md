@@ -47,7 +47,7 @@ metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle
 
 <p>Lab work has found real effects. Nicholas Scott-Samuel and colleagues at the University of Bristol showed <a href="https://doi.org/10.1371/journal.pone.0020233" target="_blank" rel="noopener">in 2011</a> that dazzle patterns can distort perceived speed, with the largest effect at high speeds. <a href="https://academic.oup.com/biolinnean/article/140/4/485/7252242" target="_blank" rel="noopener">A 2023 review by the same group in the Biological Journal of the Linnean Society</a> was more cautious: studies with human observers show misperceptions under controlled conditions, but the effects are inconsistent in direction and size, and it hasn't been established that they carry over to the real world. The review defines dazzle by what it does, as coloration that makes a moving target harder to intercept by distorting its perceived speed, trajectory or range.</p>
 
-<figure><img loading="lazy" src="/assets/data-center-dazzle-facade-concept.jpg" alt="Concept rendering of a data center covered in a black-and-white geometric dazzle pattern at a street corner." style="width:100%;height:auto;display:block;"/><figcaption>Concept rendering of a dazzle-style treatment. On a building that doesn't move, a pattern like this works as disruption or as identity.</figcaption></figure>
+<figure><img loading="lazy" src="/assets/data-center-dazzle-facade-concept.jpg" alt="Concept rendering of a data center covered in a black-and-white geometric dazzle pattern at a street corner." style="width:100%;height:auto;display:block;"/></figure>
 
 <p>A data center has no speed or trajectory to distort. The same review points out, though, that high-contrast patterns that would act as dazzle on a moving target can have a disruptive function when the target is still, and that disruption is likely most effective on stationary targets where at least one element of the pattern blends with the background. So a dazzle-style facade on a building is doing one of two jobs, breaking up the outline or making a visual statement, and both are reasonable goals as long as nobody is promising the naval effect.</p>
 
@@ -63,7 +63,7 @@ metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle
 <li>Decide the goal first. If the brief is a landmark, as it was for <a href="/research/google-data-center-murals-what-it-proved/">Google's data center murals</a>, blending isn't the point and none of the rules above apply.</li>
 </ul>
 
-<figure><img loading="lazy" src="/assets/data-center-landscape-pattern-facade-concept.jpg" alt="Concept rendering of a large data center campus with an earth-toned wave pattern and lighter blue bands across its long facade." style="width:100%;height:auto;display:block;"/><figcaption>Concept rendering of a pattern built from earth and vegetation tones, with lighter blues worked through it.</figcaption></figure>
+<figure><img loading="lazy" src="/assets/data-center-landscape-pattern-facade-concept.jpg" alt="Concept rendering of a large data center campus with an earth-toned wave pattern and lighter blue bands across its long facade." style="width:100%;height:auto;display:block;"/></figure>
 
 <h2>What does the research not show?</h2>
 
