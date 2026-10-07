@@ -466,3 +466,7 @@
 .footer-newsletter-col > .footer-link {
   padding: 0 var(--_spacing---spacing--xl) var(--_spacing---spacing--xl);
 }
+
+/* ── Homepage "who it's for" cards: drop the template's grey soft-light
+   overlay, which washed out the images. Scoped to these cards only. */
+.case-studies_bg-wrap .image-overlay.is-grey { display: none; }
