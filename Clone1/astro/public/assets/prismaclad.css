@@ -467,6 +467,10 @@
   padding: 0 var(--_spacing---spacing--xl) var(--_spacing---spacing--xl);
 }
 
-/* ── Homepage "who it's for" cards: drop the template's grey soft-light
-   overlay, which washed out the images. Scoped to these cards only. */
-.case-studies_bg-wrap .image-overlay.is-grey { display: none; }
+/* ── Homepage "who it's for" cards: the template's grey soft-light overlay
+   covered the whole image and washed it out. Keep the same color and blend,
+   but as a gradient that starts at the edge beside the card text and clears
+   by about two-thirds across. Scoped to these cards only. */
+.case-studies_bg-wrap .image-overlay.is-grey {
+  background-image: linear-gradient(to right, var(--neutral--light) 0%, transparent 65%);
+}
