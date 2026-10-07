@@ -11,7 +11,7 @@
 > "Astro 4330" serves `astro/dist` on :4330 (4322/4323 are often taken by another project;
 > the pane can't spawn node — rebuild before previewing). Blog posts =
 > `astro/src/content/blog/*.md`. Contact form posts to `/api/contact` (`astro/functions/api/contact.js`).
-> prismaclad.com does NOT serve this build yet — it still serves an older Webflow site.
+> prismaclad.com serves this build — pushing to `origin/main` puts changes live.
 >
 > **SEO/AEO:** all Astro buildout work follows **`PRISMACLAD-SEO-AEO.md`** — URL map,
 > query clusters, schema spec, content rules, llms.txt/robots.txt, launch checklist.
