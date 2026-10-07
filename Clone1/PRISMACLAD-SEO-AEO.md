@@ -70,6 +70,15 @@ for "data center mural" is winnable traffic the other clusters never see).
   alt text, `ImageObject` in the page schema where a pattern/photo is the subject,
   and every gallery image served as crawlable `<img>` markup — not CSS backgrounds
   or JS-injected canvases.
+- **Image conventions (Oct 2026 pass).** Filenames are lowercase, hyphenated, and say what
+  the picture shows (`data-center-towering-over-residential-street.jpg`), never a hash,
+  a camera or AI-tool default, or "copy". Web copies are JPEG, at most 2400px on the long
+  edge, quality ~80 (resize only down; `sips -Z` upscales small sources, so skip it for
+  anything under 2400px). Keep originals outside `public/`. Alt text describes what is
+  visible, not what the page wants it to mean, and never claims the image is a Prismaclad
+  project or a "completed" installation unless it is one. Renaming an image means adding a
+  301 for the old URL in `public/_redirects`. When one image appears in several places,
+  the alt may differ slightly by context, but must stay true to the picture.
 - This cluster feeds §7 directly: design/art content is the shareable, press-facing
   material most likely to earn the external citations the other clusters need.
 

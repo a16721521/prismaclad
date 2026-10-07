@@ -5,8 +5,8 @@ subtitle: "Our decision-framework post called exterior treatment a rounding erro
 date: 2026-07-22
 category: "Design"
 readTime: 6
-image: "/assets/b535fd11c7834bccab4d41fbdf4d64b2-copy.jpg"
-imageAlt: "Aerial view of a large-format hyperscale data center campus."
+image: "/assets/aerial-industrial-building-faceted-gold-facade.jpg"
+imageAlt: "Aerial view of a very large flat-roofed industrial building with a faceted gold facade, beside a logistics park."
 metaTitle: "What Facade Treatment Costs on a $500M Build"
 metaDescription: "The pricing math behind data center exterior treatment: four inputs, three facility sizes, and how the cost compares with a $633M average build."
 ---

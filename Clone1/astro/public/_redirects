@@ -13,3 +13,20 @@
 # in search results and llms.txt caches, move permanently to /research/.
 /blog                           /research/                301
 /blog/*                         /research/:splat          301
+
+# Images renamed to descriptive filenames (Oct 2026). Old URLs may sit in social
+# previews, caches and external embeds, so they redirect rather than 404.
+/images/9bb3d3dccebe46cd955c3f4dc5867ba7.jpg   /images/data-center-campus-vertical-stripe-facade-rendering.jpg   301
+/images/ccda8b5457944392adfbf3448f9d8b2c.jpg   /images/concrete-and-corrugated-metal-wall-surfaces.jpg   301
+/images/baed3a30207c451fb66d5971cbda6091.jpg   /images/aerial-data-center-campus-rooftop-cooling-equipment.jpg   301
+/images/ae70c4247ee547ecb3b843c839550db6.jpg   /images/precast-concrete-wall-panel-craned-into-steel-frame.jpg   301
+/images/1a374ffb9a414635a3d2fe5e3d70654b.jpg   /images/white-panelized-data-center-corner-blue-sky.jpg   301
+/images/710f962bc2c34c988ba88aa15a5add3c.jpg   /images/data-center-black-white-dazzle-facade-pattern.jpg   301
+/images/Footer.jpg                             /images/green-tan-metal-facade-panels-against-sky.jpg   301
+/images/Site-Survey.jpg                        /images/aerial-steel-frame-industrial-building-under-construction.jpg   301
+/images/Production.jpg                         /images/installer-boom-lift-coating-metal-panel-facade.jpg   301
+/assets/8bc901c3aded4e1e91c6e8ba5db05b3a.png   /assets/data-center-towering-over-residential-street.jpg   301
+/assets/Gemini_Generated_Image_cfadtkcfadtkcfad.png   /assets/data-center-facade-elevation-drawing-color-zones.jpg   301
+/assets/b535fd11c7834bccab4d41fbdf4d64b2-copy.jpg   /assets/aerial-industrial-building-faceted-gold-facade.jpg   301
+/assets/pc-geometric-facade-treatment.png      /assets/desert-data-center-geometric-facade-pattern.jpg   301
+/assets/AI-data-center-construction-worker-jobs.jpg   /assets/data-center-construction-site-aerial-graded-pad.jpg   301

@@ -6,8 +6,8 @@ date: 2026-07-21
 category: "Regulation"
 readTime: 8
 featured: true
-image: "/assets/Gemini_Generated_Image_cfadtkcfadtkcfad.png"
-imageAlt: "Large-scale geometric pattern applied to an industrial building facade."
+image: "/assets/data-center-facade-elevation-drawing-color-zones.jpg"
+imageAlt: "Facade elevation drawing of a data center on a drafting table, with color-coded cladding zones and a materials legend."
 metaTitle: "Data Center Facade Ordinance Tracker"
 metaDescription: "The facade, fenestration, and screening rules that Loudoun, Prince William, Fairfax, Henrico, DeKalb, and Phoenix set for data centers, and what each requires."
 showUpdated: true

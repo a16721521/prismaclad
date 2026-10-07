@@ -1763,7 +1763,7 @@ figcaption {
 
 .cta_container {
   border: 1px solid var(--color-border--border-primary);
-  background-image: linear-gradient(to bottom, var(--color-neutral--overlay), var(--color-neutral--overlay)), url('../images/ccda8b5457944392adfbf3448f9d8b2c.jpg');
+  background-image: linear-gradient(to bottom, var(--color-neutral--overlay), var(--color-neutral--overlay)), url('../images/concrete-and-corrugated-metal-wall-surfaces.jpg');
   background-position: 0 0, 50%;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;

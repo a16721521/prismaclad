@@ -5,8 +5,8 @@ subtitle: "Community opposition has blocked or delayed $64 billion in U.S. data 
 date: 2026-06-24
 category: "Industry"
 readTime: 8
-image: "/assets/AI-data-center-construction-worker-jobs.jpg"
-imageAlt: "A large blank tilt-up concrete panel wall of the kind that fronts most data centers."
+image: "/assets/data-center-construction-site-aerial-graded-pad.jpg"
+imageAlt: "Aerial view of a data center construction site with a graded gravel pad, excavators and haul trucks, with housing and reservoirs beyond."
 metaTitle: "Why $64 Billion in Data Center Projects Stalled"
 metaDescription: "Opposition has blocked or delayed $64 billion in U.S. data center projects. The ones that died were not killed by cost, and usually not by benefit packages."
 ---

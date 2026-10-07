@@ -5,8 +5,8 @@ subtitle: "Counties from Loudoun to New Albany now require data centers to be 'a
 date: 2026-04-27
 category: "Regulation"
 readTime: 5
-image: "/assets/8bc901c3aded4e1e91c6e8ba5db05b3a.png"
-imageAlt: "Aerial view of a large-format data center campus. Photo: Nathan Howard / Getty Images."
+image: "/assets/data-center-towering-over-residential-street.jpg"
+imageAlt: "A windowless data center building towering over a residential street of single-family houses. Photo: Nathan Howard / Getty Images."
 metaTitle: "Aesthetic Zoning Rules for Data Centers"
 metaDescription: "Counties now require data centers to look attractive without defining how. Between slow landscaping and full redesign sits a gap that facade patterning fills."
 ---
