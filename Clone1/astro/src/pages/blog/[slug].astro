@@ -13,17 +13,47 @@ const d = post.data;
 const published = d.date.toISOString().slice(0, 10);
 const modified = (d.dateModified ?? d.date).toISOString().slice(0, 10);
 const postURL = `https://prismaclad.com/blog/${post.id}/`;
-const schema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description, image: new URL(d.image, 'https://prismaclad.com').href, datePublished: published, dateModified: modified, url: postURL, author: { '@type': 'Organization', name: 'Prismaclad' }, publisher: { '@type': 'Organization', name: 'Prismaclad' } });
+const org = { '@type': 'Organization', '@id': 'https://prismaclad.com/#organization', name: 'Prismaclad', url: 'https://prismaclad.com' };
+const metaDescription = d.metaDescription ?? d.description;
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${postURL}#article`,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postURL },
+  headline: d.title,
+  description: metaDescription,
+  image: new URL(d.image, 'https://prismaclad.com').href,
+  datePublished: published,
+  dateModified: modified,
+  url: postURL,
+  articleSection: d.category,
+  inLanguage: 'en-US',
+  author: org,
+  publisher: org,
+});
+const updatedLabel = modified
+  ? new Date(modified + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  : '';
 ---
 
-<V2Base title={`${d.title} | Prismaclad`} description={d.description} image={d.image} type="article" published={published} modified={modified} schema={schema} wfPage="6a0efa92672ea8b3cf5dd4d5">
+<V2Base
+  title={`${d.metaTitle ?? d.title} | Prismaclad`}
+  description={metaDescription}
+  image={d.image}
+  type="article"
+  published={published}
+  modified={modified}
+  schema={schema}
+  breadcrumbs={[{ name: 'Blog', path: '/blog/' }, { name: d.title, path: `/blog/${post.id}/` }]}
+  wfPage="6a0efa92672ea8b3cf5dd4d5"
+>
   <section animate="section" class="section">
     <div class="w-layout-blockcontainer container is-blog w-container">
       <div class="grid is-blog">
         <div class="content_group is-center">
           <div class="content_group is-small">
             <div animate="item" class="breadcrumb_component"><a href="/blog/" class="breadcrumb-link w-inline-block"><div>Blog</div></a><div class="breadcrumb-divider w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5"></path></svg></div><a href="/blog/" class="breadcrumb-link w-inline-block"><div>{d.category}</div></a></div>
-            <div class="blog-post_author-wrapper"><div animate="item" class="blog-post_author-text"><span class="body-sm">Prismaclad</span><div class="blog_meta-divider"></div><div class="blog_read-time"><div class="body-sm">{d.readTime}</div><div class="body-sm">min read</div></div></div></div>
+            <div class="blog-post_author-wrapper"><div animate="item" class="blog-post_author-text"><span class="body-sm">Prismaclad</span><div class="blog_meta-divider"></div><div class="blog_read-time"><div class="body-sm">{d.readTime}</div><div class="body-sm">min read</div></div>{d.showUpdated && <><div class="blog_meta-divider"></div><div class="body-sm">Last updated: <time datetime={modified}>{updatedLabel}</time></div></>}</div></div>
           </div>
           <div class="spacer-md"></div>
           <div class="content_group"><h1 animate="item" class="display-md">{d.title}</h1><p animate="item" class="text-color-subtle">{d.subtitle}</p></div>

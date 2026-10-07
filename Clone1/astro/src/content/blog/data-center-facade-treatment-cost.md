@@ -7,6 +7,8 @@ category: "Design"
 readTime: 6
 image: "/assets/b535fd11c7834bccab4d41fbdf4d64b2-copy.jpg"
 imageAlt: "Aerial view of a large-format hyperscale data center campus."
+metaTitle: "What Facade Treatment Costs on a $500M Build"
+metaDescription: "The pricing math behind data center exterior treatment: four inputs, three facility sizes, and how the cost compares with a $633M average build."
 ---
 
 <p>A previous post in this series described exterior treatment as sitting closer to a landscape budget than an architectural one&mdash;a rounding error on a $500M build. The characterization holds. What it left out was the underlying arithmetic. This post fills that gap: the four inputs that determine the price, what those inputs produce at three typical facility sizes, and what the resulting numbers look like against total construction cost.</p>

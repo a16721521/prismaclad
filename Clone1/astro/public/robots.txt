@@ -16,4 +16,21 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# Agents that fetch a page on demand when someone asks an assistant a question,
+# or that build the search index behind one. These are the citation paths.
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://prismaclad.com/sitemap-index.xml

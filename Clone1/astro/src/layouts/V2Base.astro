@@ -14,6 +14,12 @@ interface Props {
   modified?: string;
   schema?: string;
   wfPage?: string;
+  // Interior pages pass their trail (Home is added automatically) and the
+  // layout emits one BreadcrumbList. See PRISMACLAD-SEO-AEO.md §4.
+  breadcrumbs?: { name: string; path: string }[];
+  // For pages that must not be indexed (the 404). Drops the canonical/og:url,
+  // which would otherwise point every unknown URL at one fixed address.
+  noindex?: boolean;
 }
 
 const {
@@ -25,13 +31,28 @@ const {
   modified,
   schema,
   wfPage = '6a0b1e9642d93a89def9ef67',
+  breadcrumbs,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = Astro.url.href;
 const socialImage = image.startsWith('http') ? image : new URL(image, Astro.site).href;
+const breadcrumbSchema = breadcrumbs?.length
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ name: 'Home', path: '/' }, ...breadcrumbs].map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.name,
+        item: new URL(c.path, 'https://prismaclad.com').href,
+      })),
+    })
+  : null;
 const orgSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': 'https://prismaclad.com/#organization',
   name: 'Prismaclad',
   url: 'https://prismaclad.com',
   logo: 'https://prismaclad.com/Branding/logo_long.png',
@@ -52,11 +73,16 @@ const orgSchema = JSON.stringify({
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    {noindex
+      ? <meta name="robots" content="noindex, follow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    {!noindex && <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:site_name" content="Prismaclad" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:url" content={canonicalURL} />
+    {!noindex && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:type" content={type} />
     {published && <meta property="article:published_time" content={published} />}
     {modified && <meta property="article:modified_time" content={modified} />}
@@ -76,6 +102,7 @@ const orgSchema = JSON.stringify({
     <script id="pc-analytics" is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="GtnoGrPVegpdrbKDamiExg" async></script>
     <script type="application/ld+json" set:html={orgSchema} />
     {schema && <script type="application/ld+json" set:html={schema} />}
+    {breadcrumbSchema && <script type="application/ld+json" set:html={breadcrumbSchema} />}
   </head>
   <body>
     <div class="page-wrapper">

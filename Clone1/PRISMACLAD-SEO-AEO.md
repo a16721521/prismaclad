@@ -7,6 +7,14 @@ outrank competitors — there are none — it is to (a) own the adjacent problem
 queries that already have volume, and (b) be the source AI engines cite by default
 when this category's queries start arriving.
 
+**Status (Oct 2026): the v2 reduced site is live at prismaclad.com.** Routes: `/`,
+`/process/`, `/blog/` + 7 posts, `/contact/`, `/legal/*`. The v1 pages this plan was
+first written against (`/about/`, `/approach/*`, `/case-studies/`, `/patterns/`, the five
+`/process/*` sub-pages) are archived in `astro/src/archive-v1/` and **unrouted — they return
+404**. Sections below are updated to describe what ships; anything still written for v1
+is marked *(v1, archived)*. Per-page head, schema, and breadcrumbs live in
+`astro/src/layouts/V2Base.astro`.
+
 **Scope rule:** implement everything here in the **Astro port only**. Do not retrofit
 any of it onto the Webflow static export — that work is discarded when the port ships.
 
@@ -51,7 +59,9 @@ where **image search is a first-class channel** (Google Images / visual discover
 for "data center mural" is winnable traffic the other clusters never see).
 
 - **Flagship:** `/patterns/` — the interactive pattern engine page (see §2) plus a
-  gallery of rendered pattern work.
+  gallery of rendered pattern work. *(v1, archived — not in the v2 site. Until it
+  returns, the flagship for this cluster is the murals post and
+  `/blog/camouflage-science-data-center-facades/`.)*
 - Also maps to: the Google murals post, pipeline #8 (PSE&G substation murals),
   #9 (Meta/Microsoft/Corgan), #12 (community opposition think-piece), and future
   project/case-study pages.
@@ -76,27 +86,27 @@ SERP rank. Optimize for being quoted, and rankings follow.
 Clean, intent-matching, extensionless directory URLs. Trailing slash. The Cedar ESG
 filenames do **not** come along — pre-launch is the only free rename window.
 
-| Current (Webflow export) | Astro URL |
+**Live in v2:**
+
+| URL | Page |
 |---|---|
-| `prismaclad.html` | `/` |
-| `approach/the-problem.html` | `/approach/the-problem/` |
-| `approach/the-solution.html` | `/approach/the-solution/` |
-| `company-pages/services.html` | `/process/` |
-| `service/esg-strategy-integration.html` | `/process/site-survey/` |
-| `service/sustainability-reporting-disclosure.html` | `/process/design/` |
-| `service/carbon-footprint-net-zero.html` | `/process/production/` |
-| `service/regulatory-compliance-risk.html` | `/process/installation/` |
-| `service/stakeholder-engagement.html` | `/process/portfolio-scale/` |
-| `blog-pages/blog-v1.html` | `/blog/` |
-| `blog-post/<slug>.html` | `/blog/<slug>/` (keep existing slugs — they're already good) |
-| `company-pages/case-studies.html` | `/case-studies/` |
-| `case-study/<slug>.html` | `/case-studies/<slug>/` (new Prismaclad slugs when rewritten) |
-| `pricing-pages/pricing-ecommerce.html` | `/patterns/` — interactive pattern engine (nerfed public version) + rendered-pattern gallery |
-| `company-pages/about.html` | `/about/` |
-| `contact-pages/contact-v1.html` | `/contact/` |
-| `legal/privacy-policy.html` | `/legal/privacy-policy/` |
-| `legal/terms-of-service.html` | `/legal/terms-of-service/` |
-| (future) per-jurisdiction pages | `/regulations/<county-slug>/` |
+| `/` | Home (positioning, FAQ) |
+| `/process/` | How it works — survey, design, production, installation (the service page) |
+| `/blog/` | Listing |
+| `/blog/<slug>/` | 7 posts, slugs permanent |
+| `/contact/` | Contact form |
+| `/legal/privacy-policy/`, `/legal/terms-of-service/` | Legal |
+| (future) `/regulations/<county-slug>/` | Per-jurisdiction pages |
+
+**Archived with v1, unrouted (404):** `/about/`, `/approach/the-problem/`,
+`/approach/the-solution/`, `/case-studies/`, `/patterns/`, `/process/site-survey/`,
+`/process/design/`, `/process/production/`, `/process/installation/`,
+`/process/portfolio-scale/`. Source is in `astro/src/archive-v1/pages/`. If any returns,
+it takes the URL above and the SEO rules below, and gets added to `llms.txt` and the
+schema table in §4. No redirects exist for them. `public/_redirects` covers only the
+older template site. **Open item:** once Search Console is verified, check Pages →
+"Not found (404)" for URLs the previous prismaclad.com site had indexed, and add
+`_redirects` rules for any that have inbound links or impressions.
 
 Not ported at all: ecommerce/parked Cedar pages (`checkout`, `product/*`, `search`,
 `user-pages/*`, `home-v2/v3`, blog/contact v2–v3, legacy ESG posts and case studies).
@@ -136,50 +146,54 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://prismaclad.com/sitemap-index.xml
 ```
 Explicit Allow blocks are deliberate — they survive a future blanket bot-block edit
-without accidentally netting an AI crawler.
+without accidentally netting an AI crawler. The second group (`*-User`, `Claude-SearchBot`)
+is the on-demand and search-index path: these are the agents that fetch a page when a
+person asks an assistant a question, so they are the citation path. The file in
+`astro/public/robots.txt` is the source of truth; this block mirrors it.
 
 ### Sitemap
 `@astrojs/sitemap` integration with `site: 'https://prismaclad.com'` in
-`astro.config.mjs`. Automatic; never hand-maintained.
+`astro.config.mjs`. Automatic; never hand-maintained. Blog URLs carry `<lastmod>` taken
+from the post's `dateModified` (else its `date`); other URLs deliberately carry none,
+because a build-date `lastmod` on every URL teaches engines to ignore the field.
 
 ### `public/llms.txt`
-Root-level index for AI crawlers. Keep in sync when a page ships in a listed
-category (same anti-drift rule as USIA — a stale llms.txt actively misleads):
-```
-# Prismaclad
-> Large-scale facade treatments for data centers and industrial buildings —
-> painted and vinyl-applied exterior graphics that satisfy aesthetic zoning
-> requirements at a fraction of architectural cost.
+Root-level index for AI crawlers, at `astro/public/llms.txt` (source of truth — this doc
+no longer duplicates the contents). Keep it in sync when a page ships in a listed
+category (same anti-drift rule as USIA — a stale llms.txt actively misleads). It must
+list every post in `src/content/blog/`; check the count whenever a post is added.
 
-## Services
-- [Our Process](https://prismaclad.com/process/)
-- [Site Survey & Assessment](https://prismaclad.com/process/site-survey/)
-- [Design Development](https://prismaclad.com/process/design/)
-- [Production](https://prismaclad.com/process/production/)
-- [Installation](https://prismaclad.com/process/installation/)
-- [Portfolio Scale](https://prismaclad.com/process/portfolio-scale/)
-
-## Regulation & Insights
-- [Data Center Facade Ordinance Tracker](https://prismaclad.com/blog/data-center-facade-ordinance-tracker/)
-- [Blog](https://prismaclad.com/blog/)
-
-## Design & Patterns
-- [Pattern Studio](https://prismaclad.com/patterns/)
-
-## Company
-- [About](https://prismaclad.com/about/)
-- [Contact](https://prismaclad.com/contact/)
-```
-
-### Per-page head (one `<BaseHead>` component, props-driven)
-Every page, no exceptions: unique `<title>` (≤60 chars, query-bearing, `| Prismaclad`
-suffix), meta description (140–160 chars, answer-shaped — it gets quoted verbatim by
-engines), `rel=canonical` (absolute, self-referencing), OG + Twitter tags
+### Per-page head (`V2Base.astro`, props-driven)
+Every page, no exceptions: unique `<title>` (≤60 chars including the `| Prismaclad`
+suffix, query-bearing), meta description (140–160 chars, answer-shaped — it gets quoted
+verbatim by engines), `rel=canonical` (absolute, self-referencing), OG + Twitter tags
 (`Branding/OpenGraph.png` default, post hero image for articles), `article:published_time`
-and `article:modified_time` on posts.
+and `article:modified_time` on posts, `og:site_name`, and
+`robots: index, follow, max-image-preview:large`. A page that must stay out of the index
+(the 404) passes `noindex`, which drops the canonical and `og:url`.
+
+For blog posts the search snippet is set by the optional front-matter fields `metaTitle`
+(without the suffix) and `metaDescription`, so it can be tuned without touching the
+on-page H1 or the card text. They fall back to `title` / `description`. Check lengths
+when adding a post — most drafts overshoot.
 
 ### Static HTML advantage
 Astro static output = full content in HTML with zero client JS required. This is the
@@ -187,7 +201,7 @@ same structural AEO advantage USIA has. Guard it: body content never moves into
 client-rendered islands. Islands are for interactivity (blog filter tabs, the
 `/patterns/` engine), not content.
 
-**`/patterns/` specifically:** the interactive engine is invisible to crawlers and
+**`/patterns/` specifically *(v1, archived — applies if the page returns)*:** the interactive engine is invisible to crawlers and
 extraction models. The page must carry crawlable substance around it — server-rendered
 intro copy explaining the pattern system (what it is, why patterns satisfy facade
 articulation requirements) and a static gallery of pre-rendered outputs as real
@@ -197,17 +211,20 @@ articulation requirements) and a static gallery of pre-rendered outputs as real
 
 ## 4. JSON-LD schema spec (schema components, rendered from frontmatter)
 
-| Page type | Schema |
-|---|---|
-| Every page (in base layout) | `Organization` — one block, sitewide, identical |
-| Home | + `WebSite`; + `FAQPage` for the FAQ section (real Q&A only) |
-| Blog post | `BlogPosting` (`headline`, `datePublished`, `dateModified`, `author` → Organization, `image`) + `BreadcrumbList` |
-| Blog index | `Blog` or `CollectionPage` (optional, low value — skip if noisy) |
-| Service pages | `Service` (`provider` → Organization, `areaServed`, `serviceType`) + `BreadcrumbList` |
-| Case studies | `Article` + `BreadcrumbList` |
-| `/patterns/` | `CreativeWork` or `CollectionPage` with `ImageObject`s for gallery items + `BreadcrumbList` |
-| Regulations pages (future) | `Article` + `BreadcrumbList`; `about` naming the jurisdiction |
-| Contact / About / legal | Organization block only — not citation targets |
+| Page type | Schema | Shipped in v2 |
+|---|---|---|
+| Every page (in base layout) | `Organization` — one block, sitewide, identical, `@id` = `https://prismaclad.com/#organization` so other schema references it | yes |
+| Home | + `WebSite` (`@id` `#website`, publisher → Organization); + `FAQPage` for the FAQ section (real Q&A only) | yes |
+| Blog post | `BlogPosting` (`headline`, `datePublished`, `dateModified`, `articleSection`, `mainEntityOfPage`, `author`/`publisher` → Organization, `image`) + `BreadcrumbList` (Home › Blog › post) | yes |
+| Blog index | `BreadcrumbList` only. `Blog`/`CollectionPage` is optional and low value — skipped | yes |
+| `/process/` (the service page) | `Service` (`provider` → Organization, `serviceType`) + `HowTo` + `FAQPage` + `BreadcrumbList`. `areaServed` is omitted until the service territory is confirmed | yes |
+| Case studies *(v1, archived)* | `Article` + `BreadcrumbList` | n/a |
+| `/patterns/` *(v1, archived)* | `CreativeWork` or `CollectionPage` with `ImageObject`s for gallery items + `BreadcrumbList` | n/a |
+| Regulations pages (future) | `Article` + `BreadcrumbList`; `about` naming the jurisdiction | n/a |
+| Contact / legal / 404 | Organization block only — not citation targets. 404 is `noindex` | yes |
+
+Breadcrumbs are generated by the layout: a page passes `breadcrumbs={[{ name, path }]}`
+(Home is added automatically), so no page hand-writes a `BreadcrumbList`.
 
 The canonical `Organization` block:
 ```json
@@ -351,16 +368,47 @@ ChatGPT search — it matters more here than usual).
 
 ## 10. Launch checklist (Astro port ships when all boxes tick)
 
-- [ ] All URLs per §2 map; no `.html` Cedar paths reachable
-- [ ] Canonical domain live, www/http 301s at Cloudflare
-- [ ] `robots.txt`, `llms.txt` in `public/`; sitemap integration on
-- [ ] `<BaseHead>` on every page: unique title, description, canonical, OG
-- [ ] Organization schema sitewide; BlogPosting + BreadcrumbList on all posts;
-      FAQPage on home
-- [ ] Visible "Last updated" on the ordinance tracker
-- [ ] Outbound-citation retro-audit done on the 4 published posts *(shelved — do after content rewrites, see roadmap)*
-- [ ] Heading-hierarchy pass on every page (one H1, ≥2 H2s, no skips)
-- [ ] Alt text pass on every image
-- [ ] Real phone number or no phone in schema
-- [ ] Search Console + Bing Webmaster verified, sitemap submitted
+Last audited Oct 7, 2026 against the built `dist/` and the live domain.
+
+- [x] All URLs per §2 map. Archived v1 routes 404 (checked `/about/`)
+- [ ] `.html` Cedar paths unreachable: **not met.** `dazzle-canvas.html` and
+      `pattern-engine.html` in `astro/public/` are live (200, indexable, not in the sitemap).
+      See §10a
+- [x] www → apex 301 verified live. **http → https not verified** (the check was
+      ambiguous; confirm in Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS)
+- [x] `robots.txt`, `llms.txt` in `public/` and serving 200; sitemap integration on, with
+      true `lastmod` on posts
+- [x] `V2Base.astro` on every page: unique title (≤60), description (140–160 on all
+      citation-target pages; legal pages are shorter by design), canonical, OG
+- [x] Organization schema sitewide; BlogPosting + BreadcrumbList on all 7 posts;
+      FAQPage + WebSite on home; Service + FAQPage + BreadcrumbList on `/process/`
+- [x] Visible "Last updated" on the ordinance tracker. **It currently reads July 21, 2026
+      because the content hasn't been revised since publication; the quarterly review
+      (§1 Cluster A) is due.** Setting `dateModified` without a real review would be a
+      false freshness signal
+- [ ] Outbound-citation retro-audit done on the published posts *(shelved — do after content rewrites, see roadmap)*
+- [x] Heading-hierarchy pass: one H1 per page, no skipped levels. `/contact/` has one H2
+      (not a citation target; exempt)
+- [x] Alt text pass: every content image has alt text. The three icons on `/process/`
+      are decorative and correctly `alt=""`
+- [x] No phone in schema. (The v2 footer shows no phone number either)
+- [ ] Search Console + Bing Webmaster verified, sitemap submitted *(not checkable from
+      the repo — confirm)*
 - [ ] First ground-truth query test logged (baseline: expect zero citations pre-index)
+
+### 10a. Known gaps (Oct 2026)
+
+- **Stray engine pages are public.** `public/dazzle-canvas.html` (34 KB, readable
+  generation code) and `public/pattern-engine.html` (a shell iframing the GitHub Pages
+  engine) are served at `/dazzle-canvas` and `/pattern-engine`. They are thin, unlinked,
+  and unlisted, but crawlable. Decide whether they should be public at all; if so, add
+  `X-Robots-Tag: noindex` via `public/_headers`.
+- **No dates visible on posts** except the tracker. Rule 7 asks for a visible date on
+  anything citable; v2's byline dropped the publish date that v1 showed.
+- **No RSS feed** for the blog (`@astrojs/rss`); useful for syndication and for
+  feed-based discovery.
+- **"8–20 weeks" timeline** appears in the home FAQ, `/process/` FAQ, and both FAQ
+  schema blocks. `process.astro` notes it still needs client confirmation; it is now a
+  quotable claim.
+- **Blog copy was not audited** against §5 (answer-first openings, question-style H2s,
+  2+ outbound citations per post). This pass covered metadata, schema, and structure only.

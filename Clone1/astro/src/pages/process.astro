@@ -135,6 +135,17 @@ const schema = JSON.stringify([
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://prismaclad.com/process/#service',
+    name: 'Data center facade treatment',
+    serviceType: 'Facade treatment for data centers and industrial buildings',
+    description:
+      'Site survey, design development, production, and installation of large-scale painted and vinyl-applied exterior graphics, delivered under one contract.',
+    url: 'https://prismaclad.com/process/',
+    provider: { '@id': 'https://prismaclad.com/#organization' },
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqs.map((f) => ({
       '@type': 'Question',
@@ -146,10 +157,11 @@ const schema = JSON.stringify([
 ---
 
 <V2Base
-  title="How It Works | Prismaclad"
-  description="How a Prismaclad project runs, from site survey and design through production and installation, all under one contract."
+  title="How Facade Treatment Works: Survey to Install | Prismaclad"
+  description="How a Prismaclad facade treatment project runs: site survey, design development, production, and installation, handled by one team under one contract."
   image="/assets/pc-geometric-facade-treatment.png"
   schema={schema}
+  breadcrumbs={[{ name: 'How it works', path: '/process/' }]}
 >
   <!-- ── Hero: same component as the homepage, still image instead of video ── -->
   <section animate="section" class="section hero">

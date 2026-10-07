@@ -7,6 +7,8 @@ category: "Design"
 readTime: 8
 image: "/assets/data-center-camouflage-facade-concept.jpg"
 imageAlt: "Concept rendering of a large data center with a green and tan camouflage pattern, seen across a field of tall grass."
+metaTitle: "Camouflage Science and Data Center Facades"
+metaDescription: "Five peer-reviewed studies on disruptive coloration and dazzle, what they support when the target is a concrete wall, and where the evidence runs out."
 ---
 
 <p>Most talk about camouflaging a data center starts and ends with paint color: a sage green, a sandy beige, something that is supposed to blend in. Biologists and vision scientists have spent about a century working out how animals avoid being seen, and their results suggest color is the smaller half of the problem. What gives an object away is its outline, and the patterns that work best are the ones that break the outline up.</p>

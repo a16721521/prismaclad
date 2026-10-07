@@ -131,20 +131,31 @@ const faqs = [
 
 const stripTags = (s: string) =>
   s.replace(/<[^>]+>/g, '').replace(/&ndash;/g, '–').replace(/&#x27;/g, "'").replace(/&ldquo;|&rdquo;/g, '"');
-const schema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: stripTags(f.q),
-    acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
-  })),
-});
+const schema = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://prismaclad.com/#website',
+    url: 'https://prismaclad.com/',
+    name: 'Prismaclad',
+    inLanguage: 'en-US',
+    publisher: { '@id': 'https://prismaclad.com/#organization' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: stripTags(f.q),
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+    })),
+  },
+]);
 ---
 
 <V2Base
-  title="Prismaclad — Industrial Facade Treatments"
-  description="Prismaclad designs and installs large-scale exterior treatments for data centers and industrial buildings that satisfy county facade requirements, at a cost closer to landscaping than architecture."
+  title="Data Center Facade Treatments | Prismaclad"
+  description="Prismaclad designs and installs exterior treatments for data centers and industrial buildings that meet county facade rules at a cost closer to landscaping."
   image="/Branding/OpenGraph.png"
   schema={schema}
 >
