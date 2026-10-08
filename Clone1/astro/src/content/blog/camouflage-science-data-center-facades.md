@@ -3,6 +3,7 @@ title: "What Camouflage Science Actually Says About Data Center Facades"
 description: "Five peer-reviewed studies on disruptive coloration and dazzle, what they support when the target is a concrete wall instead of a moth, and where the evidence runs out."
 subtitle: "The research on how eyes find objects keeps pointing at the outline rather than the color. Here is what five studies found, how much of it carries over to a building that isn't going anywhere, and where the evidence stops."
 date: 2026-09-30
+dateModified: 2026-10-07
 category: "Design"
 readTime: 8
 image: "/assets/data-center-camouflage-facade-concept.jpg"
