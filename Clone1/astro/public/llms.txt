@@ -15,6 +15,7 @@
 - [What Facade Treatment Actually Costs on a $500M Build](https://prismaclad.com/research/data-center-facade-treatment-cost/)
 - [Landscaping, Redesign, or Treatment: A Decision Framework for Data Center Exteriors](https://prismaclad.com/research/data-center-exterior-decision-framework/)
 - [Why $64 Billion in Data Center Projects Stalled — and What the Killed Ones Had in Common](https://prismaclad.com/research/why-64-billion-data-center-projects-stalled/)
+- [Why Data Center Opposition Got Organized, and What Actually Changes Minds](https://prismaclad.com/research/why-data-center-opposition-got-organized/)
 
 ## Design and precedent
 - [What Camouflage Science Actually Says About Data Center Facades](https://prismaclad.com/research/camouflage-science-data-center-facades/)
