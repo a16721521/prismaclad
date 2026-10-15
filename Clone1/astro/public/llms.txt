@@ -9,6 +9,7 @@
 ## Regulation
 - [The Data Center Facade Ordinance Tracker: What Counties Actually Require](https://prismaclad.com/research/data-center-facade-ordinance-tracker/)
 - [Data Centers Are Ugly. That's Now a Zoning Problem](https://prismaclad.com/research/data-centers-ugly-zoning-problem/)
+- [Do Faux Windows Count as Fenestration? What Data Center Codes Actually Say](https://prismaclad.com/research/faux-windows-data-center-fenestration/)
 
 ## Cost and evaluation
 - [What Facade Treatment Actually Costs on a $500M Build](https://prismaclad.com/research/data-center-facade-treatment-cost/)
