@@ -6,8 +6,8 @@ date: 2026-07-08
 dateModified: 2026-10-07
 category: "Design"
 readTime: 9
-image: "/assets/pc-datacenter-screening-trees.jpeg"
-imageAlt: "Rows of evergreen screening trees planted along a data center perimeter."
+image: "/assets/data-center-under-construction-between-farmland-and-subdivision.jpg"
+imageAlt: "Aerial view of a long, white data center under construction, with cranes on the roof, a plowed field in front and a housing subdivision behind it."
 metaTitle: "Landscaping vs. Redesign vs. Facade Treatment"
 metaDescription: "Landscaping, architectural redesign, and surface treatment compared on cost, schedule, durability, and which data center ordinances each one actually satisfies."
 ---

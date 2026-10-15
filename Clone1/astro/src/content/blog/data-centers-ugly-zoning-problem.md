@@ -6,8 +6,8 @@ date: 2026-04-27
 dateModified: 2026-10-07
 category: "Regulation"
 readTime: 5
-image: "/assets/data-center-towering-over-residential-street.jpg"
-imageAlt: "A windowless data center building towering over a residential street of single-family houses. Photo: Nathan Howard / Getty Images."
+image: "/assets/loudoun-data-centers-behind-residential-cul-de-sac.jpg"
+imageAlt: "Aerial view of a residential cul-de-sac in Loudoun County, Virginia, with large data center buildings rising just beyond a thin line of trees."
 metaTitle: "Aesthetic Zoning Rules for Data Centers"
 metaDescription: "Counties now require data centers to look attractive without defining how. Between slow landscaping and full redesign sits a gap that facade patterning fills."
 ---
