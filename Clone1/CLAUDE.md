@@ -32,30 +32,11 @@
 |---|---|
 | Primary typeface | **Geist** (sans) |
 | Accent typeface | **Doto** (dot-matrix LED, weight 700) — numbered process steps / accent motif |
-| Accent (neon mint) | `#81fba5` (`--pc-mint`) — replaced patina teal `#0f7a68` (Oct 16, 2026), which had replaced orange `#de3719`. CSS vars keep the template's `--primary--orange` names. Defined in `astro/public/assets/prismaclad.css` |
-| Theme | **Dark site** (Oct 16, 2026): `V2Base` defaults to `theme="dark"` → `body.pc-dark`, which flips the template's neutral scale (bg `#0d0e0c`, text `#f2f2ee`, borders `#2a2b28`) in `prismaclad.css`. A page can opt back into light with `theme="light"` |
-| Mint usage rule | On dark, mint is a text color: headline highlights, Doto numbers, links, rich-text counters and markers. Buttons are mint with ink text. On a light page, mint must not be text: the light-theme fallback uses mint blocks behind ink text (user disliked this look; avoid adding new light pages) |
+| Accent (patina teal) | `#0f7a68` — replaced orange `#de3719` in Oct 2026; CSS vars keep the template's `--primary--orange` names |
 | Near-black text | `#111210` |
-| Logo (navbar) | Inline SVG in `V2Header.astro` (from `Branding/Group 13.svg`), 17px tall, animated on load: bands wipe in right to left with a five-color refraction that splits sideways and snaps back; wordmark slides right. Footer still uses `Branding/logo_long.png` |
+| Logo (navbar + footer) | `Branding/logo_long.png` — `height:17px; width:auto` |
 | Corner style | Sharp / minimal |
 | Tone | Direct, technical, no marketing fluff |
-
-### Color palette (Oct 2026)
-
-Sampled from the DataRobot identity reference: a saturated, digital spectrum held together by black.
-Tokens live on `:root` in `astro/public/assets/prismaclad.css`.
-
-| Color | Hex | Token | Use |
-|---|---|---|---|
-| Ink | `#111210` | `--pc-ink` | Text on light, button text, arrow/checkmark icons |
-| Neon mint | `#81fba5` | `--pc-mint` | Site accent (see mint usage rule); feature pixel icons (compass, map, shield, file list); logo refraction |
-| Violet | `#5c42fc` | `--pc-violet` | Logo refraction |
-| Periwinkle | `#8387ef` | `--pc-periwinkle` | Logo refraction |
-| Azure | `#42bff9` | `--pc-azure` | Logo refraction |
-| Lemon | `#fcfc75` | `--pc-lemon` | Logo refraction (warm outer edge) |
-
-Secondary tones in the reference, not yet tokenized: sky `#6abff4`, dusty blue `#8bc1d4`, seafoam `#86d9bf`, mid gray `#9c9a9b`.
-Logo refraction order (left → right): violet, periwinkle, [black band], azure, mint, lemon — ghosts fully opaque, multiply blend on light pages, screen on dark.
 
 ---
 

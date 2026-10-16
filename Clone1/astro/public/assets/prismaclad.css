@@ -2,24 +2,13 @@
    Single source for shared styling. Edit this file directly; style-only changes
    need NO rebuild — just refresh. Structure/markup lives in partials/ + build.py. */
 
-/* --- Brand accent: neon mint (#81fba5), from the Prismaclad palette (Oct 2026;
-   replaced patina teal). The variable names say "orange" because they come
-   from the Webflow template; only the values changed.
-   Mint is too pale to read as text on white, so it works as a highlighter:
-   text stays ink (#111210) and mint sits behind it as a marker block. Mint as
-   a text colour is only used on dark backgrounds (the home hero). Fills,
-   rules, dots and buttons (with ink text) use mint directly. --- */
+/* --- Brand accent: patina teal (#0f7a68) across the whole site. The variable
+   names say "orange" because they come from the Webflow template; only the
+   values changed. --- */
 :root, body {
-  --pc-ink: #111210;
-  --pc-mint: #81fba5;
-  /* Rest of the palette (logo refraction, future accents) */
-  --pc-violet: #5c42fc;
-  --pc-periwinkle: #8387ef;
-  --pc-azure: #42bff9;
-  --pc-lemon: #fcfc75;
-  --primary--orange: #81fba5;
-  --button-orange--orange-background: #81fba5;
-  --button-orange--orange-text: #111210;
+  --primary--orange: #0f7a68;
+  --button-orange--orange-background: #0f7a68;
+  --button-orange--orange-text: white;
 }
 
 /* --- Nav dropdowns (Services / Resources / About) --- */
@@ -32,9 +21,9 @@
 .pc-dd-panel::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px}
 .pc-dd-label{padding:12px 20px 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a3a3a1}
 .pc-dd-link{display:block;padding:9px 20px;font-size:14.5px;line-height:1.3;color:#111210;text-decoration:none;border-left:2px solid transparent;transition:color .18s ease,border-color .18s ease,background .18s ease}
-.pc-dd-link:hover{color:#111210;border-left-color:#81fba5;background:#fafafa}
+.pc-dd-link:hover{color:#0f7a68;border-left-color:#0f7a68;background:#fafafa}
 .pc-dd-all{display:block;padding:11px 20px 13px;margin-top:4px;border-top:1px solid #f0f0f0;font-size:13.5px;color:#8a8a88;text-decoration:none;transition:color .18s ease}
-.pc-dd-all:hover{color:#111210}
+.pc-dd-all:hover{color:#0f7a68}
 @media screen and (max-width:991px){.pc-dd{display:block;width:100%;height:auto}.pc-dd-panel{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;box-shadow:none;border:none;min-width:0;padding:2px 0 6px}.pc-dd:hover .pc-dd-panel{transform:none}.pc-dd-chev{display:none}.pc-dd-label{padding-top:6px}}
 
 /* --- Hide the runtime "Made in Webflow" badge --- */
@@ -124,7 +113,7 @@
   .pc-toc-link:hover,
   .pc-toc-link.is-active {
     color: #111210;
-    border-left-color: #81fba5;
+    border-left-color: #0f7a68;
   }
 }
 
@@ -205,10 +194,7 @@
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.05em;
-  color: #111210;
-  width: fit-content;
-  background: #81fba5;
-  padding: 0.12em 0.2em;
+  color: #0f7a68;
   margin-bottom: 0.6rem;
 }
 
@@ -233,7 +219,7 @@
 /* Blockquote — orange left rule, mild size step up.
    Restrained (not italic, not centered) to match the technical tone. */
 .text-rich-text blockquote {
-  border-left: 2px solid #81fba5;
+  border-left: 2px solid #0f7a68;
   padding: 0.3rem 0 0.3rem 1.4rem;
   margin: 1.6rem 0;
   font-family: 'Geist', sans-serif;
@@ -253,7 +239,7 @@
 .text-rich-text code {
   font-family: 'Geist', sans-serif;
   font-weight: 500;
-  background: linear-gradient(to bottom, transparent 55%, rgba(129, 251, 165, 0.6) 55%);
+  background: linear-gradient(to bottom, transparent 55%, rgba(15, 122, 104, 0.14) 55%);
   padding: 0 0.15em;
   color: #111210;
   white-space: normal;
@@ -266,7 +252,7 @@
 .text-rich-text .pc-stat {
   margin: 1.8rem 0;
   padding: 0.1rem 0 0.3rem 1.4rem;
-  border-left: 2px solid #81fba5;
+  border-left: 2px solid #0f7a68;
   max-width: 60ch;
 }
 .text-rich-text .pc-stat-num {
@@ -294,11 +280,8 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #111210;
+  color: #0f7a68;
   display: block;
-  width: fit-content;
-  background: #81fba5;
-  padding: 0.15em 0.35em;
   margin-bottom: 0.4rem;
 }
 
@@ -352,9 +335,9 @@
   margin: 0.4rem 0;
   line-height: 1.6;
 }
-.text-rich-text ul li::marker { color: #111210; }
+.text-rich-text ul li::marker { color: #0f7a68; }
 .text-rich-text ol li::marker {
-  color: #111210;
+  color: #0f7a68;
   font-family: 'Doto', monospace;
   font-weight: 600;
 }
@@ -371,9 +354,8 @@
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 .text-rich-text a:hover {
-  color: #111210;
-  text-decoration-color: #111210;
-  background: linear-gradient(to bottom, transparent 55%, #81fba5 55%);
+  color: #0f7a68;
+  text-decoration-color: #0f7a68;
 }
 
 /* Article-end mark — small Doto square at the last paragraph.
@@ -381,7 +363,7 @@
    trail every paragraph. */
 .text-rich-text > p:last-child::after {
   content: " ▪";
-  color: #111210;
+  color: #0f7a68;
   font-family: 'Doto', monospace;
   margin-left: 0.35em;
   font-size: 0.9em;
@@ -441,7 +423,7 @@
 }
 .blog-post_author-text .body-sm { font-size: 12px; }
 .blog-post_author-text .blog_meta-divider {
-  background: #81fba5;
+  background: #0f7a68;
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -475,8 +457,8 @@
 }
 
 /* Mobile menu: the template hides the "Get in touch" button below 992px, so
-   the menu carries its own contact link, marked in the accent. */
-.nav_component .pc-nav-mobile-cta { color: var(--pc-ink); }
+   the menu carries its own contact link in the accent color. */
+.nav_component .pc-nav-mobile-cta { color: var(--primary--orange); }
 
 /* ── Footer contact column: the template pads the title block but not the
    email link that follows it, so the link sat flush left of the text above.
@@ -512,122 +494,3 @@
 .pc-placeholder--wide { height: auto; min-height: 0; aspect-ratio: 16 / 7; }
 .pc-placeholder--card { height: auto; min-height: 0; aspect-ratio: 4 / 3; margin-bottom: 16px; flex: none; }
 @media (max-width: 767px) { .pc-placeholder--wide { aspect-ratio: 4 / 3; } }
-
-/* ── Mint as highlighter. The Webflow template colours these with the accent
-   as text; on white, mint text is unreadable, so they go ink with a mint
-   block behind. The home hero sits on dark video, so it keeps mint text. */
-.text-highlight,
-.service_number,
-.impact_number,
-.case-studies_number,
-.process_step-number,
-.hero_stats-number,
-.contact01_link-content.is-accent .contact01_link {
-  color: var(--pc-ink);
-  background-color: var(--pc-mint);
-  padding: 0 0.12em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-/* The number classes are block-level divs: hug the text, not the grid cell. */
-.service_number,
-.impact_number,
-.case-studies_number,
-.process_step-number,
-.hero_stats-number { width: fit-content; max-width: 100%; }
-.contact01_link-content.is-accent { color: var(--pc-ink); }
-.hero-bar .text-highlight { background: none; padding: 0; }
-/* Links and hover states: ink text, mint marker under the lower half. */
-.text-link,
-.nav_link:hover,
-.breadcrumb-link:hover,
-.contact02_link:hover,
-.nav_component .pc-nav-mobile-cta {
-  color: var(--pc-ink);
-  background-image: linear-gradient(to bottom, transparent 55%, var(--pc-mint) 55%);
-}
-.social-media_social-link:hover,
-.button:hover:where(.w-variant-ad10447e-412a-1552-1122-a3094c77bde8),
-.checklist-icon { color: var(--pc-ink); }
-
-/* ═══ Dark page theme (body.pc-dark, set by V2Base theme="dark"; homepage).
-   The template draws almost everything from the neutral scale, so flipping
-   that scale darkens the page. On dark, mint is a text colour again: the
-   highlighter blocks above are switched off. ═══════════════════════════ */
-body.pc-dark {
-  --neutral--darkest: #f2f2ee;
-  --neutral--darker: #d6d6d1;
-  --neutral--dark: #8f8f8a;
-  --neutral--light: #2a2b28;
-  --neutral--lighter: #161715;
-  --neutral--lightest: #0d0e0c;
-  /* :root resolves these from the light scale, so restate them here. */
-  --semantics--border: var(--neutral--light);
-  --semantics--surface: var(--neutral--lighter);
-  --pc-ink: #f2f2ee;
-  background-color: #0d0e0c;
-  color: #f2f2ee;
-}
-body.pc-dark :is(.text-highlight, .service_number, .impact_number,
-  .case-studies_number, .process_step-number, .hero_stats-number,
-  .contact01_link-content.is-accent .contact01_link) {
-  color: var(--pc-mint);
-  background: none;
-  padding: 0;
-}
-body.pc-dark :is(.text-link, .nav_link:hover, .breadcrumb-link:hover,
-  .contact02_link:hover, .nav_component .pc-nav-mobile-cta) {
-  background-image: none;
-  color: var(--pc-mint);
-}
-/* Black artwork on dark: the nav logo SVG takes a light fill, and its
-   refraction ghosts switch from multiply (which vanishes on black) to screen.
-   Black image assets (client logos, arrows, footer logo) are inverted. The
-   feature icons (compass, map, shield, file list) are drawn in mint. */
-body.pc-dark .pc-logo { fill: var(--neutral--darkest); }
-body.pc-dark .pc-logo-ghost { mix-blend-mode: screen; }
-body.pc-dark :is(.logo01_logo-image, footer img[src*="logo_long"],
-  img[src*="Arrow_Left"], img[src*="Arrow_Right"], img[src*="Down_Icon"],
-  img[src*="pixel_checkmark"]) {
-  filter: invert(1);
-}
-/* Hard-coded light colours in this file, restated for dark. */
-body.pc-dark .pc-dd-panel { background: #161715; border-color: #2a2b28; }
-body.pc-dark .pc-dd-link { color: #f2f2ee; }
-body.pc-dark .pc-dd-link:hover { color: #f2f2ee; background: #1d1e1b; }
-body.pc-dark .pc-dd-all { border-top-color: #2a2b28; }
-body.pc-dark .pc-toc-label { border-bottom-color: #2a2b28; }
-body.pc-dark .pc-toc-link { color: #5d5e5a; }
-body.pc-dark :is(.pc-toc-link:hover, .pc-toc-link.is-active) { color: #f2f2ee; }
-body.pc-dark .text-rich-text { color: #d6d6d1; }
-body.pc-dark .text-rich-text :is(h2, blockquote, .pc-stat-num, a, tbody td:first-child),
-body.pc-dark .text-rich-text > p:first-child,
-body.pc-dark .text-rich-text > p.pc-lede { color: #f2f2ee; }
-body.pc-dark .text-rich-text :is(h3, .pc-stat-cap, thead th) { color: #9a9a95; }
-body.pc-dark .text-rich-text > p:first-child,
-body.pc-dark .text-rich-text > p.pc-lede,
-body.pc-dark .text-rich-text h2,
-body.pc-dark .text-rich-text tbody td { border-color: #2a2b28; }
-body.pc-dark .text-rich-text :is(table, thead th) { border-color: #5d5e5a; }
-body.pc-dark .text-rich-text a { text-decoration-color: rgba(242, 242, 238, 0.3); }
-body.pc-dark .text-rich-text a:hover { color: var(--pc-mint); text-decoration-color: var(--pc-mint); background: none; }
-body.pc-dark .text-rich-text h2::before,
-body.pc-dark .text-rich-text .pc-stat-label { color: var(--pc-mint); background: none; padding: 0; }
-body.pc-dark .text-rich-text :is(ul li, ol li)::marker,
-body.pc-dark .text-rich-text > p:last-child::after { color: var(--pc-mint); }
-body.pc-dark .text-rich-text :is(.pc-quote, code) {
-  color: #f2f2ee;
-  background: linear-gradient(to bottom, transparent 55%, rgba(129, 251, 165, 0.25) 55%);
-}
-body.pc-dark .blog-post_author-text { color: #9a9a95; }
-body.pc-dark .pc-placeholder { border-color: rgba(242, 242, 238, .25); color: rgba(242, 242, 238, .55); }
-/* Light section background photos (contact hero) sit under form labels and
-   copy: darken them so the text keeps its contrast. */
-body.pc-dark .section-bg_wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: rgba(13, 14, 12, 0.62);
-  pointer-events: none;
-}
