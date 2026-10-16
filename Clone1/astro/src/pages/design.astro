@@ -14,6 +14,7 @@ import V2Base from '../layouts/V2Base.astro';
 import RecursiveGrowth from '../components/v2/RecursiveGrowth.astro';
 import GeoFlip from '../components/v2/GeoFlip.astro';
 import DazzleRefraction from '../components/v2/DazzleRefraction.astro';
+import FluidFlow from '../components/v2/FluidFlow.astro';
 import homeSource from '../html/home.html?raw';
 
 const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
@@ -214,6 +215,7 @@ const schema = JSON.stringify({
           <div class={i ? 'card appear-0-2s' : 'card'}>
             {c.name === 'Geometric' ? <GeoFlip />
               : c.name === 'Dazzle' ? <DazzleRefraction />
+              : c.name === 'Fluid' ? <FluidFlow />
               : <div class="pc-placeholder pc-placeholder--card">Image: {c.name.toLowerCase()} pattern</div>}
             <h3 class="headline-sm">{c.name}</h3>
             <p class="text-color-subtle">{c.text}</p>
