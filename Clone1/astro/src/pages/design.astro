@@ -1,0 +1,301 @@
+---
+// Design — how a Prismaclad design gets made, with the pattern engine as one
+// section of it. Built from Cedar template sections (sub-hero, 3-col cards,
+// image + checklist rows, FAQ, CTA) like /process/.
+//
+// IP NOTE (carried over from the archived v1 /patterns/ page): no patent
+// filings exist yet. Describe what the engine does in plain terms only. Do not
+// add complexity scoring, normalization anchors, the multiplier curve, the
+// seed-code field schema, surface/access multiplier tables, or dollar figures.
+//
+// Images are placeholders (.pc-placeholder) until renders are chosen. The
+// engine animation card is also a placeholder, to be built later.
+import V2Base from '../layouts/V2Base.astro';
+import homeSource from '../html/home.html?raw';
+
+const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
+const cta = (home[7] ?? '').replace(
+  'alt="Completed Prismaclad installation on data center exterior"',
+  'alt="Corner of a building clad in rectangular panels in muted green and tan tones against a blue sky."',
+);
+
+const check =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
+
+const intents = [
+  {
+    icon: '/assets/6a1020bef2e05f8d422ba164_map_8a14183e.svg',
+    name: 'Belong',
+    text: 'The building reads as considered rather than dropped in. Pattern and palette come out of the site&#x27;s own surroundings, so the structure sits in its landscape instead of landing on it.',
+  },
+  {
+    icon: '/assets/6a1020beffff509dad0e19aa_compass_bb1b76ed.svg',
+    name: 'Express',
+    text: 'The building carries an identity: a company&#x27;s, a town&#x27;s, or a region&#x27;s, abstracted to the scale of the building and developed with the client rather than applied to them.',
+  },
+  {
+    icon: '/assets/6a1020bea5866121e0477f06_shield_check_ed349c88.svg',
+    name: 'Comply',
+    text: 'Where a code asks for facade articulation, surface variation, or fenestration, the pattern is drawn against that exact wording. Faux openings, banding, and changes in color do work that would otherwise take structural change.',
+  },
+];
+
+const sources = [
+  'Geographical: the terrain, vegetation, water, and sky around the site',
+  'Cultural and historical: local architecture, materials, industry, and craft traditions',
+  'Identity: a company&#x27;s, a town&#x27;s, or a region&#x27;s visual language, abstracted to building scale',
+  'Geometric: rhythm, proportion, and pattern on their own terms',
+  'Color that follows from the theme, tested on the wall itself before it&#x27;s approved',
+];
+
+const families = [
+  {
+    name: 'Geometric',
+    text: 'Built from tiles, with simple rules about which shapes are allowed to sit next to each other. The rules keep the pattern holding together across a 200-foot wall instead of breaking down into noise, and diagonals and quarter arcs keep it from reading as a plain grid.',
+  },
+  {
+    name: 'Fluid',
+    text: 'Soft, curving forms over gradual shifts in color. It reads gently from a distance, and it does most of the work when a building needs to lose its edges against terrain or sky rather than announce itself.',
+  },
+  {
+    name: 'Dazzle',
+    text: 'Sharp, high-contrast angles, descended from First World War ship camouflage. Instead of hiding the building, it breaks up how the eye reads its size and shape, which is sometimes the more useful result.',
+  },
+];
+
+const limits = [
+  'The wall&#x27;s material sets the preparation and the paint system. Tilt-up concrete, precast, block, EIFS, and metal panel all behave differently under paint.',
+  'Wall height sets how crews reach it, and access accounts for more of the cost than most people expect.',
+  'Light reflectance is checked for every color. Metal panel finishes carry warranty floors, and cool-wall thresholds under ASHRAE 90.1 apply once an elevation is large enough.',
+  'Pattern scale is set by the distance from the nearest road, not by the screen it was designed on.',
+  'Panel joints and module sizes are treated as part of the pattern rather than something it has to fight.',
+];
+
+const outputs = [
+  'Renderings from the roads and viewpoints that matter',
+  'The pattern drawn at real wall dimensions, elevation by elevation',
+  'A coating system for each surface, with primer, topcoat, and dry film thickness',
+  'Performance references: ASTM G154 and G155 for UV, D7234 for adhesion, and E96 where vapor permeability governs',
+  'Light reflectance for every color, flagged where it falls under a metal panel warranty floor',
+  'A painting sequence with a working-day estimate',
+  'A saved reference that reproduces the exact pattern, so what gets approved is what gets painted',
+];
+
+const faqs = [
+  {
+    q: 'Can you use our brand colors?',
+    a: 'Yes. Brand or civic colors can carry a design meant to express something, or sit as accents inside a palette drawn from the site. Each one is checked for reflectance and tested on the wall like any other color.',
+  },
+  {
+    q: 'Can we bring our own artwork or designer?',
+    a: 'Yes. We can work from your artwork or alongside your architect or designer, and adapt the design to the wall: its scale, panel joints, surface, and access.',
+  },
+  {
+    q: 'Does the design have to meet a code?',
+    a: 'Only if your site has one. Many projects are simply about how the building looks. Where a code does apply, the design is drawn against its exact wording, and the documentation is prepared for review.',
+  },
+  {
+    q: 'Can we use the pattern engine ourselves?',
+    a: 'No. It&#x27;s an internal design tool. What you see is what it helps produce: renderings, drawings at real dimensions, and the color and coating spec.',
+  },
+];
+
+const stripTags = (s: string) => s.replace(/<[^>]+>/g, '').replace(/&#x27;/g, "'");
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: stripTags(f.q),
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+  })),
+});
+---
+
+<V2Base
+  title="How We Design a Facade Pattern | Prismaclad"
+  description="How a Prismaclad facade design gets made: what the building should do, the themes a design draws on, how the pattern engine works, and what you see before anything is painted."
+  schema={schema}
+  breadcrumbs={[{ name: 'Design', path: '/design/' }]}
+>
+  <!-- ── Sub-hero ─────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container is-subhero w-container">
+      <div class="max-width-medium is-center">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Design</div></div>
+          <h1 animate="item" class="display-md">Design at the scale of <span class="text-highlight">the building.</span></h1>
+          <p animate="item" class="text-color-subtle">A design can draw on the landscape around a site, the culture and history of the place, a company&#x27;s identity, or geometry alone, across one wall or a whole campus. Here&#x27;s how a theme becomes a pattern, how the pattern is shaped to the building, and what you see before any paint goes on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section animate="section" class="section is-none">
+    <div class="w-layout-blockcontainer container w-container">
+      <div animate="item" class="image-wrapper">
+        <div class="pc-placeholder pc-placeholder--wide">Image: a design carried across a building or campus</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Design intent ────────────────────────────────────── -->
+  <section animate="section" class="section" id="intent">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Design intent</div></div>
+          <h2 animate="item" class="display-sm">What should the building do?</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">Before anything is drawn, the brief settles what the building is supposed to do where it stands. The answer decides the geometry and the palette.</p>
+        </div>
+      </div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        {intents.map((c, i) => (
+          <div class={i ? 'card appear-0-2s' : 'card'}>
+            <img src={c.icon} loading="lazy" alt="" class="icon-32px" />
+            <h3 class="headline-sm">{c.name}</h3>
+            <p class="text-color-subtle" set:html={c.text} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sources ──────────────────────────────────────────── -->
+  <section animate="section" class="section" id="sources">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0">
+        <div animate="item" class="content-column left">
+          <div class="content_group is-column">
+            <div class="badge"><div>Sources</div></div>
+            <h2 class="display-sm">Where a design comes from</h2>
+            <p class="text-color-subtle">Every design starts from a theme, and the theme sets what follows: the geometry, the rhythm of the pattern, and the palette. Where the aim is for a building to belong, the <a href="/research/camouflage-science-data-center-facades/">research on how eyes find large objects</a> shapes how the pattern breaks up its outline.</p>
+            <div class="spacer-sm"></div>
+            <ul role="list" class="checklist-wrapper w-list-unstyled">
+              {sources.map((g, j) => (
+                <li animate="item" class={j % 2 ? 'checklist-item is-offset' : 'checklist-item'}>
+                  <Fragment set:html={check} /><div set:html={g} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div animate="item" class="content-column">
+          <div class="pc-placeholder">Image: themes and references behind a design</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pattern engine ───────────────────────────────────── -->
+  <section animate="section" class="section" id="pattern-engine">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="header-group">
+        <div class="content_group">
+          <div animate="item" class="badge"><div>Pattern engine</div></div>
+          <h2 animate="item" class="display-sm">How the pattern engine works</h2>
+        </div>
+        <div class="content_group">
+          <p animate="item" class="text-color-subtle">We built a pattern engine for the part of design a computer does well. It takes the dimensions, panel joints, and surfaces of every wall from the survey, along with the theme, the palette, and the intent, and generates candidate patterns that already fit the building.</p>
+          <p animate="item" class="text-color-subtle">A designer chooses among them, adjusts, and draws the final design. The engine doesn&#x27;t decide what the building looks like; it makes sure every option on the table can actually be painted.</p>
+        </div>
+      </div>
+      <div animate="item" class="card pc-engine-card">
+        <div class="pc-placeholder pc-placeholder--wide">Animation: how the engine builds a pattern</div>
+      </div>
+      <div class="spacer-sm"></div>
+      <div animate="item" class="w-layout-grid grid _3cols gap-sm">
+        {families.map((c, i) => (
+          <div class={i ? 'card appear-0-2s' : 'card'}>
+            <div class="pc-placeholder pc-placeholder--card">Image: {c.name.toLowerCase()} pattern</div>
+            <h3 class="headline-sm">{c.name}</h3>
+            <p class="text-color-subtle">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Constraints ──────────────────────────────────────── -->
+  <section animate="section" class="section" id="limits">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0 pc-row-flip">
+        <div animate="item" class="content-column right">
+          <div class="content_group is-column">
+            <div class="badge"><div>Limits</div></div>
+            <h2 class="display-sm">The limits come from the wall, not the screen</h2>
+            <p class="text-color-subtle">A pattern that looks right on a monitor can be unpaintable, too expensive, or outside a panel warranty. These are the limits every candidate is drawn within.</p>
+            <div class="spacer-sm"></div>
+            <ul role="list" class="checklist-wrapper w-list-unstyled">
+              {limits.map((g, j) => (
+                <li animate="item" class={j % 2 ? 'checklist-item is-offset' : 'checklist-item'}>
+                  <Fragment set:html={check} /><div set:html={g} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div animate="item" class="content-column">
+          <div class="pc-placeholder">Image: pattern drawn over a wall&#x27;s panel joints</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Output ───────────────────────────────────────────── -->
+  <section animate="section" class="section" id="output">
+    <div class="w-layout-blockcontainer container is-none w-container">
+      <div class="w-layout-grid grid gap-0">
+        <div animate="item" class="content-column left">
+          <div class="content_group is-column">
+            <div class="badge"><div>What you get</div></div>
+            <h2 class="display-sm">What you see before anything is painted</h2>
+            <p class="text-color-subtle">The design comes as a set of drawings and specs a crew can paint from, along with the renderings you sign off. Revisions run until the design is approved.</p>
+            <div class="spacer-sm"></div>
+            <ul role="list" class="checklist-wrapper w-list-unstyled">
+              {outputs.map((g, j) => (
+                <li animate="item" class={j % 2 ? 'checklist-item is-offset' : 'checklist-item'}>
+                  <Fragment set:html={check} /><div>{g}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div animate="item" class="content-column">
+          <div class="pc-placeholder">Image: elevation drawing with color zones and coating spec</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <section animate="section" class="section">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="content_group">
+        <div animate="item" class="badge"><div>Questions</div></div>
+        <h2 animate="item" class="display-md">About <span class="text-highlight">the design</span></h2>
+        <p animate="item" class="text-color-subtle">What clients usually ask once a design is underway. For the full project, see <a href="/process/">how it works</a>.</p>
+      </div>
+      <div class="spacer-4xl"></div>
+      <div class="faq_list">
+        {faqs.map((f) => (
+          <div animate="item" data-wf-component-id="9b3f7388-eadf-4c37-27a6-d6d025fdc293" data-wf-variant-state="base" class="faq_item">
+            <button class="faq_question">
+              <div set:html={f.q} />
+              <img src="/assets/6a1089f608b4691bbf7e1b7e_Down_Icon_6f6888b0.svg" loading="lazy" alt="Down arrow icon for accordion or dropdown navigation" class="faq_icon" />
+            </button>
+            <div class="faq_answer">
+              <div class="faq_paragraph-container">
+                <p class="text-color-subtle" set:html={f.a} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={cta} />
+</V2Base>
