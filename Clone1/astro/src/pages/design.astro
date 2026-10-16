@@ -11,6 +11,7 @@
 // Images are placeholders (.pc-placeholder) until renders are chosen. The
 // engine animation card is also a placeholder, to be built later.
 import V2Base from '../layouts/V2Base.astro';
+import RecursiveGrowth from '../components/v2/RecursiveGrowth.astro';
 import homeSource from '../html/home.html?raw';
 
 const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
@@ -203,7 +204,7 @@ const schema = JSON.stringify({
         </div>
       </div>
       <div animate="item" class="card pc-engine-card">
-        <div class="pc-placeholder pc-placeholder--wide">Animation: how the engine builds a pattern</div>
+        <RecursiveGrowth />
       </div>
       <div class="spacer-sm"></div>
       <div animate="item" class="w-layout-grid grid _3cols gap-sm">

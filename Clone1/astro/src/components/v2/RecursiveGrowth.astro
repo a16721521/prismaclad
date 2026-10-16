@@ -1,0 +1,156 @@
+---
+// Recursive growth pattern for the Design page's pattern engine card
+// (version 19 of the engine studies, replacing PatternMorph). Procedural, no
+// assets: nested columns of mirrored square-edged stripes that split into
+// smaller and smaller bands, from large blocks down to fine combs. Every edge
+// is a rectangle edge; the layout reallocates rather than moving a bitmap.
+//
+// Slow ambient movement; near the cursor the band edges are pushed aside and
+// leave a short wake. Pauses when the tab is hidden; holds still under
+// prefers-reduced-motion except while hovered.
+interface Props {
+  label?: string;
+}
+const { label = 'Recursive square-edged patterns ranging from large blocks to tiny combs. Slow ambient movement with subtle square-edged displacement near the cursor.' } = Astro.props;
+---
+
+<div class="pc-growth" data-recursive-growth>
+  <canvas role="img" aria-label={label}></canvas>
+</div>
+
+<style>
+  .pc-growth canvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    image-rendering: pixelated;
+    background: #f3f2ec;
+  }
+</style>
+
+<script is:inline>
+(()=>{
+ const root=document.querySelector('[data-recursive-growth]');if(!root)return;const canvas=root.querySelector('canvas'),display=canvas.getContext('2d',{alpha:false});
+ const ctx=display;
+ const lens={x:0,y:0,targetX:0,targetY:0,strength:0};
+ const movement={x:0,y:0};
+ let previousPointer=null,geometryEase=1;
+ const wake=[];
+ function wakeAt(x,y){let value=0;for(const p of wake){const dx=(x-p.x)/(h*.32),dy=(y-p.y)/(h*.4);value+=Math.exp(-dx*dx-dy*dy)*p.life*.16;}return Math.min(1,value);}
+ function repel(edge,axis,other){
+  const cursor=axis==='x'?lens.x:lens.y,across=axis==='x'?lens.y:lens.x;
+  const radius=h*.38,d=(edge-cursor)/radius,cross=(other-across)/(h*.55);
+  const speed=Math.min(1,Math.hypot(movement.x,movement.y)/12);
+  const direction=axis==='x'?movement.x:movement.y;
+  return lens.strength*Math.exp(-d*d-cross*cross)*(d*radius*.48+Math.max(-radius*.1,Math.min(radius*.1,direction*.5)))*(.7+speed*.2);
+ }
+
+ let w=500,h=167,t=14,last=0,hovered=false,raf=0;
+ const random=(n)=>{let a=Math.sin(n*127.1+311.7)*43758.5453;return a-Math.floor(a);};
+ function make(x,width,id,depth){
+  const node={x,width,id,depth,phase:random(id)*6.283,rate:.13+random(id+8)*.18,children:[],energy:0};
+  if(depth<6&&width>6){const count=depth===0?3:2;for(let i=0;i<count;i++)node.children.push(make(x+width*i/count,width/count,id*7+i+1,depth+1));}
+  return node;
+ }
+ let trees=[];
+ function resize(){w=Math.max(480,Math.min(1500,Math.round(canvas.clientWidth*2)));h=Math.round(w/3);canvas.width=w;canvas.height=h;trees=[];const widths=[.29,.055,.12,.31,.075,.15];let x=0;for(let i=0;i<widths.length;i++){trees.push(make(x,w*widths[i],i+1,0));x+=w*widths[i];}
+ draw();}
+ function paint(node,top,bottom,x=node.x,width=node.width){
+  if(bottom<=top)return;
+  const {id,rate,depth}=node;
+  const phase=node.phase+.48*Math.sin(t*.23+node.phase*2)+.27*Math.sin(t*.137+id*1.7);
+  const energy=node.energy;
+  node.liveX=x+width/2;node.liveY=(top+bottom)/2;
+  ctx.save();ctx.beginPath();ctx.rect(Math.round(x),top,Math.ceil(width),bottom-top);ctx.clip();
+  // Each local motif is reflected around its own axis. Only rectangle edges move.
+  const pitch=Math.max(2,width/(depth===0?2:3));
+  for(let y=top;y<bottom;y+=2){
+   const yy=y/h;
+   const bend=Math.round((Math.sin(yy*6.28+t*rate+phase)*.28+Math.sin(yy*12.56-t*rate*.6+phase)*.12)*5)/5;
+   const duty=.5+.23*Math.sin(t*rate*.72+phase);
+   const center=x+width/2;
+   for(let k=0;k<5;k++){
+    const left=(k+bend)*pitch,thickness=Math.max(.6,pitch*duty);
+    ctx.fillStyle='#222321';
+    ctx.fillRect(Math.round(center+left),y,Math.max(1,Math.round(thickness)),Math.min(2,bottom-y));
+    ctx.fillRect(Math.round(center-left-thickness),y,Math.max(1,Math.round(thickness)),Math.min(2,bottom-y));
+   }
+  }
+  if(node.children.length){
+   const cycle=t*rate+phase+energy*.22;
+   const center=h*(.5+.39*Math.sin(cycle*.61+phase));
+   const span=h*(.11+.57*(.5+.5*Math.sin(cycle)))+energy*h*.18;
+   const rawA=center-span/2,rawB=center+span/2;
+   const targetA=rawA+repel(rawA,'y',x+width/2),targetB=rawB+repel(rawB,'y',x+width/2);
+   node.edgeA=node.edgeA===undefined?targetA:node.edgeA+(targetA-node.edgeA)*geometryEase;
+   node.edgeB=node.edgeB===undefined?targetB:node.edgeB+(targetB-node.edgeB)*geometryEase;
+   const a=Math.max(top,Math.round(node.edgeA)),b=Math.min(bottom,Math.round(node.edgeB));
+   if(b>a){ctx.fillStyle='#f3f2ec';ctx.fillRect(Math.floor(x),a,Math.ceil(width)+1,b-a);layout(node.children,x,width,a,b,energy);}
+  }
+  ctx.restore();
+ }
+ // Every child shares its edges with its neighbors. Reallocation changes the
+ // actual pattern layout, never moves a bitmap or leaves an uncovered region.
+ function layout(nodes,x,width,top,bottom,parentEnergy=0){
+  let sum=0;const weights=[];
+  for(const n of nodes){
+   const center=n.x+n.width/2;
+   const distance=(center-lens.x)/(h*.43);
+   const local=Math.exp(-distance*distance)*lens.strength;
+   const pressure=local*(.5+.5*Math.exp(-Math.pow(((top+bottom)/2-lens.y)/(h*.45),2)));
+   const trail=wakeAt(n.liveX??center,n.liveY??((top+bottom)/2));
+   const ambient=.22*Math.sin(t*.19+n.phase*2)+.14*Math.sin(t*.117+n.id*2.3);
+   const weight=n.width*Math.exp(-pressure*.35+(parentEnergy+trail)*.25*Math.sin(n.phase+t*.15)+ambient);
+   weights.push(weight);sum+=weight;
+  }
+  let edge=x,cumulative=0;
+  nodes.forEach((n,i)=>{
+   cumulative+=weights[i];const base=x+width*cumulative/sum;
+   const margin=Math.min(1,width/(nodes.length*4));
+   const target=base+repel(base,'x',(top+bottom)/2);
+   n.cut=n.cut===undefined?target:n.cut+(target-n.cut)*geometryEase;
+   const next=i===nodes.length-1?x+width:Math.max(edge+margin,Math.min(x+width-margin*(nodes.length-i-1),n.cut));
+   paint(n,top,bottom,edge,next-edge);edge=next;
+  });
+ }
+ function draw(){ctx.fillStyle='#f3f2ec';ctx.fillRect(0,0,w,h);layout(trees,0,w,0,h);}
+ function energize(nodes,dt){
+  for(const n of nodes){
+   const x=n.liveX??(n.x+n.width/2),y=n.liveY??h/2;
+   const dx=(x-lens.x)/(h*.4),dy=(y-lens.y)/(h*.5);
+   const target=Math.min(1,(hovered?Math.exp(-dx*dx-dy*dy)*.55:0)+wakeAt(x,y));
+   n.energy+=(target-n.energy)*(1-Math.exp(-dt*(target>n.energy?10:2.2)));
+   energize(n.children,dt);
+  }
+ }
+
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function frame(now){
+  raf=0;
+  if(document.hidden)return;
+  const dt=last?Math.min(.1,(now-last)/1000):0;last=now;
+  const ease=1-Math.exp(-dt*15);
+  geometryEase=1-Math.exp(-dt*8);
+  if(previousPointer){const vx=(lens.targetX-previousPointer.x)/Math.max(dt,.016)/60,vy=(lens.targetY-previousPointer.y)/Math.max(dt,.016)/60;const velocityEase=1-Math.exp(-dt*6);movement.x+=(vx-movement.x)*velocityEase;movement.y+=(vy-movement.y)*velocityEase;}
+  previousPointer={x:lens.targetX,y:lens.targetY};
+  lens.x+=(lens.targetX-lens.x)*ease;lens.y+=(lens.targetY-lens.y)*ease;
+  lens.strength+=((hovered?1:0)-lens.strength)*ease;
+  for(let i=wake.length-1;i>=0;i--){wake[i].life-=dt*.85;if(wake[i].life<=0)wake.splice(i,1);}
+  energize(trees,dt);
+  t+=dt*(hovered?.18:(reduced?0:.28));
+  draw();
+  if(!reduced||hovered||lens.strength>.001)raf=requestAnimationFrame(frame);
+ }
+ function resume(){if(!raf){last=0;raf=requestAnimationFrame(frame);}}
+
+ function pointer(e){const r=canvas.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*w,y=(e.clientY-r.top)/r.height*h;if(hovered){const tail=wake[wake.length-1];if(!tail||Math.hypot(x-tail.x,y-tail.y)>h*.05){wake.push({x:lens.targetX,y:lens.targetY,life:1});if(wake.length>24)wake.shift();}}lens.targetX=x;lens.targetY=y;}
+ canvas.addEventListener('pointermove',pointer);
+ canvas.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;pointer(e);lens.x=lens.targetX;lens.y=lens.targetY;previousPointer={x:lens.targetX,y:lens.targetY};movement.x=movement.y=0;hovered=true;resume();});
+ function stop(){hovered=false;resume();}
+ canvas.addEventListener('pointerleave',stop);
+ canvas.addEventListener('pointercancel',stop);
+ window.addEventListener('blur',stop);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){hovered=false;cancelAnimationFrame(raf);raf=0;}else resume();});
+ new ResizeObserver(resize).observe(canvas);resize();if(!reduced)resume();
+})();
+</script>
