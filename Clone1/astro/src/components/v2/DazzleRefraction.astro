@@ -1,0 +1,130 @@
+---
+// Dazzle pattern family card on the Design page (version 27 of the engine
+// studies, "dazzle refraction"). Black-and-white dazzle artwork
+// (public/images/dazzle-pattern.png) refracts through slowly shifting
+// triangular facets; hovering speeds up the refraction near the cursor and
+// turns the whole field clockwise, like a stone under a loupe. The 5:1
+// artwork is recomposed into a 4:3 mosaic of crops at mixed scales, so the
+// card shows a random mix of big and small shapes under one refraction field
+// and one turn. Pauses when the tab is hidden; holds still under
+// prefers-reduced-motion except while hovered.
+interface Props {
+  label?: string;
+}
+const { label = 'Black and white dazzle artwork refracting through moving triangular facets. Hover to speed up the refraction and turn the pattern.' } = Astro.props;
+---
+
+<div class="pc-dazzle" data-dazzle>
+  <canvas role="img" aria-label={label}></canvas>
+</div>
+
+<style>
+  .pc-dazzle {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 16px;
+    flex: none;
+    background: #fff;
+  }
+  .pc-dazzle canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script is:inline>
+(()=>{
+ const root=document.querySelector('[data-dazzle]');if(!root)return;const canvas=root.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:false});
+ const original=new Image();original.src='/images/dazzle-pattern.png';
+ const art=document.createElement('canvas');
+ const texture=document.createElement('canvas'),g=texture.getContext('2d',{alpha:false});
+ const random=n=>{const v=Math.sin(n*127.1+311.7)*43758.5453;return v-Math.floor(v);};
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let W=2004,H=400,last=0,raf=0,hovered=false,ready=false,elapsed=0;
+ const pointer={x:-9999,y:-9999},trail=[],facets=[],vertices=[];
+ const optical=document.createElement('canvas'),opticalCtx=optical.getContext('2d',{alpha:false});
+ let turn=0,turnVelocity=0;const TAU=Math.PI*2;
+ function build(){
+  const cols=9,rows=3;
+  for(let j=0;j<=rows;j++)for(let i=0;i<=cols;i++)vertices.push({x:W*(i+(i>0&&i<cols?(random(j*41+i)-.5)*.65:0))/cols,y:H*(j+(j>0&&j<rows?(random(j*97+i)-.5)*.5:0))/rows});
+  const add=(a,b,c)=>{const points=[vertices[a],vertices[b],vertices[c]],seed=facets.length+1;facets.push({points,seed,clock:0,phase:random(seed+7)*6.283,angle:random(seed+9)*6.283,energy:0,cx:points.reduce((s,p)=>s+p.x,0)/3,cy:points.reduce((s,p)=>s+p.y,0)/3});};
+  for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){const a=j*(cols+1)+i,b=a+1,c=a+cols+1,d=c+1;if(random(a+17)>.5){add(a,b,d);add(a,d,c);}else{add(a,b,c);add(b,d,c);}}
+ }
+ original.onload=()=>{
+  // Compose a 4:3 artwork from the 5:1 strip as a mosaic of crops at mixed
+  // scales: the frame is split into a few rectangles of uneven size, and each
+  // shows a different part of the strip, magnified more in the larger cells.
+  // That gives a random mix of big and small shapes instead of one uniform,
+  // busy texture. Seeded, so the composition is the same on every load.
+  const SW=original.naturalWidth,SH=original.naturalHeight;
+  art.width=1002;art.height=752;const a=art.getContext('2d');
+  const cells=[];let n=5;
+  (function split(x,y,w,h,depth){
+   const r=random(n++);
+   if(depth>=3||(depth>=1&&r<.3)||Math.min(w,h)<160){cells.push({x,y,w,h});return;}
+   const cut=.3+random(n++)*.4;
+   if(w>=h){const w1=Math.round(w*cut);split(x,y,w1,h,depth+1);split(x+w1,y,w-w1,h,depth+1);}
+   else{const h1=Math.round(h*cut);split(x,y,w,h1,depth+1);split(x,y+h1,w,h-h1,depth+1);}
+  })(0,0,art.width,art.height,0);
+  const total=art.width*art.height;
+  for(const cell of cells){
+   let z=.55+1.7*Math.sqrt(cell.w*cell.h/total)*(.7+.6*random(n++));
+   z=Math.max(z,cell.h/SH,cell.w/SW);
+   const cw=cell.w/z,ch=cell.h/z,sx=random(n++)*(SW-cw),sy=random(n++)*(SH-ch);
+   a.save();a.beginPath();a.rect(cell.x,cell.y,cell.w,cell.h);a.clip();
+   if(random(n++)>.5){a.translate(cell.x*2+cell.w,0);a.scale(-1,1);}
+   a.drawImage(original,sx,sy,cw,ch,cell.x,cell.y,cell.w,cell.h);a.restore();
+  }
+  W=art.width;H=art.height;texture.width=W*3;texture.height=H*3;
+  // Reflected padding supplies real artwork at every refracted frame edge.
+  for(let y=-1;y<=1;y++)for(let x=-1;x<=1;x++){g.save();g.translate((x+1)*W,(y+1)*H);if(x!==0){g.translate(W,0);g.scale(-1,1);}if(y!==0){g.translate(0,H);g.scale(1,-1);}g.drawImage(art,0,0);g.restore();}
+  build();ready=true;resize();if(!reduced)resume();
+ };
+ function draw(){
+  if(!ready)return;
+  ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);ctx.drawImage(art,0,0);
+  const onset=1-Math.exp(-elapsed*.55);
+  for(const f of facets){
+   const {clock,phase,angle}=f;
+   const amplitude=H*(.025+.055*random(f.seed+31))*(1+f.energy*1.5)*onset;
+   const shift=amplitude*(Math.sin(clock*.7+phase)+.35*Math.sin(clock*.31+phase*2));
+   const dx=Math.cos(angle)*shift,dy=Math.sin(angle)*shift;
+   const center={x:f.cx,y:f.cy};
+   ctx.save();ctx.beginPath();f.points.forEach((p,i)=>{
+    // Shared vertices keep every facet joined; overlapping the clip by a
+    // fraction of a pixel prevents hairline seams at display resolutions.
+    const vx=p.x+(p.x-center.x)*.001,vy=p.y+(p.y-center.y)*.001;
+    if(i===0)ctx.moveTo(vx,vy);else ctx.lineTo(vx,vy);
+   });ctx.closePath();ctx.clip();
+   const shear=onset*.024*Math.sin(clock*.48+phase)*(1+f.energy);
+   ctx.translate(f.cx+dx,f.cy+dy);ctx.transform(1,shear,-shear*.65,1,0,0);ctx.translate(-f.cx,-f.cy);
+   ctx.drawImage(texture,-W,-H);ctx.restore();
+  }
+  // Rotate a reflected, repeating optical field so even the wide frame remains
+  // filled as the full artwork turns beneath the loupe.
+  opticalCtx.setTransform(1,0,0,1,0,0);opticalCtx.drawImage(canvas,0,0);
+  ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);
+  ctx.translate(W/2,H/2);ctx.rotate(turn);ctx.translate(-W/2,-H/2);
+  const reach=Math.ceil(Math.hypot(W,H)/H)+1;
+  for(let row=-reach;row<=reach;row++)for(let col=-2;col<=2;col++){
+   ctx.save();ctx.translate(col*W,row*H);
+   if(Math.abs(col)%2){ctx.translate(W,0);ctx.scale(-1,1);}
+   if(Math.abs(row)%2){ctx.translate(0,H);ctx.scale(1,-1);}
+   ctx.drawImage(optical,0,0,W,H);ctx.restore();
+  }
+ }
+ function proximity(f,p){const dx=(f.cx-p.x)/(H*.8),dy=(f.cy-p.y)/(H*.8);return Math.exp(-dx*dx-dy*dy);}
+ function frame(now){raf=0;if(document.hidden)return;const dt=last?Math.min(.06,(now-last)/1000):0;last=now;elapsed+=dt;
+  turnVelocity+=((hovered?.065:0)-turnVelocity)*(1-Math.exp(-dt*3));turn=(turn+turnVelocity*dt)%TAU;
+  for(let i=trail.length-1;i>=0;i--){trail[i].life-=dt/1.4;if(trail[i].life<=0)trail.splice(i,1);}
+  for(const f of facets){let target=hovered?proximity(f,pointer):0;for(const p of trail)target=Math.max(target,proximity(f,p)*p.life);f.energy+=(target-f.energy)*(1-Math.exp(-dt*6));f.clock+=dt*(reduced&&!hovered?0:.25+.75*f.energy);}
+  draw();if(!reduced||hovered||trail.length||facets.some(f=>f.energy>.001))raf=requestAnimationFrame(frame);
+ }
+ function resume(){if(ready&&!raf){last=0;raf=requestAnimationFrame(frame);}}
+ function point(e){const r=canvas.getBoundingClientRect();pointer.x=(e.clientX-r.left)/r.width*W;pointer.y=(e.clientY-r.top)/r.height*H;const end=trail[trail.length-1];if(!end||Math.hypot(pointer.x-end.x,pointer.y-end.y)>H*.05){trail.push({...pointer,life:1});if(trail.length>64)trail.shift();}}
+ canvas.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;hovered=true;point(e);resume();});canvas.addEventListener('pointermove',e=>{point(e);resume();});const leave=()=>{hovered=false;};canvas.addEventListener('pointerleave',leave);canvas.addEventListener('pointercancel',leave);window.addEventListener('blur',leave);
+ function resize(){canvas.width=Math.round(canvas.clientWidth*Math.min(devicePixelRatio||1,2));canvas.height=Math.round(canvas.width*H/W);optical.width=canvas.width;optical.height=canvas.height;draw();}
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;hovered=false;}else resume();});new ResizeObserver(resize).observe(canvas);
+})();
+</script>
