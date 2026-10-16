@@ -44,55 +44,55 @@ const steps = [
     id: 'design',
     num: '02',
     name: 'Design Development',
-    title: 'A design drawn from the site, against the code.',
+    title: 'A design drawn from the site and the building.',
     body: [
-      'We develop a site-specific graphic system from what the survey found: the landscape, the local palette, the community around the building. It&#x27;s not a generic pattern applied from a distance.',
-      'The design is drawn against the ordinance language, so it answers the requirement directly. You get full renderings and material specifications, packaged so they can go in front of a planning board.',
+      'We develop a pattern and color palette from what the survey found: the landscape, the light, the surroundings, and what you want the building to say. It can settle a building into its setting or make it the thing people remember.',
+      'You see full renderings and a color and coating spec before anything is painted. Where an approval is in play, the design is drawn against the code language too, and the package is ready to go in front of a review board.',
     ],
     gets: [
-      'Full renderings of the treated building',
-      'Material specifications for every surface',
-      'Approval-ready documentation for review',
+      'Full renderings of the painted building',
+      'A color and coating spec for every wall',
+      'Review-ready documentation where approval is needed',
       'Revisions until the design is signed off',
     ],
     img: '/images/data-center-campus-vertical-stripe-facade-rendering.jpg',
     alt: 'Rendering of a data center campus with a vertical multicolor stripe facade treatment.',
   },
   {
-    id: 'production',
+    id: 'preparation',
     num: '03',
-    name: 'Production & Mobilization',
-    title: 'Made in-house, staged before crews arrive.',
+    name: 'Preparation & Mobilization',
+    title: 'Colors proven on the wall before crews arrive.',
     body: [
-      'We manage fabrication in-house, with quality control at every step. Materials are produced to the approved specification and tested before anything leaves for site.',
-      'Everything is staged for installation before crews mobilize, so time on site goes to the work itself rather than waiting on deliveries.',
+      'We specify a coating system for each wall surface, whether precast, tilt-up concrete, or metal panel, and match every color in the approved design. Colors are tested on the building itself and signed off there, because paint never reads the same on a wall as it does on a screen.',
+      'The pattern is then mapped to each elevation at full scale, so crews arrive with a marked layout rather than a rendering. Surface prep, lifts, and access are scheduled around the site and the weather before anyone mobilizes.',
     ],
     gets: [
-      'Materials produced to the approved spec',
-      'Quality checks before anything ships',
-      'Materials staged and ready before crews arrive',
-      'A sequenced plan for the installation window',
+      'A coating system specified for each surface',
+      'Colors matched and approved on the wall',
+      'The pattern mapped to every elevation',
+      'Prep, access, and weather windows scheduled',
     ],
     img: '/images/aerial-steel-frame-industrial-building-under-construction.jpg',
-    alt: 'Aerial view of a large industrial building under construction, with materials staged across the site.',
+    alt: 'Aerial view of a large industrial building under construction.',
   },
   {
-    id: 'installation',
+    id: 'production',
     num: '04',
-    name: 'Installation',
+    name: 'Production',
     title: 'On the wall, around your schedule.',
     body: [
-      'Our installation crews bring a decade of experience on complex, high-visibility industrial structures. We plan access, sequencing, and staging around the site&#x27;s schedule, whether it&#x27;s live construction or an operating facility.',
-      'The result is a clean finish at building scale, on a treatment that was approved before a single panel was touched.',
+      'Our own painting crews bring a decade of experience on complex, high-visibility industrial structures. We sequence the work around the site&#x27;s schedule, whether it&#x27;s live construction or an operating facility.',
+      'The result is a clean finish at building scale that matches the design you signed off, color for color.',
     ],
     gets: [
-      'Installation by our own crews',
+      'Painted by our own crews',
       'Work sequenced around active operations',
       'No changes to the building envelope',
       'A finished wall that matches the approved design',
     ],
     img: '/images/installer-boom-lift-coating-metal-panel-facade.jpg',
-    alt: 'Installer on a boom lift applying coating to a metal-panel facade.',
+    alt: 'Painter on a boom lift applying coating to a metal-panel facade.',
   },
 ];
 
@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     q: 'How long does a project take?',
-    a: 'A typical single-building project from site survey through installation runs 8&ndash;20 weeks. Portfolio programs are scoped and phased to match development timelines.',
+    a: 'A typical single-building project from site survey to finished wall runs 8&ndash;20 weeks. Portfolio programs are scoped and phased to match development timelines.',
   },
   {
     q: 'What do you need from us to get started?',
@@ -114,7 +114,7 @@ const faqs = [
     a: 'Yes. We work directly with architecture and engineering firms, and getting in at the spec stage is the cleanest way to do it. The design and documentation are built to hold through design, approval, and construction.',
   },
   {
-    q: 'Can the facility keep operating during installation?',
+    q: 'Can the facility keep operating while you paint?',
     a: 'Yes. Treatments are applied to standing structures without construction disruption. We plan access, sequencing, and staging to minimise disruption throughout.',
   },
 ];
@@ -140,7 +140,7 @@ const schema = JSON.stringify([
     name: 'Data center facade treatment',
     serviceType: 'Facade treatment for data centers and industrial buildings',
     description:
-      'Site survey, design development, production, and installation of large-scale painted and vinyl-applied exterior graphics, delivered under one contract.',
+      'Site survey, design development, preparation, and production of large-scale painted exterior graphics, delivered under one contract.',
     url: 'https://prismaclad.com/process/',
     provider: { '@id': 'https://prismaclad.com/#organization' },
   },
@@ -157,8 +157,8 @@ const schema = JSON.stringify([
 ---
 
 <V2Base
-  title="How Facade Treatment Works: Survey to Install | Prismaclad"
-  description="How a Prismaclad facade treatment project runs: site survey, design development, production, and installation, handled by one team under one contract."
+  title="How Facade Treatment Works: Survey to Finish | Prismaclad"
+  description="How a Prismaclad facade treatment project runs: site survey, design development, preparation, and production, handled by one team under one contract."
   image="/assets/data-center-green-mosaic-facade-treatment.jpg"
   schema={schema}
   breadcrumbs={[{ name: 'How it works', path: '/process/' }]}
@@ -174,7 +174,7 @@ const schema = JSON.stringify([
             <h1 class="display-lg">From ordinance to <span class="text-highlight">installed wall.</span></h1>
           </div>
           <div class="hero-col hero-col--desc">
-            <p class="text-color-subtle">Survey, design, production, and installation, handled by one team under one contract. Here&#x27;s what happens at each stage, and what you have in hand when it&#x27;s done.</p>
+            <p class="text-color-subtle">Survey, design, preparation, and production, handled by one team under one contract. Here&#x27;s what happens at each stage, and what you have in hand when it&#x27;s done.</p>
             <a href="#stages" class="w-inline-block hero-process-btn"><Fragment set:html={arrow} /><div class="button-text-wrap"><div class="button-text">See the four stages</div><div class="button-text">See the four stages</div></div></a>
           </div>
         </div>

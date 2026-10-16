@@ -1,10 +1,10 @@
 # Prismaclad
 > Prismaclad provides large-scale facade treatments for data centers and industrial
-> buildings — painted and vinyl-applied exterior graphics that satisfy aesthetic
+> buildings — painted exterior graphics that satisfy aesthetic
 > zoning requirements at a fraction of architectural cost.
 
 ## Services
-- [How it works](https://prismaclad.com/process/): site survey, design development, production, and installation under one contract
+- [How it works](https://prismaclad.com/process/): site survey, design development, preparation, and production under one contract
 
 ## Regulation
 - [The Data Center Facade Ordinance Tracker: What Counties Actually Require](https://prismaclad.com/research/data-center-facade-ordinance-tracker/)

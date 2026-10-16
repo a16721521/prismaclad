@@ -20,7 +20,7 @@
 
 ## What This Site Is
 
-**Prismaclad** sells large-scale facade treatments for data centers and industrial buildings — painted or vinyl-applied exterior graphics that satisfy aesthetic zoning requirements at a cost closer to landscaping than architecture. The site is a static HTML export of the **Cedar** Webflow consulting template, rebranded and extended for Prismaclad's market.
+**Prismaclad** sells large-scale facade treatments for data centers and industrial buildings — painted exterior graphics that satisfy aesthetic zoning requirements at a cost closer to landscaping than architecture. The site is a static HTML export of the **Cedar** Webflow consulting template, rebranded and extended for Prismaclad's market.
 
 **Live site home:** `prismaclad.html` (fully rebranded). `index.html` is the untouched Cedar original — do not edit it.
 

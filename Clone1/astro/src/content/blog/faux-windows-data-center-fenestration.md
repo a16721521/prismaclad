@@ -63,7 +63,7 @@ showUpdated: true
 <li>Spandrel glass: opaque glass panels that match the look of vision glass, set into a curtain wall or storefront system.</li>
 <li>Shadow boxes: glass in front of a shallow, closed cavity, which gives the depth of a real window without an opening into the building. Phoenix lists them separately from fenestration.</li>
 <li>Recessed or framed panels: window-proportioned recesses or applied frames and mullions on precast or metal panels.</li>
-<li>Painted or vinyl-applied graphics: window openings rendered directly on the existing wall at full scale, with the rhythm and proportion of a glazed facade.</li>
+<li>Painted graphics: window openings rendered directly on the existing wall at full scale, with the rhythm and proportion of a glazed facade.</li>
 </ul>
 
 <p>The codes don&#x27;t rank these methods, and a planner reviewing elevations is looking for the effect the rule was written to produce: a wall that reads as occupied and proportioned rather than blank. Frederick County, Maryland&#x27;s <a href="https://frederickcountymd.gov/DocumentCenter/View/338599" target="_blank" rel="noopener">design guidelines for critical digital infrastructure</a> make the same point with photographs. Staff praise a building that uses color and faux windows to avoid plain wall sections, and criticize another where a splash of blue fails to break down the mass. How the treatment is drawn matters as much as whether it is there.</p>

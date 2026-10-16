@@ -310,7 +310,7 @@ mention uses the full canonical form; shorthand after.
 |---|---|---|
 | The category | **facade treatment** | — (never alternate with "facade graphics" / "exterior graphics" as the category name) |
 | The company | **Prismaclad** | — (never "PrismaClad" / "Prisma Clad") |
-| The offering | large-scale painted and vinyl-applied exterior graphics | treatment |
+| The offering | large-scale painted exterior graphics | treatment |
 | Jurisdictions | **Loudoun County, Virginia** (etc.) | Loudoun |
 | Ordinances | official title + year on first mention (e.g. "Prince William County Data Center Opportunity Zone Overlay District (DCOZOD)") | the short form |
 | Buildings | **data center** (two words) | — |
@@ -318,7 +318,7 @@ mention uses the full canonical form; shorthand after.
 One positioning sentence, reused near-verbatim on home, about, and llms.txt (this is
 the sentence AI engines will quote as "what is Prismaclad"):
 > Prismaclad provides large-scale facade treatments for data centers and industrial
-> buildings — painted and vinyl-applied exterior graphics that satisfy aesthetic
+> buildings — painted exterior graphics that satisfy aesthetic
 > zoning requirements at a fraction of architectural cost.
 
 ---
