@@ -3,7 +3,8 @@
 // engine studies, "flipping rectangles"). Split rectangles in a sampled
 // site palette turn over horizontally or vertically in place and settle into
 // new arrangements; hovering triggers nearby flips. The 5:1 field is
-// cover-cropped to the card's 4:3 slot. Pauses when the tab is hidden; holds
+// wrapped into two stacked bands to fill the card's 4:3 slot at a smaller
+// tile size. Pauses when the tab is hidden; holds
 // still under prefers-reduced-motion except while hovered.
 interface Props {
   label?: string;
@@ -36,8 +37,9 @@ const { label = 'Colored rectangles flipping horizontally and vertically in plac
  const W=2300,H=460,random=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x);};
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  let time=0,last=0,raf=0,hovered=false,pointer={x:-9999,y:-9999};
- // Cover-crop: the 5:1 field is scaled uniformly to fill the card and centred.
- let S=1,OX=0,OY=0;
+ // The 5:1 field is wrapped into ROWS stacked bands so the card shows more,
+ // smaller tiles: each band is a consecutive slice of the field.
+ const ROWS=2;let S=1,VIS=W,X0=0;
  const trail=[];
  const tiles=[];
  for(let i=0;i<geometry.length;i+=2){const a=geometry[i],b=geometry[i+1];tiles.push({x:a[0],y:a[1],w:a[2],h:a[3],seed:i+1,colors:[a[4],b[4]],orientation:b[0]>a[0]?'vertical':'horizontal',side:1,split:.5,configuration:0,progress:1,wait:1+random(i+19)*5,axis:'x',next:null,cooldown:0});}
@@ -55,7 +57,14 @@ const { label = 'Colored rectangles flipping horizontally and vertically in plac
   else{const bh=h*(side?1-split:split);ctx.fillRect(x,side?y+h*split:y,w+.2,bh+.2);}
  }
  function draw(){
-  ctx.setTransform(S,0,0,S,OX,OY);ctx.fillStyle=geometry[0][4];ctx.fillRect(0,0,W,H);
+  const bandH=canvas.height/ROWS;
+  for(let r=0;r<ROWS;r++){
+   ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.beginPath();ctx.rect(0,Math.round(r*bandH),canvas.width,Math.ceil(bandH));ctx.clip();
+   ctx.setTransform(S,0,0,S,-(X0+r*VIS)*S,r*bandH);paintField();ctx.restore();
+  }
+ }
+ function paintField(){
+  ctx.fillStyle=geometry[0][4];ctx.fillRect(-W,0,W*3,H);
   for(const tile of tiles){
    if(tile.progress>=1){face(tile);continue;}
    // A fixed back face fills the footprint while the rectangle turns over.
@@ -84,9 +93,9 @@ const { label = 'Colored rectangles flipping horizontally and vertically in plac
  }
  function frame(now){raf=0;if(document.hidden)return;const dt=last?Math.min(.06,(now-last)/1000):0;last=now;update(dt);draw();if(!reduced||hovered||tiles.some(t=>t.progress<1))raf=requestAnimationFrame(frame);}
  function resume(){if(!raf){last=0;raf=requestAnimationFrame(frame);}}
- function point(e){const r=canvas.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width*canvas.width-OX)/S;pointer.y=((e.clientY-r.top)/r.height*canvas.height-OY)/S;const tail=trail[trail.length-1];if(!tail||Math.hypot(pointer.x-tail.x,pointer.y-tail.y)>20){trail.push({x:pointer.x,y:pointer.y,life:1});if(trail.length>64)trail.shift();}}
+ function point(e){const r=canvas.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*canvas.width,py=(e.clientY-r.top)/r.height*canvas.height,row=Math.max(0,Math.min(ROWS-1,Math.floor(py/(canvas.height/ROWS))));pointer.x=px/S+X0+row*VIS;pointer.y=py/S-row*H;const tail=trail[trail.length-1];if(!tail||Math.hypot(pointer.x-tail.x,pointer.y-tail.y)>20){trail.push({x:pointer.x,y:pointer.y,life:1});if(trail.length>64)trail.shift();}}
  canvas.addEventListener('pointermove',e=>{point(e);resume();});canvas.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;point(e);hovered=true;resume();});canvas.addEventListener('pointerleave',()=>{hovered=false;});canvas.addEventListener('pointercancel',()=>{hovered=false;});
- function resize(){const d=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(canvas.clientWidth*d);canvas.height=Math.round(canvas.clientHeight*d);S=Math.max(canvas.width/W,canvas.height/H);OX=(canvas.width-W*S)/2;OY=(canvas.height-H*S)/2;draw();}
+ function resize(){const d=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(canvas.clientWidth*d);canvas.height=Math.round(canvas.clientHeight*d);S=canvas.height/(ROWS*H);VIS=canvas.width/S;X0=(W-ROWS*VIS)/2;draw();}
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;hovered=false;}else resume();});new ResizeObserver(resize).observe(canvas);resize();if(!reduced)resume();
 })();
 </script>
