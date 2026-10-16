@@ -24,7 +24,7 @@ const { label = 'Recursive square-edged patterns ranging from large blocks to ti
     width: 100%;
     aspect-ratio: 3 / 1;
     image-rendering: pixelated;
-    background: #f3f2ec;
+    background: #ffffff;
   }
 </style>
 
@@ -71,7 +71,7 @@ const { label = 'Recursive square-edged patterns ranging from large blocks to ti
    const center=x+width/2;
    for(let k=0;k<5;k++){
     const left=(k+bend)*pitch,thickness=Math.max(.6,pitch*duty);
-    ctx.fillStyle='#222321';
+    ctx.fillStyle='#000000';
     ctx.fillRect(Math.round(center+left),y,Math.max(1,Math.round(thickness)),Math.min(2,bottom-y));
     ctx.fillRect(Math.round(center-left-thickness),y,Math.max(1,Math.round(thickness)),Math.min(2,bottom-y));
    }
@@ -85,7 +85,7 @@ const { label = 'Recursive square-edged patterns ranging from large blocks to ti
    node.edgeA=node.edgeA===undefined?targetA:node.edgeA+(targetA-node.edgeA)*geometryEase;
    node.edgeB=node.edgeB===undefined?targetB:node.edgeB+(targetB-node.edgeB)*geometryEase;
    const a=Math.max(top,Math.round(node.edgeA)),b=Math.min(bottom,Math.round(node.edgeB));
-   if(b>a){ctx.fillStyle='#f3f2ec';ctx.fillRect(Math.floor(x),a,Math.ceil(width)+1,b-a);layout(node.children,x,width,a,b,energy);}
+   if(b>a){ctx.fillStyle='#ffffff';ctx.fillRect(Math.floor(x),a,Math.ceil(width)+1,b-a);layout(node.children,x,width,a,b,energy);}
   }
   ctx.restore();
  }
@@ -113,7 +113,7 @@ const { label = 'Recursive square-edged patterns ranging from large blocks to ti
    paint(n,top,bottom,edge,next-edge);edge=next;
   });
  }
- function draw(){ctx.fillStyle='#f3f2ec';ctx.fillRect(0,0,w,h);layout(trees,0,w,0,h);}
+ function draw(){ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);layout(trees,0,w,0,h);}
  function energize(nodes,dt){
   for(const n of nodes){
    const x=n.liveX??(n.x+n.width/2),y=n.liveY??h/2;
