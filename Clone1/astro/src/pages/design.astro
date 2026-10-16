@@ -23,6 +23,8 @@ const cta = (home[7] ?? '').replace(
   'alt="Corner of a building clad in rectangular panels in muted green and tan tones against a blue sky."',
 );
 
+const arrow =
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="button-icon"><polyline points="72 32 72 176 216 176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-8xhp3"></polyline><polyline points="168 128 216 176 168 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-vqnoa"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
 const check =
   '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="0 0 256 256" app="ikonik" class="checklist-icon"><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" app="ikonik" class="polyline-yw2ze"></polyline><rect width="256" height="256" fill="none" app="ikonik"></rect></svg>';
 
@@ -119,26 +121,25 @@ const schema = JSON.stringify({
 <V2Base
   title="How We Design a Facade Pattern | Prismaclad"
   description="How a Prismaclad facade design gets made: what the building should do, the themes a design draws on, how the pattern engine works, and what you see before anything is painted."
+  image="/assets/data-center-black-white-stripe-facade-aerial.jpg"
   schema={schema}
   breadcrumbs={[{ name: 'Design', path: '/design/' }]}
 >
-  <!-- ── Sub-hero ─────────────────────────────────────────── -->
-  <section animate="section" class="section">
-    <div class="w-layout-blockcontainer container is-subhero w-container">
-      <div class="max-width-medium is-center">
-        <div class="content_group">
-          <div animate="item" class="badge"><div>Design</div></div>
-          <h1 animate="item" class="display-md">Design at the scale of <span class="text-highlight">the building.</span></h1>
-          <p animate="item" class="text-color-subtle">A design can draw on the landscape around a site, the culture and history of the place, a company&#x27;s identity, or geometry alone, across one wall or a whole campus. Here&#x27;s how a theme becomes a pattern, how the pattern is shaped to the building, and what you see before any paint goes on.</p>
+  <!-- ── Hero: same component as How it works ──────────────── -->
+  <section animate="section" class="section hero">
+    <div class="w-layout-blockcontainer container is-hero w-container">
+      <div class="w-layout-grid grid hero">
+        <img class="hero-video-bg" loading="eager" src="/assets/data-center-black-white-stripe-facade-aerial.jpg" alt="Aerial view of a large data center under construction beside a highway, its walls covered in a black-and-white stepped stripe pattern." />
+        <div class="hero-video-overlay"></div>
+        <div class="hero-bar">
+          <div class="hero-col hero-col--title">
+            <h1 class="display-lg">Design at the scale of <span class="text-highlight">the building.</span></h1>
+          </div>
+          <div class="hero-col hero-col--desc">
+            <p class="text-color-subtle">A design can draw on the landscape around a site, the culture and history of the place, a company&#x27;s identity, or geometry alone, across one wall or a whole campus. Here&#x27;s how a theme becomes a pattern, and what you see before any paint goes on.</p>
+            <a href="#intent" class="w-inline-block hero-process-btn"><Fragment set:html={arrow} /><div class="button-text-wrap"><div class="button-text">See how a design gets made</div><div class="button-text">See how a design gets made</div></div></a>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section animate="section" class="section is-none">
-    <div class="w-layout-blockcontainer container w-container">
-      <div animate="item" class="image-wrapper">
-        <div class="pc-placeholder pc-placeholder--wide">Image: a design carried across a building or campus</div>
       </div>
     </div>
   </section>
