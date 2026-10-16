@@ -12,6 +12,7 @@
 // engine animation card is also a placeholder, to be built later.
 import V2Base from '../layouts/V2Base.astro';
 import RecursiveGrowth from '../components/v2/RecursiveGrowth.astro';
+import GeoFlip from '../components/v2/GeoFlip.astro';
 import homeSource from '../html/home.html?raw';
 
 const home = homeSource.match(/<section\b[\s\S]*?<\/section>/g) ?? [];
@@ -210,7 +211,9 @@ const schema = JSON.stringify({
       <div animate="item" class="w-layout-grid grid _3cols gap-sm">
         {families.map((c, i) => (
           <div class={i ? 'card appear-0-2s' : 'card'}>
-            <div class="pc-placeholder pc-placeholder--card">Image: {c.name.toLowerCase()} pattern</div>
+            {c.name === 'Geometric'
+              ? <GeoFlip />
+              : <div class="pc-placeholder pc-placeholder--card">Image: {c.name.toLowerCase()} pattern</div>}
             <h3 class="headline-sm">{c.name}</h3>
             <p class="text-color-subtle">{c.text}</p>
           </div>
