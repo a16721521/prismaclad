@@ -101,7 +101,7 @@ filenames do **not** come along — pre-launch is the only free rename window.
 |---|---|
 | `/` | Home (positioning, FAQ) |
 | `/process/` | How it works — survey, design, preparation, production (the service page) |
-| `/design/` | Design — design intent, palette, pattern engine (plain terms), deliverables. Flagship for Cluster D until `/patterns/` returns, if ever |
+| `/design/` | Design — design intent, sources, the design system (site name for the pattern engine; plain terms), deliverables. Flagship for Cluster D until `/patterns/` returns, if ever |
 | `/research/` | Listing (was `/blog/` until Oct 2026; 301 in place) |
 | `/research/<slug>/` | 7 posts, slugs permanent; `/blog/*` 301s here |
 | `/contact/` | Contact form |

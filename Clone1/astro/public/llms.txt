@@ -5,7 +5,7 @@
 
 ## Services
 - [How it works](https://prismaclad.com/process/): site survey, design development, preparation, and production under one contract
-- [Design](https://prismaclad.com/design/): how a facade design gets made, from design intent and palette to the pattern engine and the paintable spec
+- [Design](https://prismaclad.com/design/): how a facade design gets made, from design intent and palette to the design system and the paintable spec
 
 ## Regulation
 - [The Data Center Facade Ordinance Tracker: What Counties Actually Require](https://prismaclad.com/research/data-center-facade-ordinance-tracker/)

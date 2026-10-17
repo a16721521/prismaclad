@@ -1,15 +1,14 @@
 ---
-// Design — how a Prismaclad design gets made, with the pattern engine as one
-// section of it. Built from Cedar template sections (sub-hero, 3-col cards,
+// Design — how a Prismaclad design gets made, with the design system (the
+// internal pattern engine, called "design system" on the site) as one section of it. Built from Cedar template sections (sub-hero, 3-col cards,
 // image + checklist rows, FAQ, CTA) like /process/.
 //
 // IP NOTE (carried over from the archived v1 /patterns/ page): no patent
-// filings exist yet. Describe what the engine does in plain terms only. Do not
+// filings exist yet. Describe what the system does in plain terms only. Do not
 // add complexity scoring, normalization anchors, the multiplier curve, the
 // seed-code field schema, surface/access multiplier tables, or dollar figures.
 //
-// Images are placeholders (.pc-placeholder) until renders are chosen. The
-// engine animation card is also a placeholder, to be built later.
+// Images are placeholders (.pc-placeholder) until renders are chosen.
 import V2Base from '../layouts/V2Base.astro';
 import RecursiveGrowth from '../components/v2/RecursiveGrowth.astro';
 import GeoFlip from '../components/v2/GeoFlip.astro';
@@ -101,7 +100,7 @@ const faqs = [
     a: 'Only if your site has one. Many projects are simply about how the building looks. Where a code does apply, the design is drawn against its exact wording, and the documentation is prepared for review.',
   },
   {
-    q: 'Can we use the pattern engine ourselves?',
+    q: 'Can we use the design system ourselves?',
     a: 'No. It&#x27;s an internal design tool. What you see is what it helps produce: renderings, drawings at real dimensions, and the color and coating spec.',
   },
 ];
@@ -120,7 +119,7 @@ const schema = JSON.stringify({
 
 <V2Base
   title="How We Design a Facade Pattern | Prismaclad"
-  description="How a Prismaclad facade design gets made: what the building should do, the themes a design draws on, how the pattern engine works, and what you see before anything is painted."
+  description="How a Prismaclad facade design gets made: what the building should do, the themes a design draws on, how the design system works, and what you see before anything is painted."
   image="/assets/data-center-black-white-stripe-facade-aerial.jpg"
   schema={schema}
   breadcrumbs={[{ name: 'Design', path: '/design/' }]}
@@ -194,17 +193,17 @@ const schema = JSON.stringify({
     </div>
   </section>
 
-  <!-- ── Pattern engine ───────────────────────────────────── -->
-  <section animate="section" class="section" id="pattern-engine">
+  <!-- ── Design system ────────────────────────────────────── -->
+  <section animate="section" class="section" id="design-system">
     <div class="w-layout-blockcontainer container w-container">
       <div class="header-group">
         <div class="content_group">
-          <div animate="item" class="badge"><div>Pattern engine</div></div>
-          <h2 animate="item" class="display-sm">How the pattern engine works</h2>
+          <div animate="item" class="badge"><div>Design system</div></div>
+          <h2 animate="item" class="display-sm">How the design system works</h2>
         </div>
         <div class="content_group">
-          <p animate="item" class="text-color-subtle">We built a pattern engine for the part of design a computer does well. It takes the dimensions, panel joints, and surfaces of every wall from the survey, along with the theme, the palette, and the intent, and generates candidate patterns that already fit the building.</p>
-          <p animate="item" class="text-color-subtle">A designer chooses among them, adjusts, and draws the final design. The engine doesn&#x27;t decide what the building looks like; it makes sure every option on the table can actually be painted.</p>
+          <p animate="item" class="text-color-subtle">We built our own design system for the part of design a computer does well. It takes the dimensions, panel joints, and surfaces of every wall from the survey, along with the theme, the palette, and the intent, and generates candidate patterns that already fit the building.</p>
+          <p animate="item" class="text-color-subtle">A designer chooses among them, adjusts, and draws the final design. The system doesn&#x27;t decide what the building looks like; it makes sure every option on the table can actually be painted.</p>
         </div>
       </div>
       <div animate="item" class="card pc-engine-card">

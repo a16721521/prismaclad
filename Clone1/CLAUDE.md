@@ -38,6 +38,7 @@
 | Logo (navbar + footer) | `Branding/logo_long.png` — `height:17px; width:auto` |
 | Corner style | Sharp / minimal |
 | Tone | Direct, technical, no marketing fluff |
+| Naming | On the site, the internal **pattern engine** is called the **design system** (Oct 16, 2026). Use "design system" in all public copy |
 
 ### Color palette (Oct 2026)
 
