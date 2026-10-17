@@ -32,11 +32,33 @@
 |---|---|
 | Primary typeface | **Geist** (sans) |
 | Accent typeface | **Doto** (dot-matrix LED, weight 700) — numbered process steps / accent motif |
-| Accent (patina teal) | `#0f7a68` — replaced orange `#de3719` in Oct 2026; CSS vars keep the template's `--primary--orange` names |
+| Accent (mint) | Three strengths, Oct 2026: neon mint `#81fba5` (`--pc-mint`) for fills only (buttons, contact panel, image tints, rules, text over hero photos); deep mint `#05ac37` (`--pc-mint-deep`, 3:1) for display text, numbers, highlights, icons; text mint `#04892c` (`--pc-mint-text`, 4.5:1) for small text and hovers. Replaced violet, patina teal `#0f7a68` and orange `#de3719`. CSS vars keep the template's `--primary--orange` names |
+| Theme | **White site.** A dark theme (neon mint) was tried and reverted on Oct 16, 2026 at the user's request |
 | Near-black text | `#111210` |
 | Logo (navbar + footer) | `Branding/logo_long.png` — `height:17px; width:auto` |
 | Corner style | Sharp / minimal |
 | Tone | Direct, technical, no marketing fluff |
+
+### Color palette (Oct 2026)
+
+Sampled from the DataRobot identity reference the user chose: a saturated, digital spectrum held together
+by black. The reference's two main colors are violet and mint; the site uses mint as its accent.
+Tokens live on `:root` in `astro/public/assets/prismaclad.css`.
+
+| Color | Hex | Token | Use |
+|---|---|---|---|
+| Ink | `#111210` | `--pc-ink` | Text, button text on mint fills |
+| Violet | `#5c42fc` | `--pc-violet` | Tried as the accent Oct 16, 2026 and dropped ("too much"); kept as a token only |
+| Periwinkle | `#8387ef` | `--pc-periwinkle` | Large text or fills only (3.2:1 on white); logo refraction |
+| Azure | `#42bff9` | `--pc-azure` | Fills only; logo refraction |
+| Neon mint | `#81fba5` | `--pc-mint` | Site accent as a fill: buttons, contact panel, image tints; never text on white; logo refraction |
+| Deep mint | `#05ac37` | `--pc-mint-deep` | Mint for display text, numbers, icons on white (3:1) |
+| Text mint | `#04892c` | `--pc-mint-text` | Mint for small text and hovers on white (4.5:1) |
+| Lemon | `#fcfc75` | `--pc-lemon` | Fills only; logo refraction |
+
+Secondary tones in the reference, not tokenized: sky `#6abff4`, dusty blue `#8bc1d4`, seafoam `#86d9bf`, mid gray `#9c9a9b`.
+The nav logo intro (`V2Header.astro`) splits five colors off the icon bands, in the order violet,
+periwinkle, [band], azure, mint, lemon.
 
 ---
 
