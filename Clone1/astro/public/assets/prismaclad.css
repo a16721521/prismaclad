@@ -532,3 +532,10 @@
 .cta_content .text-color-subtle { color: rgba(17, 18, 16, .78); }
 .cta_content .button { background-color: var(--pc-ink); color: #ffffff; }
 .cta_content .button .button-icon { color: #ffffff; }
+
+/* ── Hero image raised: taller than the hero and anchored to the bottom, so the
+   subject sits higher and the title bar has clear space below it (Design).
+   Tablet and up only: on a tall phone hero it would zoom into the subject. */
+@media (min-width: 768px) {
+  .hero-video-bg.pc-hero-raise { inset: auto 0 0 0; height: 140%; object-position: center bottom; }
+}
