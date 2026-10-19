@@ -551,3 +551,13 @@
   line-height: 1.5;
   color: var(--pc-mint-deep);
 }
+
+/* Images beside text rows on the Design page: a fixed 3:2 frame, centered in
+   the column, so every image matches the annotated site photo instead of
+   stretching to the length of the text next to it. */
+.pc-img-frame {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin: auto 0;
+  overflow: hidden;
+}
