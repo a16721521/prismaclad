@@ -6,63 +6,53 @@
 // Drawn like a drafting callout: a mint pixel marker (one square of the Doto
 // dot-matrix type) on the feature, a hairline leader with one bend into a
 // short horizontal landing, and the text starting where the landing ends
-// (category level with the line, note underneath). Coordinates are percentages of
-// the photo, which keeps its own 3:2 ratio so marks stay on their features.
+// (category level with the line, note underneath).
 //
-// When scrolled into view the leaders draw themselves in sequence and the
-// labels fade up after them. Static under prefers-reduced-motion.
+// On wide screens the photo fills its whole column (object-fit: cover), so how
+// much of it shows changes with the column's shape. A small script maps each
+// feature from photo coordinates into the visible frame and lays out the
+// marker, leader and label in pixels, keeping labels inside the frame. Below
+// 1200px the photo keeps its own 3:2 shape and shows number and category only.
+//
+// When scrolled into view the leaders draw in sequence and the labels fade up
+// after them. Static under prefers-reduced-motion.
 interface Callout {
   n: string;
   label: string;
   text: string;
-  at: [number, number]; // marker on the feature
-  elbow: [number, number]; // where the leader bends into the landing
+  at: [number, number]; // feature, % of the photo
+  bend: [number, number]; // leader bend, px offset from the feature (at ~670px wide)
   dir: 'left' | 'right'; // which way the landing and text run
 }
 
-const LANDING = 2.5; // landing length, % of photo width
-const EDGE = 2; // keep text this far (%) from the photo edge
-
 const callouts: Callout[] = [
-  { n: '01', label: 'Geographical', text: 'The woods, the creek, the open sky: greens, slate and the pale grey of the horizon', at: [45.5, 26], elbow: [31, 17], dir: 'left' },
-  { n: '02', label: 'Cultural', text: "The region's vernacular: building traditions, materials and motifs the community already recognizes", at: [52, 5], elbow: [66, 15], dir: 'right' },
-  { n: '03', label: 'Identity', text: "The operator's own visual language, abstracted to a wall a few hundred feet long", at: [52, 44], elbow: [69, 48], dir: 'right' },
-  { n: '04', label: 'Geometric', text: "The substation's grid and the road's long curve set rhythm and proportion", at: [58, 71], elbow: [71, 78], dir: 'right' },
-  { n: '05', label: 'Color', text: "Ochre and clay from the ground itself, tested on the wall before it's approved", at: [38, 68], elbow: [29, 77], dir: 'left' },
+  { n: '01', label: 'Geographical', text: 'The woods, the creek, the open sky: greens, slate and the pale grey of the horizon', at: [45.5, 26], bend: [-90, -60], dir: 'left' },
+  { n: '02', label: 'Cultural', text: "The region's vernacular: building traditions, materials and motifs the community already recognizes", at: [52, 5], bend: [80, 42], dir: 'right' },
+  { n: '03', label: 'Identity', text: "The operator's own visual language, abstracted to a wall a few hundred feet long", at: [52, 44], bend: [90, 30], dir: 'right' },
+  { n: '04', label: 'Geometric', text: "The substation's grid and the road's long curve set rhythm and proportion", at: [58, 71], bend: [50, 60], dir: 'right' },
+  { n: '05', label: 'Color', text: "Ochre and clay from the ground itself, tested on the wall before it's approved", at: [38, 68], bend: [40, 90], dir: 'right' },
 ];
-const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LANDING);
 ---
 
-<figure class="pc-sources" data-sources-map>
+<figure class="pc-sources" data-sources-map data-callouts={JSON.stringify(callouts.map((c) => ({ at: c.at, bend: c.bend, dir: c.dir })))}>
   <img
     loading="lazy"
     src="/assets/data-center-construction-site-woodland-creek-aerial.jpg"
     alt="Aerial view of a data center under construction among woods, a creek, an older industrial park and a substation, annotated with the five sources a design draws on."
   />
   <div class="pc-sources-scrim" aria-hidden="true"></div>
-  <svg class="pc-sources-lines" viewBox="0 0 150 100" aria-hidden="true">
-    {callouts.map((c, i) => (
-      <path
-        d={`M ${c.at[0] * 1.5} ${c.at[1]} L ${c.elbow[0] * 1.5} ${c.elbow[1]} L ${landEnd(c) * 1.5} ${c.elbow[1]}`}
-        pathLength="1"
-        style={`--i:${i}`}
-      />
-    ))}
+  <svg class="pc-sources-lines" aria-hidden="true">
+    {callouts.map((_, i) => <path pathLength="1" style={`--i:${i}`} />)}
   </svg>
-  {callouts.map((c, i) => (
-    <span class="pc-target" style={`left:${c.at[0]}%;top:${c.at[1]}%;--i:${i}`} aria-hidden="true"></span>
+  {callouts.map((_, i) => (
+    <span class="pc-target" style={`--i:${i}`} aria-hidden="true"></span>
   ))}
-  {callouts.map((c, i) => {
-    const end = landEnd(c);
-    const width = c.dir === 'right' ? 100 - EDGE - end : end - EDGE;
-    const left = c.dir === 'right' ? end : EDGE;
-    return (
-      <div class={`pc-callout${c.dir === 'left' ? ' is-left' : ''}`} style={`left:${left}%;top:${c.elbow[1]}%;width:${width}%;--i:${i}`}>
-        <span class="pc-callout-head"><span class="pc-callout-num">{c.n}</span>{c.label}</span>
-        <span class="pc-callout-text">{c.text}</span>
-      </div>
-    );
-  })}
+  {callouts.map((c, i) => (
+    <div class={`pc-callout${c.dir === 'left' ? ' is-left' : ''}`} style={`--i:${i}`}>
+      <span class="pc-callout-head"><span class="pc-callout-num">{c.n}</span>{c.label}</span>
+      <span class="pc-callout-text">{c.text}</span>
+    </div>
+  ))}
 </figure>
 
 <style>
@@ -73,11 +63,23 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
     aspect-ratio: 3 / 2;
     overflow: hidden;
   }
+  /* Wide screens: fill the column the way the other images do. */
+  @media (min-width: 1200px) {
+    .pc-sources {
+      aspect-ratio: auto;
+      margin: 0;
+      flex: 1 1 auto;
+      min-height: 100%;
+    }
+  }
   .pc-sources img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 48% 50%;
   }
   /* Knock the photo back a little so white linework reads, like a print
      under tracing paper. */
@@ -86,7 +88,6 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
     inset: 0;
     background: rgba(17, 18, 16, 0.32);
   }
-  /* viewBox is 150 x 100, the photo's own 3:2, so lines scale evenly. */
   .pc-sources-lines {
     position: absolute;
     inset: 0;
@@ -97,7 +98,7 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
   .pc-sources-lines path {
     fill: none;
     stroke: #ffffff;
-    stroke-width: 0.24;
+    stroke-width: 1;
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
   }
@@ -116,13 +117,8 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
   .pc-callout {
     position: absolute;
     margin-top: -8px;
-    padding-left: 6px;
   }
-  .pc-callout.is-left {
-    padding-left: 0;
-    padding-right: 6px;
-    text-align: right;
-  }
+  .pc-callout.is-left { text-align: right; }
   .pc-callout-head {
     display: flex;
     align-items: baseline;
@@ -152,7 +148,12 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
     color: rgba(255, 255, 255, 0.86);
   }
 
-  /* Drafting reveal: leaders draw, then targets and labels appear. */
+  /* Hidden until the script has placed everything. */
+  .pc-sources:not([data-ready]) .pc-sources-lines,
+  .pc-sources:not([data-ready]) .pc-target,
+  .pc-sources:not([data-ready]) .pc-callout { visibility: hidden; }
+
+  /* Drafting reveal: leaders draw, then markers and labels appear. */
   .pc-sources[data-js] .pc-sources-lines path { stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s cubic-bezier(.65,0,.35,1); transition-delay: calc(var(--i) * 0.22s); }
   .pc-sources[data-js] .pc-target { opacity: 0; transition: opacity 0.3s ease; transition-delay: calc(var(--i) * 0.22s); }
   .pc-sources[data-js] .pc-callout { opacity: 0; transform: translateY(6px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: calc(var(--i) * 0.22s + 0.7s); }
@@ -175,17 +176,77 @@ const landEnd = (c: Callout) => c.elbow[0] + (c.dir === 'right' ? LANDING : -LAN
 </style>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-sources-map]').forEach((el) => {
-    el.setAttribute('data-js', '');
+  type C = { at: [number, number]; bend: [number, number]; dir: 'left' | 'right' };
+  const RATIO = 1.5; // photo aspect
+  const POS_X = 0.48; // matches object-position
+  const LANDING = 16;
+  const GAP = 6;
+  const PAD = 12; // keep labels this far from the frame edge
+  const MAX_W = 220;
+
+  function layout(fig: HTMLElement, cs: C[]) {
+    const W = fig.clientWidth;
+    const H = fig.clientHeight;
+    if (!W || !H) return;
+    // Where the cover-fitted photo sits relative to the frame.
+    const dw = Math.max(W, H * RATIO);
+    const dh = dw / RATIO;
+    const ox = (W - dw) * POS_X;
+    const oy = (H - dh) * 0.5;
+    // Bend offsets were set for a ~670px frame; scale them with the frame.
+    const k = Math.min(1.25, Math.max(0.5, W / 670));
+
+    const svg = fig.querySelector('svg')!;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const paths = svg.querySelectorAll('path');
+    const marks = fig.querySelectorAll<HTMLElement>('.pc-target');
+    const labels = fig.querySelectorAll<HTMLElement>('.pc-callout');
+
+    cs.forEach((c, i) => {
+      const px = ox + (c.at[0] / 100) * dw;
+      const py = oy + (c.at[1] / 100) * dh;
+      const right = c.dir === 'right';
+      let bx = px + c.bend[0] * k;
+      const by = Math.min(H - 24, Math.max(16, py + c.bend[1] * k));
+      // Keep room for the landing and some text on the label side.
+      bx = right ? Math.min(bx, W - PAD - LANDING - 110) : Math.max(bx, PAD + LANDING + 110);
+      const ex = right ? bx + LANDING : bx - LANDING;
+
+      paths[i].setAttribute('d', `M ${px} ${py} L ${bx} ${by} L ${ex} ${by}`);
+      marks[i].style.left = `${px}px`;
+      marks[i].style.top = `${py}px`;
+
+      const lab = labels[i];
+      lab.style.top = `${by}px`;
+      if (right) {
+        const left = ex + GAP;
+        lab.style.left = `${left}px`;
+        lab.style.width = `${Math.min(MAX_W, W - PAD - left)}px`;
+      } else {
+        const w = Math.min(MAX_W, ex - GAP - PAD);
+        lab.style.left = `${ex - GAP - w}px`;
+        lab.style.width = `${w}px`;
+      }
+    });
+    fig.setAttribute('data-ready', '');
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-sources-map]').forEach((fig) => {
+    const cs: C[] = JSON.parse(fig.dataset.callouts || '[]');
+    fig.setAttribute('data-js', '');
+    const run = () => layout(fig, cs);
+    run();
+    new ResizeObserver(run).observe(fig);
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
-          el.classList.add('is-in');
+          run();
+          fig.classList.add('is-in');
           io.disconnect();
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.3 },
     );
-    io.observe(el);
+    io.observe(fig);
   });
 </script>
