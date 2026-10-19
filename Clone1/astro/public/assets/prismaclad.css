@@ -539,3 +539,15 @@
 @media (min-width: 768px) {
   .hero-video-bg.pc-hero-raise { inset: auto 0 0 0; height: 140%; object-position: center bottom; }
 }
+
+/* Numbered checklist (Design page sources list): a Doto number in place of the
+   checkmark, matching the numbered callouts on the photo beside it. */
+.pc-list-num {
+  flex: none;
+  width: 18px;
+  font-family: 'Doto', 'Geist', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--pc-mint-deep);
+}

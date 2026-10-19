@@ -1,0 +1,185 @@
+---
+// Annotated site photo for the Design page's "Where a design comes from"
+// section. Each callout reads one of the five design sources off something
+// visible in the photo, numbered to match the list beside it.
+//
+// Drawn like an architectural annotation: a mint pixel marker (one square of
+// the Doto dot-matrix type) on the feature, a hairline leader with one elbow, and a horizontal shelf line the
+// label sits on (category above, note below). Coordinates are percentages of
+// the photo, which keeps its own 3:2 ratio so marks stay on their features.
+//
+// When scrolled into view the leaders draw themselves in sequence and the
+// labels fade up after them. Static under prefers-reduced-motion.
+interface Callout {
+  n: string;
+  label: string;
+  text: string;
+  at: [number, number]; // marker on the feature
+  elbow: [number, number]; // where the leader turns onto the shelf
+  shelf: number; // x where the shelf ends; left or right of the elbow
+}
+
+const callouts: Callout[] = [
+  { n: '01', label: 'Geographical', text: 'The woods, the creek, the open sky: greens, slate and the pale grey of the horizon', at: [45.5, 26], elbow: [31, 17], shelf: 4 },
+  { n: '02', label: 'Cultural', text: "The region's vernacular: building traditions, materials and motifs the community already recognizes", at: [52, 5], elbow: [66, 15], shelf: 96 },
+  { n: '03', label: 'Identity', text: "The operator's own visual language, abstracted to a wall a few hundred feet long", at: [52, 44], elbow: [69, 48], shelf: 97 },
+  { n: '04', label: 'Geometric', text: "The substation's grid and the road's long curve set rhythm and proportion", at: [58, 71], elbow: [71, 78], shelf: 97 },
+  { n: '05', label: 'Color', text: "Ochre and clay from the ground itself, tested on the wall before it's approved", at: [38, 68], elbow: [29, 77], shelf: 2 },
+];
+---
+
+<figure class="pc-sources" data-sources-map>
+  <img
+    loading="lazy"
+    src="/assets/data-center-construction-site-woodland-creek-aerial.jpg"
+    alt="Aerial view of a data center under construction among woods, a creek, an older industrial park and a substation, annotated with the five sources a design draws on."
+  />
+  <div class="pc-sources-scrim" aria-hidden="true"></div>
+  <svg class="pc-sources-lines" viewBox="0 0 150 100" aria-hidden="true">
+    {callouts.map((c, i) => (
+      <path
+        d={`M ${c.at[0] * 1.5} ${c.at[1]} L ${c.elbow[0] * 1.5} ${c.elbow[1]} L ${c.shelf * 1.5} ${c.elbow[1]}`}
+        pathLength="1"
+        style={`--i:${i}`}
+      />
+    ))}
+  </svg>
+  {callouts.map((c, i) => (
+    <span class="pc-target" style={`left:${c.at[0]}%;top:${c.at[1]}%;--i:${i}`} aria-hidden="true"></span>
+  ))}
+  {callouts.map((c, i) => {
+    const left = Math.min(c.elbow[0], c.shelf);
+    const width = Math.abs(c.shelf - c.elbow[0]);
+    return (
+      <div class={`pc-callout${c.shelf < c.elbow[0] ? ' is-left' : ''}`} style={`left:${left}%;top:${c.elbow[1]}%;width:${width}%;--i:${i}`}>
+        <span class="pc-callout-head"><span class="pc-callout-num">{c.n}</span>{c.label}</span>
+        <span class="pc-callout-text">{c.text}</span>
+      </div>
+    );
+  })}
+</figure>
+
+<style>
+  .pc-sources {
+    position: relative;
+    margin: auto 0;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+  .pc-sources img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Knock the photo back a little so white linework reads, like a print
+     under tracing paper. */
+  .pc-sources-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 18, 16, 0.32);
+  }
+  /* viewBox is 150 x 100, the photo's own 3:2, so lines scale evenly. */
+  .pc-sources-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .pc-sources-lines path {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 0.24;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+
+  /* Marker: one square pixel of the Doto dot-matrix type, in mint. */
+  .pc-target {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    background: var(--pc-mint);
+  }
+
+  /* Label sits on the shelf line: category above, note below. */
+  .pc-callout {
+    position: absolute;
+    height: 0;
+  }
+  .pc-callout-head {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    white-space: nowrap;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  .pc-callout-num {
+    font-family: 'Doto', 'Geist', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--pc-mint);
+  }
+  .pc-callout-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.86);
+  }
+  /* Keep text clear of the leader where it meets the shelf. */
+  .pc-callout:not(.is-left) .pc-callout-head,
+  .pc-callout:not(.is-left) .pc-callout-text { padding-left: 10px; }
+  .pc-callout.is-left .pc-callout-head { left: auto; right: 0; padding-right: 10px; }
+  .pc-callout.is-left .pc-callout-text { text-align: right; padding-right: 10px; }
+
+  /* Drafting reveal: leaders draw, then targets and labels appear. */
+  .pc-sources[data-js] .pc-sources-lines path { stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s cubic-bezier(.65,0,.35,1); transition-delay: calc(var(--i) * 0.22s); }
+  .pc-sources[data-js] .pc-target { opacity: 0; transition: opacity 0.3s ease; transition-delay: calc(var(--i) * 0.22s); }
+  .pc-sources[data-js] .pc-callout { opacity: 0; transform: translateY(6px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: calc(var(--i) * 0.22s + 0.7s); }
+  .pc-sources.is-in .pc-sources-lines path { stroke-dashoffset: 0; }
+  .pc-sources.is-in .pc-target { opacity: 1; }
+  .pc-sources.is-in .pc-callout { opacity: 1; transform: none; }
+
+  /* Below wide desktop the notes don't fit on the photo: number and category
+     only (the list beside it carries the detail). */
+  @media (max-width: 1199px) {
+    .pc-callout-text { display: none; }
+    .pc-callout-head { font-size: 9.5px; letter-spacing: 0.12em; gap: 5px; }
+    .pc-callout-num { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pc-sources[data-js] .pc-sources-lines path,
+    .pc-sources[data-js] .pc-target,
+    .pc-sources[data-js] .pc-callout { transition: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-sources-map]').forEach((el) => {
+    el.setAttribute('data-js', '');
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add('is-in');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+  });
+</script>

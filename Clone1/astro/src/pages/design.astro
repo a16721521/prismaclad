@@ -10,6 +10,7 @@
 //
 // Images are placeholders (.pc-placeholder) until renders are chosen.
 import V2Base from '../layouts/V2Base.astro';
+import SourcesMap from '../components/v2/SourcesMap.astro';
 import RecursiveGrowth from '../components/v2/RecursiveGrowth.astro';
 import GeoFlip from '../components/v2/GeoFlip.astro';
 import DazzleRefraction from '../components/v2/DazzleRefraction.astro';
@@ -47,7 +48,7 @@ const intents = [
 
 const sources = [
   'Geographical: the terrain, vegetation, water, and sky around the site',
-  'Cultural and historical: local architecture, materials, industry, and craft traditions',
+  'Cultural: the community&#x27;s own vernacular, its building traditions, materials, and craft',
   'Identity: a company&#x27;s, a town&#x27;s, or a region&#x27;s visual language, abstracted to building scale',
   'Geometric: rhythm, proportion, and pattern on their own terms',
   'Color that follows from the theme, tested on the wall itself before it&#x27;s approved',
@@ -180,14 +181,14 @@ const schema = JSON.stringify({
             <ul role="list" class="checklist-wrapper w-list-unstyled">
               {sources.map((g, j) => (
                 <li animate="item" class={j % 2 ? 'checklist-item is-offset' : 'checklist-item'}>
-                  <Fragment set:html={check} /><div set:html={g} />
+                  <span class="pc-list-num" aria-hidden="true">{String(j + 1).padStart(2, '0')}</span><div set:html={g} />
                 </li>
               ))}
             </ul>
           </div>
         </div>
         <div animate="item" class="content-column">
-          <div class="pc-placeholder">Image: themes and references behind a design</div>
+          <SourcesMap />
         </div>
       </div>
     </div>
@@ -245,7 +246,7 @@ const schema = JSON.stringify({
           </div>
         </div>
         <div animate="item" class="content-column">
-          <div class="pc-placeholder">Image: a pattern drawn to a real wall</div>
+          <img loading="lazy" src="/assets/industrial-building-green-to-grey-banded-facade.jpg" alt="A large industrial building whose facade panels shift in bands from dark green through tan to light grey, behind a parking lot with small planted islands." class="_w-h-100 fit-cover" />
         </div>
       </div>
     </div>
@@ -271,7 +272,7 @@ const schema = JSON.stringify({
           </div>
         </div>
         <div animate="item" class="content-column">
-          <div class="pc-placeholder">Image: elevation drawing with color zones and coating spec</div>
+          <img loading="lazy" src="/assets/facade-elevation-drawing-color-zones-legend.jpg" alt="Printed facade elevation drawing of a data center with blue, orange, green and grey color zones and a legend, lying on a table beside drafting pens and a scale ruler." class="_w-h-100 fit-cover" />
         </div>
       </div>
     </div>
