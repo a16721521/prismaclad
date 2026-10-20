@@ -30,7 +30,7 @@ const callouts: Callout[] = [
   { n: '02', label: 'Cultural', text: "The region's vernacular: building traditions, materials and motifs the community already recognizes", at: [52, 5], bend: [80, 42], dir: 'right' },
   { n: '03', label: 'Identity', text: "The operator's own visual language, abstracted to a wall a few hundred feet long", at: [52, 44], bend: [90, 30], dir: 'right' },
   { n: '04', label: 'Geometric', text: "The substation's grid and the road's long curve set rhythm and proportion", at: [58, 71], bend: [50, 60], dir: 'right' },
-  { n: '05', label: 'Color', text: "Ochre and clay from the ground itself, tested on the wall before it's approved", at: [38, 68], bend: [40, 90], dir: 'right' },
+  { n: '05', label: 'Color', text: "Ochre and clay from the ground itself, tested on the wall before it's approved", at: [38, 68], bend: [-45, 75], dir: 'left' },
 ];
 ---
 
@@ -153,13 +153,16 @@ const callouts: Callout[] = [
   .pc-sources:not([data-ready]) .pc-target,
   .pc-sources:not([data-ready]) .pc-callout { visibility: hidden; }
 
-  /* Drafting reveal: leaders draw, then markers and labels appear. */
-  .pc-sources[data-js] .pc-sources-lines path { stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s cubic-bezier(.65,0,.35,1); transition-delay: calc(var(--i) * 0.22s); }
-  .pc-sources[data-js] .pc-target { opacity: 0; transition: opacity 0.3s ease; transition-delay: calc(var(--i) * 0.22s); }
-  .pc-sources[data-js] .pc-callout { opacity: 0; transform: translateY(6px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: calc(var(--i) * 0.22s + 0.7s); }
-  .pc-sources.is-in .pc-sources-lines path { stroke-dashoffset: 0; }
-  .pc-sources.is-in .pc-target { opacity: 1; }
-  .pc-sources.is-in .pc-callout { opacity: 1; transform: none; }
+  /* Drafting reveal: leaders draw, then markers and labels appear. The hidden
+     start state keys off html.w-mod-js, which the head script sets before
+     first paint, so nothing flashes visible and then fades out before the
+     reveal (and without JS everything simply shows). */
+  .pc-sources-lines path { transition: stroke-dashoffset 0.9s cubic-bezier(.65,0,.35,1); transition-delay: calc(var(--i) * 0.22s); }
+  .pc-target { transition: opacity 0.3s ease; transition-delay: calc(var(--i) * 0.22s); }
+  .pc-callout { transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: calc(var(--i) * 0.22s + 0.7s); }
+  :global(html.w-mod-js) .pc-sources:not(.is-in) .pc-sources-lines path { stroke-dashoffset: 1; }
+  :global(html.w-mod-js) .pc-sources:not(.is-in) .pc-target { opacity: 0; }
+  :global(html.w-mod-js) .pc-sources:not(.is-in) .pc-callout { opacity: 0; transform: translateY(6px); }
 
   /* Below wide desktop the notes don't fit on the photo: number and category
      only (the list beside it carries the detail). */
@@ -169,9 +172,9 @@ const callouts: Callout[] = [
     .pc-callout-num { font-size: 11px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .pc-sources[data-js] .pc-sources-lines path,
-    .pc-sources[data-js] .pc-target,
-    .pc-sources[data-js] .pc-callout { transition: none; }
+    .pc-sources-lines path,
+    .pc-target,
+    .pc-callout { transition: none; }
   }
 </style>
 
@@ -233,7 +236,6 @@ const callouts: Callout[] = [
 
   document.querySelectorAll<HTMLElement>('[data-sources-map]').forEach((fig) => {
     const cs: C[] = JSON.parse(fig.dataset.callouts || '[]');
-    fig.setAttribute('data-js', '');
     const run = () => layout(fig, cs);
     run();
     new ResizeObserver(run).observe(fig);
