@@ -559,3 +559,20 @@
   min-height: 100%;
   overflow: hidden;
 }
+
+/* Phones: every image beside a text row gets the same 3:2 frame (the desktop
+   fill-the-column behavior doesn't apply in a single column, and the photos
+   come in different shapes). */
+@media (max-width: 767px) {
+  .content-column > img.fit-cover,
+  .content-column > .pc-img-frame,
+  .content-column > .pc-sources {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex: none;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+  .pc-img-frame > img { width: 100%; height: 100%; object-fit: cover; }
+}
